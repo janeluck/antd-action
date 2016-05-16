@@ -11,7 +11,8 @@
     "babel-plugin-antd": "0.4.x",
     "es3ify-loader": "^0.2.0",
     "react": "^15.0.2",
-    "react-dom": "^15.0.2"
+    "react-dom": "^15.0.2",
+    "reqwest": "^2.0.5"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.0",
