@@ -1,5 +1,5 @@
 import React from 'react';
-import {Timeline } from 'antd';
+import {Timeline, Input } from 'antd';
 import './App.less';
 import reqwest from 'reqwest'
 
@@ -54,6 +54,7 @@ export default class App extends React.Component {
                         <p>技术测试异常3 2015-09-01</p>
                     </Timeline.Item>
                 </Timeline>
+                <Input type="text" autoComplete="off"/>
             </div>)
 
     }
