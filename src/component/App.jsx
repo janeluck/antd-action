@@ -55,6 +55,13 @@ export default class App extends React.Component {
                     </Timeline.Item>
                 </Timeline>
 
+
+
+
+                <div className="ant-input-wrapper">
+
+                    <input type="number" className="ant-input"/>
+                </div>
             </div>)
 
     }
