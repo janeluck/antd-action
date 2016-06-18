@@ -62,3 +62,68 @@ textarea.ant-input {
   height: 22px;
   border-radius: 4px;
 }
+
+
+.jane-input-number{
+  margin:0;
+  padding: 0;
+  line-height: 26px;
+  height: 26px;
+  display: inline-block;
+  vertical-align: middle;
+  border: 1px solid #D9D9D9;
+  border-radius: 5px;
+  &:hover, &:focus{
+    border-color: #00b0e8;
+    .jane-input-number-handle-wrap, .jane-input-number-handler-up{
+      border-color: #00b0e8;
+    }
+  }
+}
+.jane-input-number-handle-wrap{
+  float: right;
+  width: 20px;
+  border-left: 1px solid #D9D9D9;
+}
+
+
+.jane-input-number-handler{
+  display: block;
+  text-align: center;
+  height: 12px;
+  line-height: 12px;
+
+}
+.jane-input-number-handler-up{
+  border-bottom: 1px solid #D9D9D9;
+}
+
+.jane-input-number-handler-up-inner, .jane-input-number-handler-down-inner{
+  color: #666666;
+}
+
+
+.jane-input-number-handler-up-inner::after{
+  content: '+';
+}
+.jane-input-number-handler-down-inner::after{
+  content: '-';
+}
+
+
+
+.jane-input-number-input-wrap{
+  overflow: hidden;
+
+}
+.jane-input-number-input{
+  background-color: transparent;
+  height: 24px;
+  line-height: 24px;
+  border: 0;
+  outline: 0;
+  text-align: center;
+  width: 100%;
+}
+
+
