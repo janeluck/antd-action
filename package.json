@@ -14,10 +14,12 @@
     "draft-js-linkify-plugin": "^1.0.1",
     "draft-js-plugins-editor": "^1.1.0",
     "es3ify-loader": "^0.2.0",
+    "rc-align": "^2.3.1",
     "rc-animate": "^2.0.4",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
-    "reqwest": "^2.0.5"
+    "reqwest": "^2.0.5",
+    "src": "^1.1.2"
   },
   "devDependencies": {
     "atool-doc": "^0.3.0",

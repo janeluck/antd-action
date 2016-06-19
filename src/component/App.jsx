@@ -1,8 +1,8 @@
 import React from 'react';
-import {Timeline, Input, Select, InputNumber } from 'antd';
+import {Timeline, Input, Select, InputNumber, Popover } from 'antd';
 import './App.less';
 import reqwest from 'reqwest'
-
+import JanePopup from '../jane/JanePopup'
 
 import  { Component } from 'react';
 const Option = Select.Option;
@@ -56,6 +56,17 @@ export default class App extends React.Component {
                     </div>
 
                 </div>
+
+
+
+                <JanePopup>
+                    <button>click me</button>
+                </JanePopup>
+
+
+                <Popover content="bingo">
+                    <button>1111</button>
+                </Popover>
             </div>)
 
     }
