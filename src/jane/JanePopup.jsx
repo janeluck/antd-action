@@ -26,6 +26,7 @@ const JanePopup = React.createClass({
         const newChildProps = {};
         newChildProps.onClick = createChainedFunction(this.onClick, childProps.onClick);
 
+        // React.cloneElement: The resulting element will have the original element's props with the new props merged in shallowly.
         return (React.cloneElement(child, newChildProps));
     },
 });

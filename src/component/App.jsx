@@ -60,7 +60,7 @@ export default class App extends React.Component {
 
 
                 <JanePopup>
-                    <button onClick={()=>{alert(1)}}>click me</button>
+                    <button name="popTrigger" onClick={()=>{alert(1)}}>click me</button>
                 </JanePopup>
 
 
