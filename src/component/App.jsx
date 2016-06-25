@@ -58,7 +58,7 @@ export default class App extends React.Component {
                 </div>
 
 
-                <JanePopup content="jane awesome">
+                <JanePopup content={[(<div>popTitle</div>), (<input type="text"/>), (<div>popContent</div>)]}>
                     <button name="popTrigger">click me</button>
                 </JanePopup>
 

@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Align from 'rc-align';
 import Animate from 'rc-animate';
+import contains from 'rc-util/lib/Dom/contains';
+import addEventListener from 'rc-util/lib/Dom/addEventListener';
 
 import {createChainedFunction} from './util'
 import './popup.less'
@@ -39,7 +41,8 @@ const JanePopup = React.createClass({
 
             self.popupInstance = ReactDOM.unstable_renderSubtreeIntoContainer(this, this.getPopup(), this.getPopupContainer())
 
-
+            addEventListener(document,
+                'mousedown', this.onDocumentClick)
         }
     },
 
@@ -67,8 +70,9 @@ const JanePopup = React.createClass({
         const {content} = this.props
         const className = this.state.popupVisible ? '' : 'jane-popup-hidden'
         return (<div style={this.getStyle()}
+                     children={content}
                      className={className}>
-            {content}
+
         </div>)
     },
     getStyle(){
@@ -83,6 +87,17 @@ const JanePopup = React.createClass({
         return {
             top: targetDOM.getBoundingClientRect().top + document.documentElement.scrollTop,
             left: targetDOM.getBoundingClientRect().left + document.documentElement.scrollLeft
+        }
+    },
+
+    onDocumentClick(event) {
+
+        const target = event.target;
+        const root = ReactDOM.findDOMNode(this);
+        const popupNode = this.getPopupContainer();
+
+        if (!contains(root, target) && !contains(popupNode, target)) {
+            this.setState({popupVisible: false});
         }
     },
     onClick(event) {
