@@ -14,7 +14,9 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props)
-
+        this.state = {
+            value: ''
+        }
     }
 
     componentDidMount() {
@@ -37,7 +39,14 @@ export default class App extends React.Component {
         })
     }
 
+    handleInputChange = (e) => {
+        this.setState({
+            value: e.target.value
+        })
+    }
+
     render() {
+        const input = (<input type="text" value={this.state.value}  onChange = {this.handleInputChange}/>)
         return (
             <div style={{margin: 30}}>
 
@@ -58,7 +67,7 @@ export default class App extends React.Component {
                 </div>
 
 
-                <JanePopup content={[(<div>popTitle</div>), (<input type="text"/>), (<div>popContent</div>)]}>
+                <JanePopup content={[<div>popTitle</div>, input, <div>popContent</div>]}>
                     <button name="popTrigger">click me</button>
                 </JanePopup>
 

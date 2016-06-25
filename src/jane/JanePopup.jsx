@@ -37,12 +37,15 @@ const JanePopup = React.createClass({
         const props = this.props;
         const state = this.state;
         if (this.popupRendered) {
-            const self = this;
 
+            const self = this;
             self.popupInstance = ReactDOM.unstable_renderSubtreeIntoContainer(this, this.getPopup(), this.getPopupContainer())
 
-            addEventListener(document,
-                'mousedown', this.onDocumentClick)
+            if (!this.clickOutsideHandler) {
+                this.clickOutsideHandler = addEventListener(document,
+                    'mousedown', this.onDocumentClick);
+            }
+
         }
     },
 
@@ -68,6 +71,7 @@ const JanePopup = React.createClass({
 
     getPopup(){
         const {content} = this.props
+        console.log()
         const className = this.state.popupVisible ? '' : 'jane-popup-hidden'
         return (<div style={this.getStyle()}
                      children={content}
