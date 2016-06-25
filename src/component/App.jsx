@@ -58,15 +58,22 @@ export default class App extends React.Component {
                 </div>
 
 
-
-                <JanePopup>
-                    <button name="popTrigger" onClick={()=>{alert(1)}}>click me</button>
+                <JanePopup content="jane awesome">
+                    <button name="popTrigger">click me</button>
                 </JanePopup>
 
 
-                <Popover content="bingo" trigger="click">
-                    <button onClick={()=>{alert(2)}}>1111</button>
+                <Popover content={(<div><input type="text"/></div>)} trigger="click">
+                    <button >1111</button>
+
                 </Popover>
+
+
+                <div>
+                    <p>ooooooo</p>
+                </div>
+
+                <div    children={[(<div>your name</div>), (<div>my name</div>)]}></div>
             </div>)
 
     }
