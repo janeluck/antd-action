@@ -4,7 +4,7 @@ import Align from 'rc-align';
 import Animate from 'rc-animate';
 import contains from 'rc-util/lib/Dom/contains';
 import addEventListener from 'rc-util/lib/Dom/addEventListener';
-
+import LifeCycle from 'react-lifecycle';
 import {createChainedFunction} from './util'
 import './popup.less'
 
@@ -16,9 +16,16 @@ const style = {
 
 
 const JanePopup = React.createClass({
+    mixins: [LifeCycle],
     propTypes: {
         // specify that only a single child can be passed to a component as children
         children: PropTypes.element.isRequired
+    },
+    getInitialState() {
+
+        return {
+            popupVisible: false
+        };
     },
     componentDidMount() {
         this.componentDidUpdate({}, {
@@ -48,14 +55,21 @@ const JanePopup = React.createClass({
 
         }
     },
+    componentWillUnmount() {
 
-
-    getInitialState() {
-
-        return {
-            popupVisible: false
-        };
+        const popupContainer = this.popupContainer;
+        if (popupContainer) {
+            // Remove a mounted React component from the DOM and clean up its event handlers and state.
+            ReactDOM.unmountComponentAtNode(popupContainer);
+            popupContainer.parentNode.removeChild(popupContainer);
+            this.popupContainer = null;
+        }
+        if (this.clickOutsideHandler) {
+            this.clickOutsideHandler.remove()
+        }
     },
+
+
 
     getPopupContainer() {
         if (!this.popupContainer) {
@@ -113,6 +127,7 @@ const JanePopup = React.createClass({
     },
 
     render() {
+        console.log('render')
         this.popupRendered = this.popupRendered || this.state.popupVisible;
         const child = React.Children.only(this.props.children);
         const childProps = child.props || {};
