@@ -56,7 +56,7 @@ const JanePopup = React.createClass({
         }
     },
     componentWillUnmount() {
-
+        console.log("goodbye cruel world!")
         const popupContainer = this.popupContainer;
         if (popupContainer) {
             // Remove a mounted React component from the DOM and clean up its event handlers and state.

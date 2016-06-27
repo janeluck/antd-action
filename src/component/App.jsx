@@ -15,7 +15,8 @@ export default class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            value: ''
+            value: '',
+            hasPop: true
         }
     }
 
@@ -38,7 +39,11 @@ export default class App extends React.Component {
 
         })
     }
-
+    togglePop = () => {
+        this.setState({
+            hasPop: !this.state.hasPop
+        })
+    }
     handleInputChange = (e) => {
         this.setState({
             value: e.target.value
@@ -67,9 +72,13 @@ export default class App extends React.Component {
                 </div>
 
 
-                <JanePopup content={[<div>popTitle</div>, input, <div>popContent</div>]}>
+                <button onClick={this.togglePop}>toggle popup</button>
+
+                {this.state.hasPop ? ( <JanePopup content={[<div>popTitle</div>, input, <div>popContent</div>]}>
                     <button name="popTrigger">click me</button>
-                </JanePopup>
+                </JanePopup>) : null}
+
+
 
 
                 <Popover content={(<div><input type="text"/></div>)} trigger="click">
