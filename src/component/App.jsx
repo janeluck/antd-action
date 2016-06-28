@@ -7,6 +7,19 @@ import JanePopup from '../jane/JanePopup'
 import  { Component } from 'react';
 const Option = Select.Option;
 
+
+const style = {
+    padding: '.3em .8em',
+    border: '1px solid rgba(0, 0, 0, .1)',
+    background: '#58a linear - gradient(hsla(0, 0 %, 100 %, .2),transparent)',
+    borderRadius: '.2em',
+    boxShadow: '0 .05em .25em rgba(0,0,0,.5)',
+    color: 'white',
+    textShadow: '0 -.05em .05em rgba(0,0,0,.5)',
+    fontSize: '125%',
+    lineHeight: '1.5',
+}
+
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
@@ -39,6 +52,7 @@ export default class App extends React.Component {
 
         })
     }
+
     togglePop = () => {
         this.setState({
             hasPop: !this.state.hasPop
@@ -74,11 +88,10 @@ export default class App extends React.Component {
 
                 <button onClick={this.togglePop}>toggle popup</button>
 
-                {this.state.hasPop ? ( <JanePopup content={[<div>popTitle</div>, <input type="text" value={this.state.value}  onChange = {this.handleInputChange}/>, <div>popContent</div>]}>
+                {this.state.hasPop ? (<JanePopup
+                    content={[<div>popTitle</div>, <input type="text" value={this.state.value}  onChange = {this.handleInputChange}/>, <div>popContent</div>]}>
                     <button name="popTrigger">click me</button>
                 </JanePopup>) : null}
-
-
 
 
                 <Popover content={(<div><input type="text"/></div>)} trigger="click">
@@ -91,7 +104,11 @@ export default class App extends React.Component {
                     <p>ooooooo</p>
                 </div>
 
-                <div    children={[(<div>your name</div>), (<div>my name</div>)]}></div>
+                <div children={[(<div>your name</div>), (<div>my name</div>)]}></div>
+
+                <div style={style}>
+                    my custom div
+                </div>
             </div>)
 
     }
