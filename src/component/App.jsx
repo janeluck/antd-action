@@ -51,7 +51,7 @@ export default class App extends React.Component {
     }
 
     render() {
-        const input = (<input type="text" value={this.state.value}  onChange = {this.handleInputChange}/>)
+
         return (
             <div style={{margin: 30}}>
 
@@ -74,7 +74,7 @@ export default class App extends React.Component {
 
                 <button onClick={this.togglePop}>toggle popup</button>
 
-                {this.state.hasPop ? ( <JanePopup content={[<div>popTitle</div>, input, <div>popContent</div>]}>
+                {this.state.hasPop ? ( <JanePopup content={[<div>popTitle</div>, <input type="text" value={this.state.value}  onChange = {this.handleInputChange}/>, <div>popContent</div>]}>
                     <button name="popTrigger">click me</button>
                 </JanePopup>) : null}
 
