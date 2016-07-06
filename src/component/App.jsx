@@ -1,8 +1,9 @@
 import React from 'react';
-import {Timeline, Input, Select, InputNumber, Popover } from 'antd';
+import {Timeline, Input, Select, InputNumber, Popover, Button } from 'antd';
 import './App.less';
 import reqwest from 'reqwest'
 import JanePopup from '../jane/JanePopup'
+import EditDialog from '../jane/EditDialog'
 
 import  { Component } from 'react';
 const Option = Select.Option;
@@ -23,6 +24,36 @@ const style = {
 function handleChange(value) {
     console.log(`selected ${value}`);
 }
+
+
+
+class EditDialog_Demo extends Component{
+
+    constructor(props, context) {
+        super(props, context)
+        this.state = {
+            visible: false
+        }
+
+    }
+    onclick = (e)=>{
+        this.setState({
+            visible: !this.state.visible
+        })
+    }
+
+    render() {
+
+        return (
+            <div style={{margin: '100px auto'}}>
+                <Button onClick={this.onclick}>编辑任务</Button>
+                <EditDialog  visible={this.state.visible}/>
+            </div>
+        );
+    }
+}
+
+
 export default class App extends React.Component {
 
     constructor(props) {
@@ -109,6 +140,7 @@ export default class App extends React.Component {
                 <div style={style}>
                     my custom div
                 </div>
+                <EditDialog_Demo/>
             </div>)
 
     }
