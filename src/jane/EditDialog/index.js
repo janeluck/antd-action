@@ -27,6 +27,7 @@ export default class EditDialog extends React.Component {
             visible: this.state.visible,
         });
     }
+
     componentWillReceiveProps(nextProps) {
         if ('visible' in nextProps) {
             this.setState({
@@ -34,6 +35,7 @@ export default class EditDialog extends React.Component {
             });
         }
     }
+
     componentDidUpdate(prevProps, prevState) {
         const props = this.props;
         const state = this.state;
@@ -48,7 +50,9 @@ export default class EditDialog extends React.Component {
             position: 'absolute',
             top: 131,
             right: 0,
-            border: '2px solid #1eb7bc'
+            width: 500,
+            border: '1px solid #1eb7bc',
+            height: 600
         }
     }
 
@@ -59,14 +63,16 @@ export default class EditDialog extends React.Component {
         }
         return this.DialogContainer;
     }
+
     getDialog() {
         return (<Animate transitionName="move-right" transitionAppear>
             {this.state.visible ? (<div
-                style={{position:'absolute',top:131, right:0,width:500, border:'1px solid #1eb7bc', height:600}}>
+                style={this.getStyle()}>
                 {this.props.children}
             </div>) : null}
         </Animate>)
     }
+
     render() {
         this.dialogRendered = this.dialogRendered || this.state.visible;
         return null;
