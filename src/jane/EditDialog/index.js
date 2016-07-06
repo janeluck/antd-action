@@ -45,6 +45,18 @@ export default class EditDialog extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+ 
+        const dialogContainer = this.dialogContainer;
+        if (dialogContainer) {
+            // Remove a mounted React component from the DOM and clean up its event handlers and state.
+            ReactDOM.unmountComponentAtNode(dialogContainer);
+            dialogContainer.parentNode.removeChild(dialogContainer);
+            this.dialogContainer = null;
+        }
+
+    }
+
     getStyle() {
         return {
             position: 'absolute',
@@ -57,11 +69,11 @@ export default class EditDialog extends React.Component {
     }
 
     getDialogContainer() {
-        if (!this.DialogContainer) {
-            this.DialogContainer = document.createElement('div');
-            document.body.appendChild(this.DialogContainer);
+        if (!this.dialogContainer) {
+            this.dialogContainer = document.createElement('div');
+            document.body.appendChild(this.dialogContainer);
         }
-        return this.DialogContainer;
+        return this.dialogContainer;
     }
 
     getDialog() {
