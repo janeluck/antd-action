@@ -26,8 +26,7 @@ function handleChange(value) {
 }
 
 
-
-class EditDialog_Demo extends Component{
+class EditDialog_Demo extends Component {
 
     constructor(props, context) {
         super(props, context)
@@ -36,7 +35,8 @@ class EditDialog_Demo extends Component{
         }
 
     }
-    onclick = (e)=>{
+
+    onclick = (e)=> {
         this.setState({
             visible: !this.state.visible
         })
@@ -47,7 +47,11 @@ class EditDialog_Demo extends Component{
         return (
             <div style={{margin: '100px auto'}}>
                 <Button onClick={this.onclick}>编辑任务</Button>
-                <EditDialog  visible={this.state.visible}/>
+                <EditDialog visible={this.state.visible}>
+                    <div>新建任务</div>
+                    <div>任务名称</div>
+                    <div>任务类型</div>
+                </EditDialog>
             </div>
         );
     }
