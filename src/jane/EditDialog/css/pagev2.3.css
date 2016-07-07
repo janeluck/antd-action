@@ -1,0 +1,154 @@
+@charset "utf-8";
+/* CSS Document */
+/*任务-设置*/
+.BoxTask{ width:900px; margin:0 auto;}
+.BoxTask_Box01{ border-bottom:1px solid #e5e5e5; padding-bottom:30px; padding-left:16px; margin-top:30px;}
+.BoxTask_Box01 h5{font-family:Microsoft YaHei;color:#898989;font-weight:bold; padding-bottom:14px;}
+.BoxTask_Box01Text{ margin-top:12px;}
+.BoxTask_Box01Text .BoxTask_Box01Text_Inputradio{ margin-right:13px;}
+.BoxTask_Box01Text span{ font-size:14px; color:#666666;}
+.BoxTask_Box01 h5 .BoxTask_Box01Text_Inputcheck{margin-right:13px;}
+.BoxTask_Box01 p{ color:#666666;font-family:Microsoft YaHei; margin-left:24px;}
+.BoxTaskMleft01{ margin-left:24px;}
+.BoxTaskMleft02{ border-bottom:none; position:relative;}
+.BoxTask_Box01_LinkSet{ background:url(../image/icon01.jpg) no-repeat left center; color:#1eb8bb; padding-left:28px; line-height:23px;height:23px; position:absolute; right:0px; top:31px;}
+.BoxTask_Box01_LinkSet a{ color:#1eb8bb;}
+.BoxTask_btn{ width:185px; margin:20px auto;}
+.BoxTask_btnSave{ float:left; width:86px; height:30px;border-radius:3px; text-align:center; border:0px;  color:#fff; background:#1eb8bb; line-height:27px; font-size:14px;font-family:Microsoft YaHei; cursor:pointer;}
+.BoxTask_btnCancel{ float:left; width:86px; height:30px;border-radius:3px; text-align:center; border:0px;  color:#fff; background:#93c941; line-height:27px; font-size:14px;font-family:Microsoft YaHei; margin-left:10px;cursor:pointer;}
+
+/*任务类型自定义弹出框*/
+.BoxPopwrap{ width:455px; padding-bottom:20px;}
+.BoxPopwrap .BoxPopwrap_title{ height:46px; line-height:46px; background:#2bafb9; padding:0 20px;}
+.BoxPopwrap .BoxPopwrap_title h5{ font-size:16px; color:#fff;font-family:Microsoft YaHei; font-weight:bold; float:left;}
+.BoxPopwrap .BoxPopwrap_titleClose{ background:url(../image/icinClose.png) no-repeat; float:right; width:18px; height:19px; margin-top:14px; cursor:pointer;}
+.BoxPopwrap .BoxPopwrap_cnt{ width:403px; padding:0 26px; margin-top:30px;}
+.BoxPopwrap_cnt .BoxPopwrap_tabControl01{ border-bottom:1px dashed #d7dcdc; padding-left:15px; padding-bottom:15px;}
+.BoxPopwrap_cnt .BoxPopwrap_tabControl01 ul li{ color:#868686; float:left; padding:0 30px;}
+.BoxPopwrap_cnt .BoxPopwrap_tabControl01 ul li.current{ color:#1eb8bb; font-weight:bold;}
+.BoxPopwrap_cnt .BoxPopwrap_cntBox359{ width:359px; padding:0 30px;}
+.BoxPopwrap_cnt .BoxPopwrap_cntBox359New{ margin-top:26px;}
+.BoxPopwrap_cnt .BoxPopwrap_cntBox359New h5{ color:#666666;}
+.BoxPopwrap_cnt .BoxPopwrap_cntBox359New h5 input{ margin-right:14px;}
+.BoxPopwrap_cntBox359NewTxt01{ padding:15px 0px 15px 23px;}
+.BoxPopwrap_cntBox359NewTxt01 .BoxPopwrap_cntBox359NewTxt01L{ float:left; background:url(../image/icon06.jpg) no-repeat left center; font-size:12px; color:#868686; padding-left:15px;}
+.BoxPopwrap_cntBox359NewTxt01 .BoxPopwrap_cntBox359NewTxt01R{ float:left; color:#868686; margin-left:65px;}
+.BoxPopwrap_cntBox359NewTxt01 .BoxPopwrap_cntBox359NewTxt01R span{ color:#46b922;}
+.BoxPopwrap_cntBox359NewTxt02{ margin-top:15px;}
+.BoxPopwrap_cntBox359NewTxt02 .BoxPopwrap_cntBox359NewTxt02_Inputradio{ margin-right:13px;}
+.BoxPopwrap_cntBox359NewTxt02 span{font-size: 14px;color: #666666;}
+
+.BoxPopwrap .BoxPopwrap_Cont01{ padding:12px 33px 0 40px ;}
+.BoxPopwrap .BoxWith{padding:12px 0px 20px 40px ;}
+.BoxPopwrap .BoxPopwrap_Cont01 .BoxPopwrap_Cont01_box01{ margin-top:20px;}
+.BoxPopwrap_Cont01_box01Name{ font-size: 14px;color: #a8a6a6;height: 30px;line-height: 30px;float: left;width: 84px;}
+.BoxPopwrap_Cont01_box01Input{ float:left;}
+.BoxPopwrap_Cont01_box01Input .Cont01_box01Input_k01{ border:1px solid #dcdcdc; width:291px;height:28px;line-height:28px; padding-left:5px;}
+.BoxPopwrap_Cont01_box01Date01{ float:left; font-size:12px; color:#666666; height:30px; line-height:30px; width:84px;}
+.BoxPopwrap_Cont01_box01Date01 .Cont01_box01check{ margin-right:8px;}
+.BoxPopwrap_Cont01_box01Date02 { float:left;}
+.BoxPopwrap_Cont01_box01Date02 .BoxPopwrap_Cont01_box01Date02_years{ float:left;}
+.BoxPopwrap_Cont01_Addbox01Input{ float:left;}
+.BoxPopwrap_Cont01_Addbox01InputL{border:1px solid #dcdcdc; width:270px; border-right:none; height:28px; line-height:28px; float:left;}
+.BoxPopwrap_Cont01_Addbox01InputR { background:url(../image/icon07.png) no-repeat right center; width:26px; height:30px; float:right;}
+.BoxPopwrap_Cont01_box01Border01{float:left; width:295px; height:78px;}
+.BoxPopwrap_Cont01_box01Border01 textarea{  width:295px; height:78px;border:1px solid #dcdcdc;}
+.BoxPopwrap_Cont01_box01Radio{ float:left; height:30x; line-height:30px;}
+.BoxPopwrap_Cont01_box01Radio li{ float:left; padding:0 20px; font-size:14px; color:#a8a6a6;}
+.BoxPopwrap_Cont01_box01Radio li input{ margin-right:10px;}
+.BoxPopwrap_Cont01_box01Date{ float:left;}
+.BoxPopwrap_Cont01_box01Date p{ float:left;font-size:14px; color:#a8a6a6;height:30px; line-height:30px;}
+.BoxPopwrap_Cont01_box01Date input{ float:left; width:47px; height:28px; line-height:28px;border:1px solid #dcdcdc; margin-left:5px; margin-right:5px; text-align:center;}
+.BoxPopwrap_Cont01_box01Date select { height:30px; line-height:30px; width:77px;border:1px solid #dcdcdc; float:left;color:#a8a6a6;}
+.BoxPopwrap_Cont01_box01Input a{ background:url(../image/icon08.png) no-repeat left center; padding-left:18px; color:#1eb8bb; display:block; line-height:30px;}
+.BoxPopwrap_Cont01_box01Btn{width:116px; height:30px;border-radius:3px; text-align:center; border:0px;  color:#fff; background:#1eb8bb; line-height:27px; font-size:14px;font-family:Microsoft YaHei; cursor:pointer; margin:20px 0 20px 138px;}
+
+
+.BoxPopwrap_Cont01_BoxTitle01{height:36px; margin-top:10px;}
+.BoxPopwrap_Cont01_BoxTitle01 li{ float:left; color:#666666; text-align:left;}
+.BoxPopwrap_Cont01_BoxTitle01w138{ padding-left:15px; width:123px;}
+.BoxPopwrap_Cont01_BoxTitle01w82{ width:82px;}
+.BoxPopwrap_Cont01_BoxTitle01w162{ width:162px;}
+.BoxPopwrap_Cont01_BoxTitle01w55{ width:55px;}
+.BoxTitle01Mwidth{ height:66px;}
+.BoxTitle01Mwidth li{ border-bottom:1px solid #dcdcdc; height:56px; padding-top:10px;}
+.BoxPopwrap_Cont01_BoxList01_w381{ height:381px;overflow-y: auto;overflow-x: hidden;}
+.BoxPopwrap_Cont01_Allbutton01{float:left; width:86px; height:30px;border-radius:3px; text-align:center; border:0px;  color:#fff; background:#1eb8bb; line-height:27px; font-size:14px;font-family:Microsoft YaHei; cursor:pointer; margin-left:20px;}
+.BoxPopwrap_Cont01_Allbtn{ margin:20px auto;width:230px;}
+.BoxPopwrapCoro01{ background:#93c941;}
+
+/*列表模式任务弹出框*/
+.BoxPopwrap_List01{ width:520px; background:#f7f9fa;}
+.BoxPopwrap_List01_Header{ height:200px; background:#29adb9; position:relative;}
+.BoxPopwrap_List01_Header_DelClos{ padding-top:20px; margin-left:435px;}
+.BoxPopwrap_List01_Header_Del{ float:left; background:url(../image/icon09.png) no-repeat; width:21px; height:21px; cursor:pointer;}
+.BoxPopwrap_List01_Header_Clos{ float:left; background:url(../image/icon10.png) no-repeat; width:18px; height:19px; cursor:pointer; margin-left:27px;}
+.BoxPopwrap_List01_Header_Toux{ width:64px; height:64px; background:#03C; border-radius:50px; margin:25px auto 0;}
+.BoxPopwrap_List01_Header_Tit01{margin-left: 224px;margin-top: 10px;}
+.BoxPopwrap_List01_Header_Name01{ float:left; font-size:16px; color:#fff; margin-left:5px;}
+.BoxPopwrap_List01_Header_Guanz{ background:url(../image/icon11.png) no-repeat left center; width:18px; height:16px; float:left;margin-top: 4px;}
+.BoxPopwrap_List01_Header_Tit02{ text-align:center; font-size:12px; color:#fff; margin-top:5px;}
+.BoxPopwrap_List01_Header_Edit{ position:absolute; background:url(../image/icon12.png) no-repeat; width:52px; height:55px; right: 8px;bottom: -25px;}
+.BoxPopwrap_List01_Content{ background:#fff;padding-top:14px;overflow-y: auto;overflow-x: hidden;height: 465px;}
+.BoxPopwrap_List01_Content_Box01{ border-bottom:1px dashed #dce3e3; margin:16px 20px 0;}
+.BoxPopwrap_List01_Content_Box01_01Tit01{ margin-bottom:15px}
+.BoxPopwrap_List01_Content_Box01_01Tit01L{ float:left;width:72px; color:#a8a6a6;}
+.BoxPopwrap_List01_Content_Box01_01Tit01R{ float:left; color:#666666}
+.BoxPopwrap_List01_Content_Box01_01_Left{ float:left;}
+.BoxPopwrap_List01_Content_Box01_01_Right{ float:right; margin-right:20px;}
+.Mwidn01{ width:60px;}∫
+.Mtop01{ margin-top:5px;}
+.Mfmleft01{ margin-left:17px;}
+.Mbgnone01{ border-bottom:none;}
+.wbtnw76{ width:76px;}
+.BoxPopwrap_List01_Content_Box02{ border-bottom:1px dashed #dce3e3; margin:0 20px;}
+.BoxPopwrap_List01_Content_Box01_status01{ width:57px; height:23px; background:#9cc7e4; color:#fff; text-align:center; line-height:23px; float:left;}
+.BoxPopwrap_List01_Content_Box01_status02{ width:20px; height:20px; background:#50b2f2; color:#fff; text-align:center; line-height:23px; float:left; border-radius:50px; font-size:12px;}
+.BoxPopwrap_List01_Content_Box01_Wenj{ float:left; background:url(../image/icon13.png) no-repeat left center; padding-left:30px; color:#2bb0bc; height:23px;}
+.BoxPopwrap_List01_Content_Box01_01Tit01R .mwidth363{ line-height:30px; width:363px; margin-top:-4px;}
+.BoxPopwrap_List01_ContentTab01{ margin-top:20px;}
+.BoxPopwrap_List01_ContentTab01 .ContentTab01Qie { margin-left:7px}
+.BoxPopwrap_List01_ContentTab01 .ContentTab01Qie  a{ color:#a8a6a6; float:left; padding:0 15px;}
+.BoxPopwrap_List01_ContentTab01 .ContentTab01Qie a.current{ color:#1eb8bb; font-weight:bold;}
+.BoxPopwrap_List01_ContentBtn01{ margin-left:13px; margin-top:40px; height:75px;}
+.Green{ background:#93c941;}
+.Yellow{ background:#d9d20e;}
+.Blue{ background:#50b2f2;}
+.Pink{ background:#ff607e;}
+.Mleft02{ margin-left:8px;}
+.BoxPopwrap_Cont01_box01Input .With280{ width:280px;}
+.BoxPopwrap_Cont01_box01Input .With273{ width:273px;display: block;margin-bottom: 10px;}
+.BoxPopwrap .BoxPopwrap_Cont01 .Mtop10{ margin-top:10px;}
+.Mleftwd10{ margin-right:6px;}
+.With252{ width:252px;}
+.Mwidth274 textarea{  width:274px; height:78px;border:1px solid #dcdcdc;}
+.Mwidth274{float:left; width:274px; height:78px;}
+
+
+
+.BoxPopwrap_List01_Subbox01{ margin-left:24px;}
+.BoxPopwrap_List01_Subbox01FocusPic01{ position:relative;color:#666666;}
+.Subbox01FocusPic01List01_zheWhite{ position: absolute; background: #Fff;bottom: 0px;width: 8px;height: 65px;left: 100px;}
+.Subbox01FocusPic01List01{ background:url(../image/icon14.png) repeat-y 103px center; margin-top:30px;}
+.Subbox01FocusPic01List01 li{ background:url(../image/icon15.png) no-repeat 98px top; margin-bottom:50px;}
+.Subbox01FocusPic01_TouPic01Bg01{width: 48px;height: 48px;background: #039; float:left;border-radius:24px;}
+.Subbox01FocusPic01_Date01{ width:98px; float:left; margin-top:-4px;}
+.Subbox01FocusPic01_TouPic01{ float:left; margin-left:28px; margin-top:-20px;}
+.Subbox01FocusPic01_Txt01{ float:left; line-height:48px; margin-left:10px;}
+
+.BoxPopwrap_cnt_ListBoxH845{ height:845px;overflow-y: auto;overflow-x: hidden;}
+.BoxPopwrap_Cont01_box01Name .Red{ color:#f50d39; margin-right:6px;}
+.BoxPopwrap_Cont01_box01Input .BoxPopwrap_Cont01_box01Input_Selcte{ border:1px solid #dcdcdc; width:280px; height:28px; line-height:28px; padding-left:5px;}
+.BoxPopwrap_Cont01_box01Name .MleftW15{ padding-left:15PX;}
+.MleftW10_01 textarea{ margin-left:10px;}
+
+/*日历模式周弹出框*/
+.SchedulePopBox01{ background:url(../image/icon16.png) no-repeat; width:189px; height:138px; padding:15px 12px 0 12px;}
+.SchedulePopBox01_TitleTxtL{ color:#1eb8bb; font-size:12px; font-weight:bold; float:left; }
+.SchedulePopBox01_TitleTxtR{ float:left; color:#b2b2b2; font-size:12px;margin-left: 54px;}
+.SchedulePopBox01_TitleClose{ float:left; background:url(../image/icon17.png) no-repeat; width:10px; height:8px;margin-left: 15px;margin-top: 5px;}
+.SchedulePopBox01_Name{ color:#898989; font-size:12px; margin-top:10px;}
+.SchedulePopBox01_Date{color:#898989; font-size:12px; margin-top:10px;}
+.SchedulePopBox01_Btn01_btn{float:left; width:59px; height:23px;border-radius:3px; text-align:center; border:0px;  color:#fff; background:#1eb8bb; line-height:23px; font-size:12px;font-family:Microsoft YaHei; cursor:pointer; margin-left:20px;}
+.SchedulePopBox01Bg01{ background:#93c941;}
+.SchedulePopBox01_Btn01{ margin-top:15px;}

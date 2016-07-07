@@ -9,9 +9,15 @@ import ReactDOM from 'react-dom';
 export default class EditDialog extends React.Component {
 
 
-    static propTypes = {}
+    static propTypes = {
+        visible: PropTypes.bool,
 
-    static defaultProps = {}
+    }
+
+    static defaultProps = {
+        visible: false,
+
+    }
 
 
     constructor(props) {
@@ -23,9 +29,9 @@ export default class EditDialog extends React.Component {
     }
 
     componentDidMount() {
-        this.componentDidUpdate({}, {
-            visible: this.state.visible,
-        });
+        /*  this.componentDidUpdate({}, {
+         visible: this.state.visible,
+         });*/
     }
 
     componentWillReceiveProps(nextProps) {
@@ -46,7 +52,7 @@ export default class EditDialog extends React.Component {
     }
 
     componentWillUnmount() {
- 
+
         const dialogContainer = this.dialogContainer;
         if (dialogContainer) {
             // Remove a mounted React component from the DOM and clean up its event handlers and state.
@@ -62,9 +68,9 @@ export default class EditDialog extends React.Component {
             position: 'absolute',
             top: 131,
             right: 0,
-            width: 500,
+            //width: 500,
             border: '1px solid #1eb7bc',
-            height: 600
+            //height: 600
         }
     }
 
@@ -80,9 +86,43 @@ export default class EditDialog extends React.Component {
         return (<Animate transitionName="move-right" transitionAppear>
             {this.state.visible ? (<div
                 style={this.getStyle()}>
-                {this.props.children}
+
+                <div className="BoxPopwrap">
+                    <div className="BoxPopwrap_title clearfix">
+                        <h5>编辑任务</h5>
+                        <div className="BoxPopwrap_titleClose" onClick={this.onClose.bind(this)}></div>
+                    </div>
+                    <div className="BoxPopwrap_Cont01 BoxWith">
+                        <div className="BoxPopwrap_cnt_ListBoxH845">
+                            {this.props.children}
+                        </div>
+
+                        <div className="BoxPopwrap_Cont01_Allbtn clearfix">
+                            <button onClick={this.onClose.bind(this)} className="BoxPopwrap_Cont01_Allbutton01 BoxPopwrapCoro01">取消</button>
+                            <button onClick={this.onSure.bind(this)} className="BoxPopwrap_Cont01_Allbutton01">确定</button>
+
+                        </div>
+                    </div>
+                </div>
+
+
             </div>) : null}
         </Animate>)
+    }
+
+    onSure() {
+        if (this.props.onSure) {
+            this.props.onSure()
+        }
+        this.setState({
+            visible: false
+        })
+    }
+
+    onClose() {
+        this.setState({
+            visible: false
+        })
     }
 
     render() {

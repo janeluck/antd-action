@@ -1,5 +1,8 @@
 import React from 'react';
 import {Timeline, Input, Select, InputNumber, Popover, Button } from 'antd';
+
+import '../jane/EditDialog/css/basic_new_v2.css';
+import '../jane/EditDialog/css/pagev2.3.css';
 import './App.less';
 import reqwest from 'reqwest'
 import JanePopup from '../jane/JanePopup'
@@ -38,7 +41,7 @@ class EditDialog_Demo extends Component {
 
     onclick = (e)=> {
         this.setState({
-            visible: !this.state.visible
+            visible: true
         })
     }
 
@@ -48,9 +51,17 @@ class EditDialog_Demo extends Component {
             <div style={{margin: '100px auto'}}>
                 <Button onClick={this.onclick}>编辑任务</Button>
                 <EditDialog visible={this.state.visible}>
-                    <div>新建任务</div>
-                    <div>任务名称</div>
-                    <div>任务类型</div>
+
+
+
+
+
+
+
+
+
+
+
                 </EditDialog>
             </div>
         );
