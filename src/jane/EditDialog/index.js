@@ -8,18 +8,6 @@ import ReactDOM from 'react-dom';
 
 export default class EditDialog extends React.Component {
 
-
-    static propTypes = {
-        visible: PropTypes.bool,
-
-    }
-
-    static defaultProps = {
-        visible: false,
-
-    }
-
-
     constructor(props) {
         super(props)
         this.state = {
@@ -83,23 +71,27 @@ export default class EditDialog extends React.Component {
     }
 
     getDialog() {
+        const props = this.props
         return (<Animate transitionName="move-right" transitionAppear>
             {this.state.visible ? (<div
                 style={this.getStyle()}>
 
                 <div className="BoxPopwrap">
                     <div className="BoxPopwrap_title clearfix">
-                        <h5>编辑任务</h5>
+                        <h5>{props.title}</h5>
                         <div className="BoxPopwrap_titleClose" onClick={this.onClose.bind(this)}></div>
                     </div>
                     <div className="BoxPopwrap_Cont01 BoxWith">
                         <div className="BoxPopwrap_cnt_ListBoxH845">
-                            {this.props.children}
+                            {props.children}
                         </div>
 
                         <div className="BoxPopwrap_Cont01_Allbtn clearfix">
-                            <button onClick={this.onClose.bind(this)} className="BoxPopwrap_Cont01_Allbutton01 BoxPopwrapCoro01">取消</button>
-                            <button onClick={this.onSure.bind(this)} className="BoxPopwrap_Cont01_Allbutton01">确定</button>
+                            <button onClick={this.onClose.bind(this)}
+                                    className="BoxPopwrap_Cont01_Allbutton01 BoxPopwrapCoro01">取消
+                            </button>
+                            <button onClick={this.onSure.bind(this)} className="BoxPopwrap_Cont01_Allbutton01">确定
+                            </button>
 
                         </div>
                     </div>
@@ -132,3 +124,13 @@ export default class EditDialog extends React.Component {
     }
 }
 
+
+EditDialog.propTypes = {
+    visible: PropTypes.bool,
+    title: PropTypes.string,
+};
+
+EditDialog.defaultProps = {
+    visible: false,
+    title: '标题'
+};

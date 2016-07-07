@@ -49,17 +49,134 @@ class EditDialog_Demo extends Component {
 
         return (
             <div style={{margin: '100px auto'}}>
-                <Button onClick={this.onclick}>编辑任务</Button>
-                <EditDialog visible={this.state.visible}>
+                <Button onClick={this.onclick}>新建任务</Button>
+                <EditDialog
+                    visible={this.state.visible}
+                    title="新建任务">
 
+                    <div className="BoxPopwrap_cnt_ListBoxH845">
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="Red">*</span>任务名称：
+                            </div>
+                            <div className="BoxPopwrap_Cont01_box01Input"><input type="text"
+                                                                                 className="Cont01_box01Input_k01 With280"/>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="Red">*</span>任务类型：
+                            </div>
+                            <div className="BoxPopwrap_Cont01_box01Input">
+                                <select className="BoxPopwrap_Cont01_box01Input_Selcte">
+                                    <option>1</option>
+                                </select>
+                            </div>
 
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="Red">*</span>时间：</div>
+                            <div className="BoxPopwrap_Cont01_box01Input">
+                                <div className="BoxPopwrap_Cont01_box01TimeDcontrols"><img
+                                    src="image/Tpic02.png" width="279"
+                                    height="30"/></div>
+                                <div className="BoxPopwrap_Cont01_box01 clearfix Mtop10">
+                                    <div className="BoxPopwrap_Cont01_box01Date01 Mleftwd10"><input
+                                        type="checkbox"
+                                        className="Cont01_box01check"/>全天日程
+                                    </div>
+                                    <div className="BoxPopwrap_Cont01_box01Date02">
+                                        <img src="image/Tpic03.png" width="189" height="30"/>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="Red">*</span>负责人：
+                            </div>
+                            <div className="BoxPopwrap_Cont01_Addbox01Input clearfix">
+                                <div className="BoxPopwrap_Cont01_Addbox01InputL With252"></div>
+                                <div className="BoxPopwrap_Cont01_Addbox01InputR"></div>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="MleftW15">参与人：</span>
+                            </div>
+                            <div className="BoxPopwrap_Cont01_Addbox01Input clearfix">
+                                <div className="BoxPopwrap_Cont01_Addbox01InputL With252"></div>
+                                <div className="BoxPopwrap_Cont01_Addbox01InputR"></div>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="MleftW15">知会人：</span>
+                            </div>
+                            <div className="BoxPopwrap_Cont01_Addbox01Input clearfix">
+                                <div className="BoxPopwrap_Cont01_Addbox01InputL With252"></div>
+                                <div className="BoxPopwrap_Cont01_Addbox01InputR"></div>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="MleftW15">创建人：</span>
+                            </div>
+                            <div className="BoxPopwrap_Cont01_Addbox01Input clearfix">
+                                <div className="BoxPopwrap_Cont01_Addbox01InputL With252"></div>
+                                <div className="BoxPopwrap_Cont01_Addbox01InputR"></div>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name">关联业务：</div>
+                            <div className="BoxPopwrap_Cont01_box01Input ">
+                                <input type="text" className="Cont01_box01Input_k01 With273"
+                                       placeholder="请输入客户名称"/>
+                                <input type="text" className="Cont01_box01Input_k01 With273"
+                                       placeholder="请输入客户地址"/>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name"><span className="MleftW15">地址：</span>
+                            </div>
+                            <div className="BoxPopwrap_Cont01_box01Input ">
+                                <input type="text" className="Cont01_box01Input_k01 With273"
+                                       placeholder="请输入客户名称"/>
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name">任务等级：</div>
+                            <ul className="BoxPopwrap_Cont01_box01Radio clearfix">
+                                <li><input type="radio"/>高</li>
+                                <li><input type="radio"/>中</li>
+                                <li><input type="radio"/>低</li>
+                            </ul>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name">提醒时间：</div>
+                            <div className="BoxPopwrap_Cont01_box01Input">
+                                <select className="BoxPopwrap_Cont01_box01Input_Selcte">
+                                    <option>1</option>
+                                </select>
+                            </div>
 
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name">任务描述：</div>
+                            <div className="Mwidth274">
+                                <textarea>1</textarea>
 
+                            </div>
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name">任务来源：</div>
+                            <div className="BoxPopwrap_Cont01_box01Input">
+                                <select className="BoxPopwrap_Cont01_box01Input_Selcte">
+                                    <option>1</option>
+                                </select>
+                            </div>
 
-
-
-
+                        </div>
+                        <div className="BoxPopwrap_Cont01_box01 clearfix">
+                            <div className="BoxPopwrap_Cont01_box01Name">附件：</div>
+                            <div className="BoxPopwrap_Cont01_box01Input"><a>添加附件</a></div>
+                        </div>
+                    </div>
 
 
                 </EditDialog>
