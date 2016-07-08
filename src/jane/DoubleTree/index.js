@@ -3,7 +3,7 @@
  */
 import React from 'react';
 
-import {Tree } from 'antd';
+import {Tree, Transfer, Button } from 'antd';
 
 const TreeNode = Tree.TreeNode;
 const x = 3;
@@ -80,14 +80,58 @@ const Tree_Demo = React.createClass({
             return <TreeNode key={item.key} title={item.key} />;
         });
         return (
-            <Tree checkable multiple={this.props.multiple}
-                  onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
-                  autoExpandParent={this.state.autoExpandParent}
-                  onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
-                  onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
-            >
-                {loop(gData)}
-            </Tree>
+
+            <div>
+                <Tree checkable multiple={this.props.multiple}
+                      onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
+                      autoExpandParent={this.state.autoExpandParent}
+                      onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
+                      onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
+
+                >
+                    {loop(gData)}
+                </Tree>
+
+
+            <div className="ck-doubleTree">
+                <div className="ant-transfer">
+                    <div className="ant-transfer-list">
+                        <div className="ant-transfer-list-header">
+                            <span>U8组织架构</span>
+
+
+                        </div>
+                        <div className="ant-transfer-list-body"></div>
+
+                    </div>
+                    <div className="ant-transfer-operation">
+                        <button  type="button" className="ant-btn ant-btn-primary ant-btn-sm">
+                            <span>
+                                <i className="anticon anticon-right"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div className="ant-transfer-list">
+                        <div className="ant-transfer-list-header">
+                            <span>已选择的组织架构</span>
+
+
+                        </div>
+                        <div className="ant-transfer-list-body"></div>
+
+                    </div>
+                </div>
+            </div>
+
+                <Transfer />
+
+
+
+            </div>
+
+
+
+
         );
     },
 });
