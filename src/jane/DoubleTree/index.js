@@ -4,7 +4,7 @@
 import React from 'react';
 
 import {Tree, Transfer, Button } from 'antd';
-
+import './index.less'
 const TreeNode = Tree.TreeNode;
 const x = 3;
 const y = 2;
@@ -82,15 +82,7 @@ const Tree_Demo = React.createClass({
         return (
 
             <div>
-                <Tree checkable multiple={this.props.multiple}
-                      onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
-                      autoExpandParent={this.state.autoExpandParent}
-                      onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
-                      onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
 
-                >
-                    {loop(gData)}
-                </Tree>
 
 
             <div className="ck-doubleTree">
@@ -101,7 +93,19 @@ const Tree_Demo = React.createClass({
 
 
                         </div>
-                        <div className="ant-transfer-list-body"></div>
+                        <div className="ant-transfer-list-body">
+
+                            <Tree checkable multiple={this.props.multiple}
+                                  onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
+                                  autoExpandParent={this.state.autoExpandParent}
+                                  onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
+                                  onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
+
+                            >
+                                {loop(gData)}
+                            </Tree>
+
+                        </div>
 
                     </div>
                     <div className="ant-transfer-operation">
