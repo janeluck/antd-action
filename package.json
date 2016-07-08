@@ -6,7 +6,7 @@
     "index": "./src/entry/index.jsx"
   },
   "dependencies": {
-    "antd": "~1.0.0",
+    "antd": "1.6.3",
     "atool-build": "0.7.x",
     "babel-plugin-antd": "0.4.x",
     "draft-js": "^0.7.0",
