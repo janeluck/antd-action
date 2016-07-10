@@ -61,6 +61,9 @@ const JaneButton = React.createClass({
                 <Button type="primary" icon="poweroff" loading={this.state.iconLoading} onClick={this.enterIconLoading}>
                     Click me!
                 </Button>
+
+                <Button type="secondary" shape="circle" >+</Button>
+                <Button type="secondary"   >success</Button>
             </div>
         )
     },

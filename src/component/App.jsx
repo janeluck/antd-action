@@ -4,6 +4,7 @@ import {Timeline, Input, Select, InputNumber, Popover, Button} from 'antd';
 import '../jane/EditDialog/css/basic_new_v2.css';
 import '../jane/EditDialog/css/pagev2.3.css';
 import './App.less';
+import '../jane/styles/style/index.less';
 import reqwest from 'reqwest'
 import JanePopup from '../jane/JanePopup'
 import EditDialog from '../jane/EditDialog'
