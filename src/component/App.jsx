@@ -1,5 +1,5 @@
 import React from 'react';
-import {Timeline, Input, Select, InputNumber, Popover, Button} from 'antd';
+import {Timeline, Input, Select, InputNumber, Popover, Button, Icon} from 'antd';
 
 import '../jane/EditDialog/css/basic_new_v2.css';
 import '../jane/EditDialog/css/pagev2.3.css';
@@ -274,6 +274,13 @@ export default class App extends React.Component {
                 </Popover>
 
                 <InputUser />
+                <Select multiple>
+
+                </Select>
+                <div>
+                    <Icon type="user" style={{fontSize: 14}}></Icon>
+                    <Icon type="plus" style={{fontSize: 8}} ></Icon>
+                </div>
 
                 <div children={[(<div>your name</div>), (<div>my name</div>)]}></div>
 
