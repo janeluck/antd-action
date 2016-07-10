@@ -10,6 +10,7 @@ import JanePopup from '../jane/JanePopup'
 import EditDialog from '../jane/EditDialog'
 import TreeDemo from '../jane/DoubleTree'
 import JaneButton from '../jane/Button'
+import InputUser from '../jane/InputUser'
 
 import  { Component } from 'react';
 const Option = Select.Option;
@@ -272,10 +273,7 @@ export default class App extends React.Component {
 
                 </Popover>
 
-
-                <div>
-                    <p>ooooooo</p>
-                </div>
+                <InputUser />
 
                 <div children={[(<div>your name</div>), (<div>my name</div>)]}></div>
 
