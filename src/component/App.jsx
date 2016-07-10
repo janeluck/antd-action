@@ -43,6 +43,7 @@ class EditDialog_Demo extends Component {
     }
 
     onclick = (e)=> {
+
         this.setState({
             visible: true
         })
@@ -52,7 +53,7 @@ class EditDialog_Demo extends Component {
 
         return (
             <div style={{margin: '100px auto'}}>
-                {this.state.visible ? <Button type="primary" disabled>新建任务</Button>:<Button onClick={this.onclick} type="primary">新建任务</Button>}
+                {this.state.visible ? <Button  disabled>新建任务</Button>:<Button onClick={this.onclick} type="primary">新建任务</Button>}
 
                 <EditDialog
                     visible={this.state.visible}

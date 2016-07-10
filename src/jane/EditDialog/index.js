@@ -5,7 +5,9 @@
 import Animate from 'rc-animate'
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import {Button, Icon} from 'antd';
 
+import './index.less'
 export default class EditDialog extends React.Component {
 
     constructor(props) {
@@ -74,12 +76,15 @@ export default class EditDialog extends React.Component {
         const props = this.props
         return (<Animate transitionName="move-right" transitionAppear>
             {this.state.visible ? (<div
+                className="ck-editDialog"
                 style={this.getStyle()}>
 
                 <div className="BoxPopwrap">
                     <div className="BoxPopwrap_title clearfix">
                         <h5>{props.title}</h5>
-                        <div className="BoxPopwrap_titleClose" onClick={this.onClose.bind(this)}></div>
+                        <a href="javascript:;" onClick={this.onClose.bind(this)} style={{float: 'right'}}><Icon type="cross" style={{color: '#fff', fontSize:16}}></Icon></a>
+
+
                     </div>
                     <div className="BoxPopwrap_Cont01 BoxWith">
                         <div className="BoxPopwrap_cnt_ListBoxH845">
@@ -87,11 +92,15 @@ export default class EditDialog extends React.Component {
                         </div>
 
                         <div className="BoxPopwrap_Cont01_Allbtn clearfix">
-                            <button onClick={this.onClose.bind(this)}
-                                    className="BoxPopwrap_Cont01_Allbutton01 BoxPopwrapCoro01">取消
-                            </button>
-                            <button onClick={this.onSure.bind(this)} className="BoxPopwrap_Cont01_Allbutton01">确定
-                            </button>
+                            <div className="ck-editDialog-footer">
+                                <Button onClick={this.onClose.bind(this)} type="secondary" size="large">取消
+                                </Button>
+                                <Button onClick={this.onSure.bind(this)} type="primary" size="large">确定
+                                </Button>
+                            </div>
+
+
+
 
                         </div>
                     </div>
@@ -101,7 +110,9 @@ export default class EditDialog extends React.Component {
             </div>) : null}
         </Animate>)
     }
+    onOpen() {
 
+    }
     onSure() {
         if (this.props.onSure) {
             this.props.onSure()
