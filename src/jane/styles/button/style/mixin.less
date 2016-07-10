@@ -159,6 +159,18 @@
     color: @btn-secondary-color;
   }
 }
+// jane-action: custom btn by jane
+// complementary button style
+.btn-complementary() {
+  .button-variant(@btn-complementary-color; @btn-complementary-bg; @complementary-color);
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: @btn-complementary-color;
+  }
+}
 
 // default button style
 .btn-default() {

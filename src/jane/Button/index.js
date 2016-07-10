@@ -64,6 +64,7 @@ const JaneButton = React.createClass({
 
                 <Button type="secondary" shape="circle" >+</Button>
                 <Button type="secondary"   >success</Button>
+                <Button type="complementary"   >complementary</Button>
             </div>
         )
     },

@@ -1,7 +1,10 @@
 // Color
-// jane-action: custom btn by jane(secondary)
-@secondary-color          : #93c941;
+// jane-action: custom btn by jane(secondary, complementary)
+@secondary-color        : #93c941;
 @primary-color          : #2db7f5;
+
+// 使用spin函数生成互补色
+@complementary-color    : spin(@primary-color, 180);
 @info-color             : #2db7f5;
 @success-color          : #87d068;
 @error-color            : #f50;
@@ -9,6 +12,7 @@
 
 // ------ Base & Require ------
 @body-background        : #fff;
+
 
 @font-family            : "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
 @code-family            : Consolas,Menlo,Courier,monospace;
@@ -65,6 +69,9 @@
 
 @btn-secondary-color      : #fff;
 @btn-secondary-bg         : @secondary-color;
+
+@btn-complementary-color      : #fff;
+@btn-complementary-bg         : @complementary-color;
 
 
 @btn-primary-color      : #fff;
