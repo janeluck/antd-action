@@ -1,5 +1,6 @@
 module.exports = function (webpackConfig) {
   webpackConfig.babel.plugins.push(['antd', {
+    // 自定制样式， 监控less文件
     style: 'css'||'less', // if true, use less
   }]);
 
