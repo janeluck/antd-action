@@ -8,6 +8,7 @@ import reqwest from 'reqwest'
 import JanePopup from '../jane/JanePopup'
 import EditDialog from '../jane/EditDialog'
 import TreeDemo from '../jane/DoubleTree'
+import JaneButton from '../jane/Button'
 
 import  { Component } from 'react';
 const Option = Select.Option;
@@ -280,6 +281,7 @@ export default class App extends React.Component {
                 <div style={style}>
                     my custom div
                 </div>
+                <JaneButton/>
                 <EditDialog_Demo/>
 
                 <TreeDemo />
