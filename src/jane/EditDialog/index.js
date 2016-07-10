@@ -108,12 +108,16 @@ export default class EditDialog extends React.Component {
         }
         this.setState({
             visible: false
+        }, ()=>{
+            this.onClose()
         })
     }
 
     onClose() {
         this.setState({
             visible: false
+        }, ()=>{
+            this.props.onClose && this.props.onClose()
         })
     }
 

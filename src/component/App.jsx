@@ -36,7 +36,7 @@ class EditDialog_Demo extends Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            visible: false
+            visible: false,
         }
 
     }
@@ -51,10 +51,16 @@ class EditDialog_Demo extends Component {
 
         return (
             <div style={{margin: '100px auto'}}>
-                <Button onClick={this.onclick}>新建任务</Button>
+                {this.state.visible ? <Button type="primary" disabled>新建任务</Button>:<Button onClick={this.onclick} type="primary">新建任务</Button>}
+
                 <EditDialog
                     visible={this.state.visible}
-                    title="新建任务">
+                    title="新建任务"
+                    onClose={()=>{
+                        this.setState({
+                            visible: false
+                        })
+                    }}>
 
                     <div className="BoxPopwrap_cnt_ListBoxH845">
                         <div className="BoxPopwrap_Cont01_box01 clearfix">
@@ -186,13 +192,6 @@ class EditDialog_Demo extends Component {
         );
     }
 }
-
-
-
-
-
-
-
 
 
 export default class App extends React.Component {
