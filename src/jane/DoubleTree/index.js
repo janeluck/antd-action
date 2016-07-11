@@ -3,36 +3,143 @@
  */
 import React from 'react';
 
-import {Tree, Transfer, Button } from 'antd';
-import './index.less'
+import {Tree, Transfer, Button, Checkbox, Icon } from 'antd';
+import './index.less';
 const TreeNode = Tree.TreeNode;
-const x = 3;
-const y = 2;
-const z = 1;
-const gData = [];
 
-const generateData = (_level, _preKey, _tns) => {
-    const preKey = _preKey || '0';
-    const tns = _tns || gData;
+// todo: 部门树假数据
+let gData = [
+    {
+        "ID": "391",
+        "Name": "全公司",
+        "ParentID": "0",
+        "StopFlag": "0",
+        "Code": "",
+        "Children": [
+            {
+                "ID": "2878",
+                "Name": "我们都是90后",
+                "ParentID": "391",
+                "StopFlag": "0",
+                "Code": "",
+                "Children": [
+                    {
+                        "ID": "2892",
+                        "Name": "麻辣烫队",
+                        "ParentID": "2878",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "392",
+                        "Name": "火锅队",
+                        "ParentID": "2878",
+                        "StopFlag": "0",
+                        "Code": "001"
+                    }
+                ]
+            },
+            {
+                "ID": "396",
+                "Name": "营销中心",
+                "ParentID": "391",
+                "StopFlag": "0",
+                "Code": "005",
+                "Children": [
+                    {
+                        "ID": "651",
+                        "Name": "销售中心",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": "",
+                        "Children": [
+                            {
+                                "ID": "652",
+                                "Name": "史浩团",
+                                "ParentID": "651",
+                                "StopFlag": "1",
+                                "Code": "",
+                                "Children": [
+                                    {
+                                        "ID": "411",
+                                        "Name": "广东分公司",
+                                        "ParentID": "652",
+                                        "StopFlag": "0",
+                                        "Code": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "ID": "653",
+                                "Name": "周震团",
+                                "ParentID": "651",
+                                "StopFlag": "0",
+                                "Code": ""
+                            }
+                        ]
+                    },
+                    {
+                        "ID": "402",
+                        "Name": "天津分公司",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "403",
+                        "Name": "深圳分公司",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "404",
+                        "Name": "四川分公司",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "412",
+                        "Name": "上海分公司",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "413",
+                        "Name": "北京分公司",
+                        "ParentID": "396",
+                        "StopFlag": "1",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "414",
+                        "Name": "河北分公司",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "422",
+                        "Name": "安徽分公司",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": ""
+                    },
+                    {
+                        "ID": "393",
+                        "Name": "超客事业部",
+                        "ParentID": "396",
+                        "StopFlag": "0",
+                        "Code": "002"
+                    }
+                ]
+            }
+        ]
+    }
+]
 
-    const children = [];
-    for (let i = 0; i < x; i++) {
-        const key = `${preKey}-${i}`;
-        tns.push({ title: key, key });
-        if (i < y) {
-            children.push(key);
-        }
-    }
-    if (_level < 0) {
-        return tns;
-    }
-    const level = _level - 1;
-    children.forEach((key, index) => {
-        tns[index].children = [];
-        return generateData(level, key, tns[index].children);
-    });
-};
-generateData(z);
 
 
 const Tree_Demo = React.createClass({
@@ -43,92 +150,65 @@ const Tree_Demo = React.createClass({
     },
     getInitialState() {
         return {
-            expandedKeys: ['0-0-0', '0-0-1'],
+            expandedKeys: ['391'],
             autoExpandParent: true,
-            checkedKeys: ['0-0-0'],
-            selectedKeys: [],
+
         };
     },
-    onExpand(expandedKeys) {
-        console.log('onExpand', arguments);
-        // if not set autoExpandParent to false, if children expanded, parent can not collapse.
-        // or, you can remove all expanded chilren keys.
-        this.setState({
-            expandedKeys,
-            autoExpandParent: false,
-        });
-    },
-    onCheck(checkedKeys) {
-        this.setState({
-            checkedKeys,
-            selectedKeys: ['0-3', '0-4'],
-        });
-    },
-    onSelect(selectedKeys, info) {
-        console.log('onSelect', info);
-        this.setState({ selectedKeys });
-    },
+
+
+
     render() {
         const loop = data => data.map((item) => {
-            if (item.children) {
+            const isDisabled = item.StopFlag === '1' ? {disableCheckbox: true,  className: 'ant-tree-treenode-disabled'} : {}
+            if (item.Children) {
                 return (
-                    <TreeNode key={item.key} title={item.key} disableCheckbox={item.key === '0-0-0'}>
-                        {loop(item.children)}
+                    <TreeNode key={item.ID} title={item.Name}  {...isDisabled} >
+                        {loop(item.Children)}
                     </TreeNode>
                 );
             }
-            return <TreeNode key={item.key} title={item.key} />;
+            return <TreeNode key={item.ID} title={item.Name}  {...isDisabled}/>;
         });
         return (
 
             <div>
 
+                <div className="ck-doubleTree">
+
+                    <div><Checkbox>自动关联下级部门</Checkbox></div>
+
+                    <div className="ant-transfer">
+                        <div className="ant-transfer-list">
+                            <div className="ant-transfer-list-header">
+                                <span>U8组织架构</span>
 
 
-            <div className="ck-doubleTree">
-                <div className="ant-transfer">
-                    <div className="ant-transfer-list">
-                        <div className="ant-transfer-list-header">
-                            <span>U8组织架构</span>
+                            </div>
+                            <div className="ant-transfer-list-body">
 
+                                <Tree checkable multiple defaultExpandAll>
+                                    {loop(gData)}
+                                </Tree>
 
-                        </div>
-                        <div className="ant-transfer-list-body">
-
-                            <Tree checkable multiple={this.props.multiple}
-                                  onExpand={this.onExpand} expandedKeys={this.state.expandedKeys}
-                                  autoExpandParent={this.state.autoExpandParent}
-                                  onCheck={this.onCheck} checkedKeys={this.state.checkedKeys}
-                                  onSelect={this.onSelect} selectedKeys={this.state.selectedKeys}
-
-                            >
-                                {loop(gData)}
-                            </Tree>
+                            </div>
 
                         </div>
+                        <div className="ant-transfer-operation">
 
-                    </div>
-                    <div className="ant-transfer-operation">
-                        <button  type="button" className="ant-btn ant-btn-primary ant-btn-sm">
-                            <span>
-                                <i className="anticon anticon-right"></i>
-                            </span>
-                        </button>
-                    </div>
-                    <div className="ant-transfer-list">
-                        <div className="ant-transfer-list-header">
-                            <span>已选择的组织架构</span>
+                            <Button size="small" icon="right" type="primary"/>
+                        </div>
+                        <div className="ant-transfer-list">
+                            <div className="ant-transfer-list-header">
+                                <span>已选择的组织架构</span>
 
+
+                            </div>
+                            <div className="ant-transfer-list-body"></div>
 
                         </div>
-                        <div className="ant-transfer-list-body"></div>
-
                     </div>
                 </div>
-            </div>
-
-                <Transfer />
-
 
 
             </div>
