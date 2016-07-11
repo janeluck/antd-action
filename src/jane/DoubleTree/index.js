@@ -145,17 +145,52 @@ let gData = [
 const Tree_Demo = React.createClass({
     getDefaultProps() {
         return {
-            multiple: true,
+
         };
     },
     getInitialState() {
         return {
-            expandedKeys: ['391'],
-            autoExpandParent: true,
+            isRelated: false,
+            checkedKeys: [],
+            rightTree: []
 
         };
     },
+    onRelatedChange(e){
 
+        const checked = e.target.checked
+        this.setState({
+            checkedKeys: [],
+            isRelated: checked
+        });
+    },
+    onCheck(checkedKeys, obj){
+        console.log(obj)
+
+   /*     if (this.state.isRelated) {
+            if (obj.checked) {
+                checkedKeys = this.getChildrenKeys(obj.checkedNodes)
+            }
+
+        }*/
+        this.setState({
+            checkedKeys
+        });
+    },
+
+    getChildrenKeys(checkedNodes){
+
+        const loop = nodes => nodes.map((item) => {
+            if (item.props.children){
+                loop(item.props.children)
+            }
+            keys.push(item.key)
+
+        })
+        let keys = [];
+        loop(checkedNodes)
+        return keys
+    },
 
 
     render() {
@@ -176,7 +211,7 @@ const Tree_Demo = React.createClass({
 
                 <div className="ck-doubleTree">
 
-                    <div><Checkbox>自动关联下级部门</Checkbox></div>
+                    <div><Checkbox onChange={this.onRelatedChange}>自动关联下级部门</Checkbox></div>
 
                     <div className="ant-transfer">
                         <div className="ant-transfer-list">
@@ -187,7 +222,9 @@ const Tree_Demo = React.createClass({
                             </div>
                             <div className="ant-transfer-list-body">
 
-                                <Tree checkable multiple defaultExpandAll>
+                                <Tree checkable multiple checkStrictly
+                                      checkedKeys={this.state.checkedKeys}
+                                      onCheck={this.onCheck}>
                                     {loop(gData)}
                                 </Tree>
 
@@ -204,7 +241,10 @@ const Tree_Demo = React.createClass({
 
 
                             </div>
-                            <div className="ant-transfer-list-body"></div>
+                            <div className="ant-transfer-list-body">
+
+
+                            </div>
 
                         </div>
                     </div>
