@@ -3,9 +3,12 @@
  */
 import React from 'react';
 
+import {groupBy, without} from 'lodash'
 import {Tree, Transfer, Button, Checkbox, Icon } from 'antd';
 import './index.less';
 const TreeNode = Tree.TreeNode;
+
+
 
 // todo: 部门树假数据
 let gData = [
@@ -195,24 +198,35 @@ const Tree_Demo = React.createClass({
 
     getRightTreeData(){
         const keys = this.state.checkedKeys
-        let treeData = [], parent = treeData;
-        const loop = data => data.map((item, index, parent) => {
+        let treeData = [];
+/*        const loop = (item, parent) => {
 
-            if (keys.indexOf(item.ID) >= 0) {
+                const a = groupBy(item.Children, child => { return keys.indexOf(child.ID) >= 0})
+                parent.Children = a['true']
+                loop(item.Children, item)
 
-                parent.push(item)
+        };*/
 
-            }else {
-                parent = this;
-              //  loop(item, index, this)
-            }
 
-        });
+        const loop0 = function (item, parent) {
+                if ( keys.indexOf(item.ID) >= 0) {
+                    if(item.Children) {
+                        parent.push(loop0(item.Children, item))
+                    }else{
+                        parent.push(item)
+                    }
+
+                }
+        }
+
+        loop0(gData[0], treeData);
+        console.log(treeData)
         return treeData
     },
     generateRightTree(){
 
     },
+
 
     render() {
         const loop = data => data.map((item) => {
@@ -254,7 +268,7 @@ const Tree_Demo = React.createClass({
                         </div>
                         <div className="ant-transfer-operation">
 
-                            <Button size="small" icon="right" type="primary"/>
+                            <Button onClick={this.getRightTreeData} size="small" icon="right" type="primary"/>
                         </div>
                         <div className="ant-transfer-list">
                             <div className="ant-transfer-list-header">
