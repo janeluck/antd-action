@@ -193,6 +193,27 @@ const Tree_Demo = React.createClass({
     },
 
 
+    getRightTreeData(){
+        const keys = this.state.checkedKeys
+        let treeData = [], parent = treeData;
+        const loop = data => data.map((item, index, parent) => {
+
+            if (keys.indexOf(item.ID) >= 0) {
+
+                parent.push(item)
+
+            }else {
+                parent = this;
+              //  loop(item, index, this)
+            }
+
+        });
+        return treeData
+    },
+    generateRightTree(){
+
+    },
+
     render() {
         const loop = data => data.map((item) => {
             const isDisabled = item.StopFlag === '1' ? {disableCheckbox: true,  className: 'ant-tree-treenode-disabled'} : {}
