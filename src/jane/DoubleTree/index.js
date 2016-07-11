@@ -219,8 +219,47 @@ const Tree_Demo = React.createClass({
                 }
         }
 
-        loop0(gData[0], treeData);
-        console.log(treeData)
+
+        const loop1 = data => data.map((item) => {
+            if (keys.indexOf(item.ID) >= 0 ) {
+                if ( item.Children) {
+                    const {Children, ...others} = item
+
+                    if (Children.filter(function (n) {
+                            return keys.indexOf(n.ID) >= 0
+                        }).length != 0) {
+                        return {
+                            ...others,
+                            Children: loop1(Children.filter(function (n) {
+                                return keys.indexOf(n.ID) >= 0
+                            }))
+                        }
+                    }else {
+                        return {
+                            ...others
+                        }
+                    }
+
+                } else {
+                    return item
+                }
+
+            }else {
+                if (item.Children) {
+                    if (item.Children.filter(function (n) {
+                                 return keys.indexOf(n.ID) >= 0
+                        }).length != 0) {
+                        return   loop1(item.Children.filter(function (n) {
+                            return keys.indexOf(n.ID) >= 0
+                        }))
+                    }
+                }
+            }
+
+        });
+
+       ;
+        console.log(loop1(gData))
         return treeData
     },
     generateRightTree(){
