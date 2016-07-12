@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import Animate from 'rc-animate';
 
 import {groupBy, without} from 'lodash'
 import {Tree, Transfer, Button, Checkbox, Icon } from 'antd';
@@ -92,19 +93,19 @@ let gData = [
                                                 "ParentID": "411222",
                                                 "StopFlag": "0",
                                                 "Code": ""
-                                            },{
+                                            }, {
                                                 "ID": "4112222",
                                                 "Name": "1周震团",
                                                 "ParentID": "411222",
                                                 "StopFlag": "0",
                                                 "Code": ""
-                                            },{
+                                            }, {
                                                 "ID": "4112223",
                                                 "Name": "2周震团",
                                                 "ParentID": "411222",
                                                 "StopFlag": "0",
                                                 "Code": ""
-                                            },{
+                                            }, {
                                                 "ID": "4112224",
                                                 "Name": "3周震团",
                                                 "ParentID": "411222",
@@ -249,7 +250,6 @@ const Tree_Demo = React.createClass({
                         }).length != 0) {
 
 
-
                         loop1(Children.filter(function (n) {
                             return keys.indexOf(n.ID) < 0
                         }))
@@ -300,7 +300,7 @@ const Tree_Demo = React.createClass({
 
             if (item.Children) {
                 return (
-                    <TreeNode key={item.ID} title={item.Name}   >
+                    <TreeNode key={item.ID} title={item.Name}>
                         {loop(item.Children)}
                     </TreeNode>
                 );
@@ -309,7 +309,7 @@ const Tree_Demo = React.createClass({
         });
 
 
-        ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree>
+        ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree defaultExpandAll>
             {loop(this.getRightTreeData())}
         </Tree>, document.getElementById('doubleTree-right'))
 
