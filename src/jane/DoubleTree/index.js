@@ -84,7 +84,34 @@ let gData = [
                                         "Name": "XG分公司",
                                         "ParentID": "654",
                                         "StopFlag": "0",
-                                        "Code": ""
+                                        "Code": "",
+                                        "Children": [
+                                            {
+                                                "ID": "4112221",
+                                                "Name": "0周震团",
+                                                "ParentID": "411222",
+                                                "StopFlag": "0",
+                                                "Code": ""
+                                            },{
+                                                "ID": "4112222",
+                                                "Name": "1周震团",
+                                                "ParentID": "411222",
+                                                "StopFlag": "0",
+                                                "Code": ""
+                                            },{
+                                                "ID": "4112223",
+                                                "Name": "2周震团",
+                                                "ParentID": "411222",
+                                                "StopFlag": "0",
+                                                "Code": ""
+                                            },{
+                                                "ID": "4112224",
+                                                "Name": "3周震团",
+                                                "ParentID": "411222",
+                                                "StopFlag": "0",
+                                                "Code": ""
+                                            },
+                                        ]
                                     }
                                 ]
                             },
@@ -221,6 +248,11 @@ const Tree_Demo = React.createClass({
                             return keys.indexOf(n.ID) >= 0
                         }).length != 0) {
 
+
+
+                        loop1(Children.filter(function (n) {
+                            return keys.indexOf(n.ID) < 0
+                        }))
                         return {
                             ...others,
                             Children: loop1(Children.filter(function (n) {
