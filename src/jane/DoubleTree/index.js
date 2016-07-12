@@ -2,12 +2,12 @@
  * Created by janeluck on 7/8/16.
  */
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import {groupBy, without} from 'lodash'
 import {Tree, Transfer, Button, Checkbox, Icon } from 'antd';
 import './index.less';
 const TreeNode = Tree.TreeNode;
-
 
 
 // todo: 部门树假数据
@@ -16,7 +16,7 @@ let gData = [
         "ID": "391",
         "Name": "全公司",
         "ParentID": "0",
-        "StopFlag": "0",
+        "StopFlag": "1",
         "Code": "",
         "Children": [
             {
@@ -144,12 +144,9 @@ let gData = [
 ]
 
 
-
 const Tree_Demo = React.createClass({
     getDefaultProps() {
-        return {
-
-        };
+        return {};
     },
     getInitialState() {
         return {
@@ -170,12 +167,12 @@ const Tree_Demo = React.createClass({
     onCheck(checkedKeys, obj){
         console.log(obj)
 
-   /*     if (this.state.isRelated) {
-            if (obj.checked) {
-                checkedKeys = this.getChildrenKeys(obj.checkedNodes)
-            }
+        /*     if (this.state.isRelated) {
+         if (obj.checked) {
+         checkedKeys = this.getChildrenKeys(obj.checkedNodes)
+         }
 
-        }*/
+         }*/
         this.setState({
             checkedKeys
         });
@@ -184,7 +181,7 @@ const Tree_Demo = React.createClass({
     getChildrenKeys(checkedNodes){
 
         const loop = nodes => nodes.map((item) => {
-            if (item.props.children){
+            if (item.props.children) {
                 loop(item.props.children)
             }
             keys.push(item.key)
@@ -199,42 +196,22 @@ const Tree_Demo = React.createClass({
     getRightTreeData(){
         const keys = this.state.checkedKeys
         let treeData = [];
-/*        const loop = (item, parent) => {
-
-                const a = groupBy(item.Children, child => { return keys.indexOf(child.ID) >= 0})
-                parent.Children = a['true']
-                loop(item.Children, item)
-
-        };*/
-
-
-        const loop0 = function (item, parent) {
-                if ( keys.indexOf(item.ID) >= 0) {
-                    if(item.Children) {
-                        parent.push(loop0(item.Children, item))
-                    }else{
-                        parent.push(item)
-                    }
-
-                }
-        }
-
-
         const loop1 = data => data.map((item) => {
-            if (keys.indexOf(item.ID) >= 0 ) {
-                if ( item.Children) {
+            if (keys.indexOf(item.ID) >= 0) {
+                if (item.Children) {
                     const {Children, ...others} = item
 
                     if (Children.filter(function (n) {
                             return keys.indexOf(n.ID) >= 0
                         }).length != 0) {
+
                         return {
                             ...others,
                             Children: loop1(Children.filter(function (n) {
                                 return keys.indexOf(n.ID) >= 0
                             }))
                         }
-                    }else {
+                    } else {
                         return {
                             ...others
                         }
@@ -244,32 +221,60 @@ const Tree_Demo = React.createClass({
                     return item
                 }
 
-            }else {
+            } else {
                 if (item.Children) {
+
                     if (item.Children.filter(function (n) {
-                                 return keys.indexOf(n.ID) >= 0
-                        }).length != 0) {
-                        return   loop1(item.Children.filter(function (n) {
                             return keys.indexOf(n.ID) >= 0
+                        }).length != 0) {
+
+
+                        treeData.push(...loop1(item.Children.filter(function (n) {
+                            return keys.indexOf(n.ID) >= 0
+                        })))
+                        loop1(item.Children.filter(function (n) {
+                            return keys.indexOf(n.ID) < 0
+                        }))
+                    } else {
+
+                        loop1(item.Children.filter(function (n) {
+                            return keys.indexOf(n.ID) < 0
                         }))
                     }
                 }
             }
 
         });
-
-       ;
-        console.log(loop1(gData))
+        loop1(gData)
         return treeData
     },
     generateRightTree(){
+        const loop = data => data.map((item) => {
+
+            if (item.Children) {
+                return (
+                    <TreeNode key={item.ID} title={item.Name}   >
+                        {loop(item.Children)}
+                    </TreeNode>
+                );
+            }
+            return <TreeNode key={item.ID} title={item.Name}/>;
+        });
+
+
+        ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree>
+            {loop(this.getRightTreeData())}
+        </Tree>, document.getElementById('doubleTree-right'))
 
     },
 
 
     render() {
         const loop = data => data.map((item) => {
-            const isDisabled = item.StopFlag === '1' ? {disableCheckbox: true,  className: 'ant-tree-treenode-disabled'} : {}
+            const isDisabled = item.StopFlag === '1' ? {
+                disableCheckbox: true,
+                className: 'ant-tree-treenode-disabled'
+            } : {}
             if (item.Children) {
                 return (
                     <TreeNode key={item.ID} title={item.Name}  {...isDisabled} >
@@ -307,7 +312,7 @@ const Tree_Demo = React.createClass({
                         </div>
                         <div className="ant-transfer-operation">
 
-                            <Button onClick={this.getRightTreeData} size="small" icon="right" type="primary"/>
+                            <Button onClick={this.generateRightTree} size="small" icon="right" type="primary"/>
                         </div>
                         <div className="ant-transfer-list">
                             <div className="ant-transfer-list-header">
@@ -316,7 +321,9 @@ const Tree_Demo = React.createClass({
 
                             </div>
                             <div className="ant-transfer-list-body">
+                                <div id="doubleTree-right">
 
+                                </div>
 
                             </div>
 
