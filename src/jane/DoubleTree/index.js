@@ -16,7 +16,7 @@ let gData = [
         "ID": "391",
         "Name": "全公司",
         "ParentID": "0",
-        "StopFlag": "1",
+        "StopFlag": "0",
         "Code": "",
         "Children": [
             {
@@ -67,6 +67,22 @@ let gData = [
                                         "ID": "411",
                                         "Name": "广东分公司",
                                         "ParentID": "652",
+                                        "StopFlag": "0",
+                                        "Code": ""
+                                    }
+                                ]
+                            },
+                            {
+                                "ID": "654",
+                                "Name": "S团",
+                                "ParentID": "651",
+                                "StopFlag": "0",
+                                "Code": "",
+                                "Children": [
+                                    {
+                                        "ID": "411222",
+                                        "Name": "XG分公司",
+                                        "ParentID": "654",
                                         "StopFlag": "0",
                                         "Code": ""
                                     }
@@ -212,6 +228,9 @@ const Tree_Demo = React.createClass({
                             }))
                         }
                     } else {
+
+                        loop1(Children)
+
                         return {
                             ...others
                         }
