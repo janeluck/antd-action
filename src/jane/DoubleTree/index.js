@@ -309,9 +309,18 @@ const Tree_Demo = React.createClass({
         });
 
 
+
         ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree defaultExpandAll>
             {loop(this.getRightTreeData())}
-        </Tree>, document.getElementById('doubleTree-right'))
+        </Tree>, document.getElementById('doubleTree-right'), ()=> {
+            // 动画效果
+            document.getElementById('doubleTree-right').className = 'move-left-enter move-left-enter-active'
+            setTimeout(()=>{
+                document.getElementById('doubleTree-right').className = '';
+            }, 500)
+        })
+
+
 
     },
 
@@ -368,7 +377,7 @@ const Tree_Demo = React.createClass({
 
                             </div>
                             <div className="ant-transfer-list-body">
-                                <div id="doubleTree-right">
+                                <div id="doubleTree-right" >
 
                                 </div>
 
