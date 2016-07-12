@@ -210,21 +210,22 @@ const Tree_Demo = React.createClass({
     },
     onCheck(checkedKeys, obj){
         console.log(obj)
+        // todo
+        if (this.state.isRelated) {
+            if (obj.checked) {
+               // checkedKeys = this.getChildrenKeys(obj.checkedNodes)
+            }
 
-        /*     if (this.state.isRelated) {
-         if (obj.checked) {
-         checkedKeys = this.getChildrenKeys(obj.checkedNodes)
-         }
+        }
 
-         }*/
         this.setState({
             checkedKeys
         });
     },
 
     getChildrenKeys(checkedNodes){
-
-        const loop = nodes => nodes.map((item) => {
+    // todo
+    /*    const loop = nodes => nodes.map((item) => {
             if (item.props.children) {
                 loop(item.props.children)
             }
@@ -233,7 +234,7 @@ const Tree_Demo = React.createClass({
         })
         let keys = [];
         loop(checkedNodes)
-        return keys
+        return keys*/
     },
 
 
@@ -309,17 +310,15 @@ const Tree_Demo = React.createClass({
         });
 
 
-
         ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree defaultExpandAll>
             {loop(this.getRightTreeData())}
         </Tree>, document.getElementById('doubleTree-right'), ()=> {
             // 动画效果
             document.getElementById('doubleTree-right').className = 'move-left-enter move-left-enter-active'
-            setTimeout(()=>{
+            setTimeout(()=> {
                 document.getElementById('doubleTree-right').className = '';
             }, 500)
         })
-
 
 
     },
@@ -377,7 +376,7 @@ const Tree_Demo = React.createClass({
 
                             </div>
                             <div className="ant-transfer-list-body">
-                                <div id="doubleTree-right" >
+                                <div id="doubleTree-right">
 
                                 </div>
 
