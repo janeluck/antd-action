@@ -279,19 +279,15 @@ const Tree_Demo = React.createClass({
                             return keys.indexOf(n.ID) >= 0
                         }).length != 0) {
 
-
                         treeData.push(...loop1(item.Children.filter(function (n) {
                             return keys.indexOf(n.ID) >= 0
                         })))
-                        loop1(item.Children.filter(function (n) {
-                            return keys.indexOf(n.ID) < 0
-                        }))
-                    } else {
-
-                        loop1(item.Children.filter(function (n) {
-                            return keys.indexOf(n.ID) < 0
-                        }))
                     }
+
+
+                    loop1(item.Children.filter(function (n) {
+                        return keys.indexOf(n.ID) < 0
+                    }))
                 }
             }
 
