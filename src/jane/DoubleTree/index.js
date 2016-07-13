@@ -12,7 +12,7 @@ const TreeNode = Tree.TreeNode;
 
 
 // todo: 部门树假数据
-let gData = [
+let oldData = [
     {
         "ID": "391",
         "Name": "全公司",
@@ -187,6 +187,128 @@ let gData = [
     }
 ]
 
+const gData = [{
+    "U8ID": 0,
+    "Name": "全公司",
+    "ParentID": "0",
+    "Existing": 0,
+    "Children": [{"U8ID": "01", "Name": "总裁会", "ParentID": "0", "Existing": 0, "Children": []}, {
+        "U8ID": "02",
+        "Name": "服务中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{
+            "U8ID": "0201",
+            "Name": "电话服务部",
+            "ParentID": "02",
+            "Existing": 0,
+            "Children": []
+        }, {"U8ID": "0202", "Name": "现场服务部", "ParentID": "02", "Existing": 0, "Children": []}]
+    }, {
+        "U8ID": "03",
+        "Name": "营销中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{"U8ID": "0301", "Name": "市场部", "ParentID": "03", "Existing": 0, "Children": []}, {
+            "U8ID": "0302",
+            "Name": "销售部",
+            "ParentID": "03",
+            "Existing": 0,
+            "Children": []
+        }, {"U8ID": "0303", "Name": "订单中心", "ParentID": "03", "Existing": 0, "Children": []}, {
+            "U8ID": "0304",
+            "Name": "电子商务",
+            "ParentID": "03",
+            "Existing": 0,
+            "Children": []
+        }]
+    }, {
+        "U8ID": "04",
+        "Name": "供应中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{"U8ID": "0401", "Name": "采购部", "ParentID": "04", "Existing": 0, "Children": []}, {
+            "U8ID": "0402",
+            "Name": "仓储部",
+            "ParentID": "04",
+            "Existing": 0,
+            "Children": []
+        }, {"U8ID": "0403", "Name": "委外部", "ParentID": "04", "Existing": 0, "Children": []}, {
+            "U8ID": "0404",
+            "Name": "质检部",
+            "ParentID": "04",
+            "Existing": 0,
+            "Children": []
+        }]
+    }, {
+        "U8ID": "05",
+        "Name": "生产中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{"U8ID": "0501", "Name": "一车间", "ParentID": "05", "Existing": 0, "Children": []}, {
+            "U8ID": "0502",
+            "Name": "二车间",
+            "ParentID": "05",
+            "Existing": 0,
+            "Children": []
+        }, {"U8ID": "0503", "Name": "三车间", "ParentID": "05", "Existing": 0, "Children": []}, {
+            "U8ID": "0504",
+            "Name": "设备动力部",
+            "ParentID": "05",
+            "Existing": 0,
+            "Children": []
+        }]
+    }, {
+        "U8ID": "06",
+        "Name": "技术中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{"U8ID": "0601", "Name": "质量部", "ParentID": "06", "Existing": 0, "Children": []}, {
+            "U8ID": "0602",
+            "Name": "设计部",
+            "ParentID": "06",
+            "Existing": 0,
+            "Children": []
+        }]
+    }, {
+        "U8ID": "07",
+        "Name": "财务中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{"U8ID": "0701", "Name": "财务部", "ParentID": "07", "Existing": 0, "Children": []}, {
+            "U8ID": "0702",
+            "Name": "预算部",
+            "ParentID": "07",
+            "Existing": 0,
+            "Children": []
+        }]
+    }, {
+        "U8ID": "09",
+        "Name": "运营中心",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{"U8ID": "0901", "Name": "行政部", "ParentID": "09", "Existing": 0, "Children": []}, {
+            "U8ID": "0902",
+            "Name": "人力资源部",
+            "ParentID": "09",
+            "Existing": 1,
+            "Children": []
+        }, {"U8ID": "0903", "Name": "信息部", "ParentID": "09", "Existing": 0, "Children": []}]
+    }, {
+        "U8ID": "10",
+        "Name": "上海分公司",
+        "ParentID": "0",
+        "Existing": 0,
+        "Children": [{
+            "U8ID": "1001",
+            "Name": "区域销售部",
+            "ParentID": "10",
+            "Existing": 1,
+            "Children": []
+        }, {"U8ID": "1002", "Name": "服务部", "ParentID": "10", "Existing": 0, "Children": []}]
+    }, {"U8ID": "11", "Name": "项目基建部", "ParentID": "0", "Existing": 0, "Children": []}]
+}]
+
 
 const Tree_Demo = React.createClass({
     getDefaultProps() {
@@ -213,7 +335,7 @@ const Tree_Demo = React.createClass({
         // todo
         if (this.state.isRelated) {
             if (obj.checked) {
-               // checkedKeys = this.getChildrenKeys(obj.checkedNodes)
+                // checkedKeys = this.getChildrenKeys(obj.checkedNodes)
             }
 
         }
@@ -224,17 +346,17 @@ const Tree_Demo = React.createClass({
     },
 
     getChildrenKeys(checkedNodes){
-    // todo
-    /*    const loop = nodes => nodes.map((item) => {
-            if (item.props.children) {
-                loop(item.props.children)
-            }
-            keys.push(item.key)
+        // todo
+        /*    const loop = nodes => nodes.map((item) => {
+         if (item.props.children) {
+         loop(item.props.children)
+         }
+         keys.push(item.key)
 
-        })
-        let keys = [];
-        loop(checkedNodes)
-        return keys*/
+         })
+         let keys = [];
+         loop(checkedNodes)
+         return keys*/
     },
 
 
@@ -242,22 +364,22 @@ const Tree_Demo = React.createClass({
         const keys = this.state.checkedKeys
         let treeData = [];
         const loop1 = data => data.map((item) => {
-            if (keys.indexOf(item.ID) >= 0) {
+            if (keys.indexOf(item.U8ID) >= 0) {
                 if (item.Children) {
                     const {Children, ...others} = item
 
                     if (Children.filter(function (n) {
-                            return keys.indexOf(n.ID) >= 0
+                            return keys.indexOf(n.U8ID) >= 0
                         }).length != 0) {
 
 
                         loop1(Children.filter(function (n) {
-                            return keys.indexOf(n.ID) < 0
+                            return keys.indexOf(n.U8ID) < 0
                         }))
                         return {
                             ...others,
                             Children: loop1(Children.filter(function (n) {
-                                return keys.indexOf(n.ID) >= 0
+                                return keys.indexOf(n.U8ID) >= 0
                             }))
                         }
                     } else {
@@ -277,17 +399,17 @@ const Tree_Demo = React.createClass({
                 if (item.Children) {
 
                     if (item.Children.filter(function (n) {
-                            return keys.indexOf(n.ID) >= 0
+                            return keys.indexOf(n.U8ID) >= 0
                         }).length != 0) {
 
                         treeData.push(...loop1(item.Children.filter(function (n) {
-                            return keys.indexOf(n.ID) >= 0
+                            return keys.indexOf(n.U8ID) >= 0
                         })))
                     }
 
 
                     loop1(item.Children.filter(function (n) {
-                        return keys.indexOf(n.ID) < 0
+                        return keys.indexOf(n.U8ID) < 0
                     }))
                 }
             }
@@ -301,12 +423,12 @@ const Tree_Demo = React.createClass({
 
             if (item.Children) {
                 return (
-                    <TreeNode key={item.ID} title={item.Name}>
+                    <TreeNode key={item.U8ID} title={item.Name}>
                         {loop(item.Children)}
                     </TreeNode>
                 );
             }
-            return <TreeNode key={item.ID} title={item.Name}/>;
+            return <TreeNode key={item.U8ID} title={item.Name}/>;
         });
 
 
@@ -326,18 +448,18 @@ const Tree_Demo = React.createClass({
 
     render() {
         const loop = data => data.map((item) => {
-            const isDisabled = item.StopFlag === '1' ? {
+            const isDisabled = item.Existing === '1' ? {
                 disableCheckbox: true,
                 className: 'ant-tree-treenode-disabled'
             } : {}
-            if (item.Children) {
+            if (item.Children.length > 0) {
                 return (
-                    <TreeNode key={item.ID} title={item.Name}  {...isDisabled} >
+                    <TreeNode key={item.U8ID} title={item.Name}  {...isDisabled} >
                         {loop(item.Children)}
                     </TreeNode>
                 );
             }
-            return <TreeNode key={item.ID} title={item.Name}  {...isDisabled}/>;
+            return <TreeNode key={item.U8ID} title={item.Name}  {...isDisabled}/>;
         });
         return (
 
