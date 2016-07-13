@@ -365,7 +365,7 @@ const Tree_Demo = React.createClass({
         let treeData = [];
         const loop1 = data => data.map((item) => {
             if (keys.indexOf(item.U8ID) >= 0) {
-                if (item.Children) {
+                if (item.Children.length) {
                     const {Children, ...others} = item
 
                     if (Children.filter(function (n) {
@@ -396,7 +396,7 @@ const Tree_Demo = React.createClass({
                 }
 
             } else {
-                if (item.Children) {
+                if (item.Children.length) {
 
                     if (item.Children.filter(function (n) {
                             return keys.indexOf(n.U8ID) >= 0
@@ -421,7 +421,7 @@ const Tree_Demo = React.createClass({
     generateRightTree(){
         const loop = data => data.map((item) => {
 
-            if (item.Children) {
+            if (item.Children.length) {
                 return (
                     <TreeNode key={item.U8ID} title={item.Name}>
                         {loop(item.Children)}
@@ -452,7 +452,7 @@ const Tree_Demo = React.createClass({
                 disableCheckbox: true,
                 className: 'ant-tree-treenode-disabled'
             } : {}
-            if (item.Children.length > 0) {
+            if (item.Children.length ) {
                 return (
                     <TreeNode key={item.U8ID} title={item.Name}  {...isDisabled} >
                         {loop(item.Children)}
