@@ -229,7 +229,7 @@ const gData = [{
         "U8ID": "02",
         "Name": "服务中心",
         "ParentID": "0",
-        "Existing": 0,
+        "Existing": 1,
         "Children": [{
             "U8ID": "0201",
             "Name": "电话服务部",
@@ -520,7 +520,7 @@ const Tree_Demo = React.createClass({
 
     render() {
         const loop = data => data.map((item) => {
-            const isDisabled = item.Existing === '1' ? {
+            const isDisabled = item.Existing == 1 ? {
                 disableCheckbox: true,
                 className: 'ant-tree-treenode-disabled'
             } : {}
