@@ -1,5 +1,5 @@
 import React from 'react';
-import {Timeline, Input, Select, InputNumber, Popover, Button, Icon} from 'antd';
+import {Timeline, Input, Select, InputNumber, Popover, Button, Icon, Modal} from 'antd';
 
 import '../jane/EditDialog/css/basic_new_v2.css';
 import '../jane/EditDialog/css/pagev2.3.css';
@@ -39,6 +39,7 @@ class EditDialog_Demo extends Component {
         super(props, context)
         this.state = {
             visible: false,
+            doubleTreeVisible: false,
         }
 
     }
@@ -237,6 +238,16 @@ export default class App extends React.Component {
             value: e.target.value
         })
     }
+    openDoubleTree = ()=>{
+        this.setState({
+            doubleTreeVisible: true
+        })
+    }
+    onClose = ()=>{
+        this.setState({
+            doubleTreeVisible: false
+        })
+    }
 
     render() {
 
@@ -290,8 +301,14 @@ export default class App extends React.Component {
                 <JaneButton/>
                 <EditDialog_Demo/>
 
-                <TreeDemo />
+              <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
 
+                <Modal  width="1200"
+                    title="TestDemo" visible={this.state.doubleTreeVisible}
+                       onOk={this.handleOk} onClose={this.onClose}>
+
+                </Modal>
+                <TreeDemo />
             </div>)
 
     }

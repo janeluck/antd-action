@@ -430,7 +430,8 @@ const Tree_Demo = React.createClass({
                         loop1(Children)
 
                         return {
-                            ...others
+                            ...others,
+                            Children: []
                         }
                     }
 
