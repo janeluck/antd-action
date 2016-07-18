@@ -547,8 +547,7 @@ const Tree_Demo = React.createClass({
     render() {
         const loop = data => data.map((item) => {
             const isDisabled = item.Existing == 1 ? {
-                disableCheckbox: true,
-                className: 'ant-tree-treenode-disabled'
+                disableCheckbox: true
             } : {}
             if (item.Children.length) {
                 return (
@@ -582,7 +581,7 @@ const Tree_Demo = React.createClass({
                                       onCheck={this.onCheck}>
 
                                     <TreeNode key={gData[0].U8ID} title={gData[0].Name} disableCheckbox
-                                              className='ant-tree-treenode-disabled'>
+                                              >
                                         {loop(gData[0].Children)}
                                     </TreeNode>
 
