@@ -28,20 +28,19 @@ function getSiblingPosition(index, len, siblingPosition) {
     return siblingPosition;
 }
 
-const  loopAllChildren = function(childs, callback, parent) {
+const loopAllChildren = function (childs, callback, parent) {
     const loop = (children, level, _parent) => {
         const len = getChildrenlength(children);
         React.Children.forEach(children, (item, index) => {
             const pos = `${level}-${index}`;
             if (item.props.children && item.type && item.type.isTreeNode) {
-                loop(item.props.children, pos, { node: item, pos });
+                loop(item.props.children, pos, {node: item, pos});
             }
             callback(item, index, pos, item.key || pos, getSiblingPosition(index, len, {}), _parent);
         });
     };
     loop(childs, 0, parent);
 }
-
 
 
 // todo: 部门树假数据
@@ -342,9 +341,10 @@ const gData = [{
     }, {"U8ID": "11", "Name": "项目基建部", "ParentID": "0", "Existing": 0, "Children": []}]
 }]
 
-let obj =[]
-function convertData(childs, level){
-    childs.forEach((child, index)=>{
+let obj = []
+let keysCollectObj = []
+function convertData(childs, level) {
+    childs.forEach((child, index)=> {
         const pos = `${level}-${index}`
         obj.push(pos)
         convertData(child.Children, pos)
@@ -352,6 +352,26 @@ function convertData(childs, level){
 }
 convertData(gData, 0)
 console.log(obj)
+
+
+function convertkeysCollect(childs, o) {
+    childs.forEach((item)=> {
+        keysCollectObj[item.U8ID] = [
+            item.U8ID
+        ];
+
+        if(o){
+            o.push(item.U8ID)
+        }
+        if (item.Children.length) {
+            convertkeysCollect(item.Children,  keysCollectObj[item.U8ID])
+        }
+
+    })
+}
+convertkeysCollect(gData)
+console.log(keysCollectObj)
+
 
 const Tree_Demo = React.createClass({
     getDefaultProps() {
@@ -369,16 +389,32 @@ const Tree_Demo = React.createClass({
 
         const checked = e.target.checked
         this.setState({
-            checkedKeys: [],
+
             isRelated: checked
         });
     },
     onCheck(checkedKeys, obj){
+
         console.log(obj)
-        // todo
+
+
         if (this.state.isRelated) {
+
+            const associatedKeys  = this.getAssociatedKeys(obj.node)
             if (obj.checked) {
                 // checkedKeys = this.getChildrenKeys(obj.checkedNodes)
+                associatedKeys.forEach((item)=>{
+                    if (checkedKeys.indexOf(item) == -1) {
+                        checkedKeys.push(item)
+                    }
+                })
+                    
+            }else {
+                associatedKeys.forEach((item)=>{
+                    if (checkedKeys.indexOf(item) > -1) {
+                        checkedKeys.splice(checkedKeys.indexOf(item), 1)
+                    }
+                })
             }
 
         }
@@ -388,18 +424,8 @@ const Tree_Demo = React.createClass({
         });
     },
 
-    getChildrenKeys(checkedNodes){
-        // todo
-        /*    const loop = nodes => nodes.map((item) => {
-         if (item.props.children) {
-         loop(item.props.children)
-         }
-         keys.push(item.key)
-
-         })
-         let keys = [];
-         loop(checkedNodes)
-         return keys*/
+    getAssociatedKeys(node){
+        return keysCollectObj[node.props.eventKey]
     },
 
 
@@ -468,7 +494,7 @@ const Tree_Demo = React.createClass({
         const treeNodesStates = {}
         const checkedPositions = [];
 
-        loopAllChildren(this.refs.tree.props.children, (item, index, pos, keyOrPos, siblingPosition)=>{
+        loopAllChildren(this.refs.tree.props.children, (item, index, pos, keyOrPos, siblingPosition)=> {
 
             treeNodesStates[pos] = {
                 node: item,
@@ -524,7 +550,7 @@ const Tree_Demo = React.createClass({
                 disableCheckbox: true,
                 className: 'ant-tree-treenode-disabled'
             } : {}
-            if (item.Children.length ) {
+            if (item.Children.length) {
                 return (
                     <TreeNode key={item.U8ID} title={item.Name}  {...isDisabled} >
                         {loop(item.Children)}
@@ -551,7 +577,7 @@ const Tree_Demo = React.createClass({
                             <div className="ant-transfer-list-body">
 
                                 <Tree ref="tree"
-                                    checkable multiple checkStrictly
+                                      checkable multiple checkStrictly
                                       checkedKeys={this.state.checkedKeys}
                                       onCheck={this.onCheck}>
                                     {loop(gData)}
