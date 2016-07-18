@@ -576,11 +576,14 @@ const Tree_Demo = React.createClass({
                             <div className="ant-transfer-list-body">
 
                                 <Tree ref="tree"
+                                      //defaultExpandAll
                                       checkable multiple checkStrictly
                                       checkedKeys={this.state.checkedKeys}
                                       onCheck={this.onCheck}>
 
-                                    <TreeNode key={gData[0].U8ID} title={gData[0].Name} disableCheckbox
+                                    <TreeNode
+
+                                        key={gData[0].U8ID} title={gData[0].Name} disableCheckbox
                                               >
                                         {loop(gData[0].Children)}
                                     </TreeNode>
