@@ -385,6 +385,12 @@ const Tree_Demo = React.createClass({
 
         };
     },
+    componentDidMount(){
+        this.rightTreeWrap = document.getElementById('doubleTree-right')
+    },
+    componentWillUnmount(){
+        ReactDOM.unmountComponentAtNode(this.rightTreeWrap)
+    },
     onRelatedChange(e){
 
         const checked = e.target.checked
@@ -395,7 +401,7 @@ const Tree_Demo = React.createClass({
     },
     onCheck(checkedKeys, obj){
 
-        console.log(obj)
+
 
 
         if (this.state.isRelated) {
@@ -532,11 +538,11 @@ const Tree_Demo = React.createClass({
 
         ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree defaultExpandAll>
             {loop(this.getRightTreeData())}
-        </Tree>, document.getElementById('doubleTree-right'), ()=> {
+        </Tree>, this.rightTreeWrap, ()=> {
             // 动画效果
-            document.getElementById('doubleTree-right').className = 'move-left-enter move-left-enter-active'
+            this.rightTreeWrap.className = 'move-left-enter move-left-enter-active'
             setTimeout(()=> {
-                document.getElementById('doubleTree-right').className = '';
+                this.rightTreeWrap.className = '';
             }, 500)
         })
 
@@ -576,7 +582,7 @@ const Tree_Demo = React.createClass({
                             <div className="ant-transfer-list-body">
 
                                 <Tree ref="tree"
-                                      //defaultExpandAll
+                                    //defaultExpandAll
                                       checkable multiple checkStrictly
                                       checkedKeys={this.state.checkedKeys}
                                       onCheck={this.onCheck}>
@@ -584,7 +590,7 @@ const Tree_Demo = React.createClass({
                                     <TreeNode
 
                                         key={gData[0].U8ID} title={gData[0].Name} disableCheckbox
-                                              >
+                                    >
                                         {loop(gData[0].Children)}
                                     </TreeNode>
 

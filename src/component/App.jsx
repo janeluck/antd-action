@@ -302,7 +302,7 @@ export default class App extends React.Component {
                 <EditDialog_Demo/>
 
               <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
-                {this.state.doubleTreeVisible?(<Modal  width="600"
+                {this.state.doubleTreeVisible?(<Modal  width={600}
                                                        title="TestDemo" visible={this.state.doubleTreeVisible}
                                                        onOk={this.handleOk} onClose={this.onClose}>
                     <TreeDemo />
