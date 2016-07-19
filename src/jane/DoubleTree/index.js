@@ -389,7 +389,9 @@ const Tree_Demo = React.createClass({
         this.rightTreeWrap = document.getElementById('doubleTree-right')
     },
     componentWillUnmount(){
-        ReactDOM.unmountComponentAtNode(this.rightTreeWrap)
+        if (this.rightTree) {
+            ReactDOM.unmountComponentAtNode(this.rightTreeWrap)
+        }
     },
     onRelatedChange(e){
 
@@ -400,8 +402,6 @@ const Tree_Demo = React.createClass({
         });
     },
     onCheck(checkedKeys, obj){
-
-
 
 
         if (this.state.isRelated) {
@@ -522,7 +522,6 @@ const Tree_Demo = React.createClass({
 
         this.fromRc();
 
-
         const loop = data => data.map((item) => {
 
             if (item.Children.length) {
@@ -535,10 +534,9 @@ const Tree_Demo = React.createClass({
             return <TreeNode key={item.U8ID} title={item.Name}/>;
         });
 
+        this.rightTree = (<Tree defaultExpandAll>{loop(this.getRightTreeData())}</Tree>)
 
-        ReactDOM.unstable_renderSubtreeIntoContainer(this, <Tree defaultExpandAll>
-            {loop(this.getRightTreeData())}
-        </Tree>, this.rightTreeWrap, ()=> {
+        ReactDOM.unstable_renderSubtreeIntoContainer(this, this.rightTree, this.rightTreeWrap, ()=> {
             // 动画效果
             this.rightTreeWrap.className = 'move-left-enter move-left-enter-active'
             setTimeout(()=> {
