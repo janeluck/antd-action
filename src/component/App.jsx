@@ -305,10 +305,10 @@ export default class App extends React.Component {
                 {this.state.doubleTreeVisible?(<Modal  width={600}
                                                        title="TestDemo" visible={this.state.doubleTreeVisible}
                                                        onOk={this.handleOk} onClose={this.onClose}>
-                    <U8_DoubleTree />
+
                 </Modal>):null}
 
-
+                <U8_DoubleTree />
             </div>)
 
     }

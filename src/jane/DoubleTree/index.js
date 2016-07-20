@@ -43,7 +43,6 @@ const loopAllChildren = function (childs, callback, parent) {
 }
 
 
-
 const gData = [{
     "U8ID": 0,
     "Name": "全公司",
@@ -71,7 +70,43 @@ const gData = [{
             "Name": "销售部",
             "ParentID": "03",
             "Existing": 0,
-            "Children": []
+            "Children": [
+                {"U8ID": "030201", "Name": "销售分部1", "ParentID": "0302", "Existing": 0, "Children": []}, {
+                    "U8ID": "030202",
+                    "Name": "销售分部2",
+                    "ParentID": "0302",
+                    "Existing": 0,
+                    "Children": []
+                }, {"U8ID": "030203", "Name": "销售分部3", "ParentID": "0302", "Existing": 0, "Children": []}, {
+                    "U8ID": "030204",
+                    "Name": "销售分部4",
+                    "ParentID": "0302",
+                    "Existing": 0,
+                    "Children": [
+
+                        {"U8ID": "03020401", "Name": "销售分部4子部门销售分部4子部门001", "ParentID": "030204", "Existing": 0, "Children": []}, {
+                            "U8ID": "03020402",
+                            "Name": "销售分部4子部门销售分部4子部门002",
+                            "ParentID": "030204",
+                            "Existing": 0,
+                            "Children": []
+                        }, {"U8ID": "03020403", "Name": "销售分部4子部门销售分部4子部门003", "ParentID": "030204", "Existing": 0, "Children": []}, {
+                            "U8ID": "03020404",
+                            "Name": "销售分部4子部门销售分部4子部门004",
+                            "ParentID": "030204",
+                            "Existing": 0,
+                            "Children": [
+
+
+
+                            ]
+                        }
+
+                    ]
+                }
+
+
+            ]
         }, {"U8ID": "0303", "Name": "订单中心", "ParentID": "03", "Existing": 0, "Children": []}, {
             "U8ID": "0304",
             "Name": "电子商务",
@@ -407,7 +442,7 @@ const U8_DouleTree = React.createClass({
                             <div className="ant-transfer-list-body">
 
                                 <Tree ref="tree"
-                                    //defaultExpandAll
+                                      defaultExpandAll
                                       checkable multiple checkStrictly
                                       checkedKeys={this.state.checkedKeys}
                                       onCheck={this.onCheck}>
