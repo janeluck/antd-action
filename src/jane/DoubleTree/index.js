@@ -107,7 +107,16 @@ const gData = [{
                             "Name": "销售分部4子部门销售分部4子部门004",
                             "ParentID": "030204",
                             "Existing": 0,
-                            "Children": []
+                            "Children": [
+
+                                {
+                                    "U8ID": "0302040401",
+                                    "Name": "销售分部4子部门004子部门01",
+                                    "ParentID": "03020404",
+                                    "Existing": 0,
+                                    "Children": []
+                                }
+                            ]
                         }
 
                     ]
@@ -222,7 +231,7 @@ convertData(gData, 0)
 console.log(obj)
 
 
-function convertkeysCollect(childs, o) {
+function convertkeysCollect1(childs, o) {
     childs.forEach((item)=> {
         keysCollectObj[item.U8ID] = [
             item.U8ID
@@ -232,11 +241,34 @@ function convertkeysCollect(childs, o) {
             o.push(item.U8ID)
         }
         if (item.Children.length) {
+            convertkeysCollect(item.Children, o)
             convertkeysCollect(item.Children, keysCollectObj[item.U8ID])
         }
 
     })
 }
+
+function convertkeysCollect(childs, o, p) {
+    childs.forEach((item)=> {
+        keysCollectObj[item.U8ID] = [
+            item.U8ID
+        ];
+
+        if (o) {
+            o.push(item.U8ID)
+        }
+
+
+        convertkeysCollect(item.Children, o)
+        convertkeysCollect(item.Children, keysCollectObj[item.U8ID])
+
+
+    })
+}
+
+
+
+
 convertkeysCollect(gData)
 console.log(keysCollectObj)
 
@@ -448,7 +480,7 @@ const U8_DouleTree = React.createClass({
 
                             </div>
                             <div className="ant-transfer-list-body">
-                                <div className="ck-doubleTree-left">
+                                <div className="ck-doubleTree-outer">
                                     <Tree ref="tree"
                                           defaultExpandAll
                                           checkable multiple checkStrictly
@@ -478,10 +510,11 @@ const U8_DouleTree = React.createClass({
 
                             </div>
                             <div className="ant-transfer-list-body">
-                                <div id="doubleTree-right">
+                                <div className="ck-doubleTree-outer">
+                                    <div id="doubleTree-right">
 
+                                    </div>
                                 </div>
-
                             </div>
 
                         </div>
