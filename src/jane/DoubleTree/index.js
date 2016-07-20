@@ -43,181 +43,6 @@ const loopAllChildren = function (childs, callback, parent) {
 }
 
 
-// todo: 部门树假数据
-let oldData = [
-    {
-        "ID": "391",
-        "Name": "全公司",
-        "ParentID": "0",
-        "StopFlag": "0",
-        "Code": "",
-        "Children": [
-            {
-                "ID": "2878",
-                "Name": "我们都是90后",
-                "ParentID": "391",
-                "StopFlag": "0",
-                "Code": "",
-                "Children": [
-                    {
-                        "ID": "2892",
-                        "Name": "麻辣烫队",
-                        "ParentID": "2878",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "392",
-                        "Name": "火锅队",
-                        "ParentID": "2878",
-                        "StopFlag": "0",
-                        "Code": "001"
-                    }
-                ]
-            },
-            {
-                "ID": "396",
-                "Name": "营销中心",
-                "ParentID": "391",
-                "StopFlag": "0",
-                "Code": "005",
-                "Children": [
-                    {
-                        "ID": "651",
-                        "Name": "销售中心",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": "",
-                        "Children": [
-                            {
-                                "ID": "652",
-                                "Name": "史浩团",
-                                "ParentID": "651",
-                                "StopFlag": "1",
-                                "Code": "",
-                                "Children": [
-                                    {
-                                        "ID": "411",
-                                        "Name": "广东分公司",
-                                        "ParentID": "652",
-                                        "StopFlag": "0",
-                                        "Code": ""
-                                    }
-                                ]
-                            },
-                            {
-                                "ID": "654",
-                                "Name": "S团",
-                                "ParentID": "651",
-                                "StopFlag": "0",
-                                "Code": "",
-                                "Children": [
-                                    {
-                                        "ID": "411222",
-                                        "Name": "XG分公司",
-                                        "ParentID": "654",
-                                        "StopFlag": "0",
-                                        "Code": "",
-                                        "Children": [
-                                            {
-                                                "ID": "4112221",
-                                                "Name": "0周震团",
-                                                "ParentID": "411222",
-                                                "StopFlag": "0",
-                                                "Code": ""
-                                            }, {
-                                                "ID": "4112222",
-                                                "Name": "1周震团",
-                                                "ParentID": "411222",
-                                                "StopFlag": "0",
-                                                "Code": ""
-                                            }, {
-                                                "ID": "4112223",
-                                                "Name": "2周震团",
-                                                "ParentID": "411222",
-                                                "StopFlag": "0",
-                                                "Code": ""
-                                            }, {
-                                                "ID": "4112224",
-                                                "Name": "3周震团",
-                                                "ParentID": "411222",
-                                                "StopFlag": "0",
-                                                "Code": ""
-                                            },
-                                        ]
-                                    }
-                                ]
-                            },
-                            {
-                                "ID": "653",
-                                "Name": "周震团",
-                                "ParentID": "651",
-                                "StopFlag": "0",
-                                "Code": ""
-                            }
-                        ]
-                    },
-                    {
-                        "ID": "402",
-                        "Name": "天津分公司",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "403",
-                        "Name": "深圳分公司",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "404",
-                        "Name": "四川分公司",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "412",
-                        "Name": "上海分公司",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "413",
-                        "Name": "北京分公司",
-                        "ParentID": "396",
-                        "StopFlag": "1",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "414",
-                        "Name": "河北分公司",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "422",
-                        "Name": "安徽分公司",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": ""
-                    },
-                    {
-                        "ID": "393",
-                        "Name": "超客事业部",
-                        "ParentID": "396",
-                        "StopFlag": "0",
-                        "Code": "002"
-                    }
-                ]
-            }
-        ]
-    }
-]
 
 const gData = [{
     "U8ID": 0,
@@ -373,7 +198,7 @@ convertkeysCollect(gData)
 console.log(keysCollectObj)
 
 
-const Tree_Demo = React.createClass({
+const U8_DouleTree = React.createClass({
     getDefaultProps() {
         return {};
     },
@@ -630,4 +455,4 @@ const Tree_Demo = React.createClass({
     },
 });
 
-export  default Tree_Demo;
+export  default U8_DouleTree;

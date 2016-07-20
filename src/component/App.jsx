@@ -8,7 +8,7 @@ import '../jane/styles/style/index.less';
 import reqwest from 'reqwest'
 import JanePopup from '../jane/JanePopup'
 import EditDialog from '../jane/EditDialog'
-import TreeDemo from '../jane/DoubleTree'
+import U8_DoubleTree from '../jane/DoubleTree'
 import JaneButton from '../jane/Button'
 import InputUser from '../jane/InputUser'
 
@@ -305,7 +305,7 @@ export default class App extends React.Component {
                 {this.state.doubleTreeVisible?(<Modal  width={600}
                                                        title="TestDemo" visible={this.state.doubleTreeVisible}
                                                        onOk={this.handleOk} onClose={this.onClose}>
-                    <TreeDemo />
+                    <U8_DoubleTree />
                 </Modal>):null}
 
 
