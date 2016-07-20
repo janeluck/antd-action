@@ -392,6 +392,8 @@ const Tree_Demo = React.createClass({
         if (this.rightTree) {
             ReactDOM.unmountComponentAtNode(this.rightTreeWrap)
         }
+        // in case of memory leak
+        this.rightTreeWrap = null
     },
     onRelatedChange(e){
 
