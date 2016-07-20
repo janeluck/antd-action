@@ -84,22 +84,30 @@ const gData = [{
                     "Existing": 0,
                     "Children": [
 
-                        {"U8ID": "03020401", "Name": "销售分部4子部门销售分部4子部门001", "ParentID": "030204", "Existing": 0, "Children": []}, {
+                        {
+                            "U8ID": "03020401",
+                            "Name": "销售分部4子部门销售分部4子部门001",
+                            "ParentID": "030204",
+                            "Existing": 0,
+                            "Children": []
+                        }, {
                             "U8ID": "03020402",
                             "Name": "销售分部4子部门销售分部4子部门002",
                             "ParentID": "030204",
                             "Existing": 0,
                             "Children": []
-                        }, {"U8ID": "03020403", "Name": "销售分部4子部门销售分部4子部门003", "ParentID": "030204", "Existing": 0, "Children": []}, {
+                        }, {
+                            "U8ID": "03020403",
+                            "Name": "销售分部4子部门销售分部4子部门003",
+                            "ParentID": "030204",
+                            "Existing": 0,
+                            "Children": []
+                        }, {
                             "U8ID": "03020404",
                             "Name": "销售分部4子部门销售分部4子部门004",
                             "ParentID": "030204",
                             "Existing": 0,
-                            "Children": [
-
-
-
-                            ]
+                            "Children": []
                         }
 
                     ]
@@ -440,22 +448,22 @@ const U8_DouleTree = React.createClass({
 
                             </div>
                             <div className="ant-transfer-list-body">
+                                <div className="ck-doubleTree-left">
+                                    <Tree ref="tree"
+                                          defaultExpandAll
+                                          checkable multiple checkStrictly
+                                          checkedKeys={this.state.checkedKeys}
+                                          onCheck={this.onCheck}>
 
-                                <Tree ref="tree"
-                                      defaultExpandAll
-                                      checkable multiple checkStrictly
-                                      checkedKeys={this.state.checkedKeys}
-                                      onCheck={this.onCheck}>
+                                        <TreeNode
 
-                                    <TreeNode
+                                            key={gData[0].U8ID} title={gData[0].Name} disableCheckbox
+                                        >
+                                            {loop(gData[0].Children)}
+                                        </TreeNode>
 
-                                        key={gData[0].U8ID} title={gData[0].Name} disableCheckbox
-                                    >
-                                        {loop(gData[0].Children)}
-                                    </TreeNode>
-
-                                </Tree>
-
+                                    </Tree>
+                                </div>
                             </div>
 
                         </div>

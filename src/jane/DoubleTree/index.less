@@ -6,12 +6,21 @@
     .ant-tree-checkbox.ant-tree-checkbox-disabled{
         visibility: hidden;
     }
-    .ant-transfer-list-body{
-     ul{
-      li{
-        padding: 0px;
-      }
+
+    &-left{
+        display: inline-block;
+        &>ul{
+            min-width:238px;
+
      }
     }
+    .ant-transfer-list-body{
+        overflow: scroll;
 
+        ul{
+            li{
+                padding: 0px;
+            }
+        }
+    }
 }
