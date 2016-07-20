@@ -250,14 +250,15 @@ function convertkeysCollect1(childs, o) {
 
 function convertkeysCollect(childs, o, p) {
     childs.forEach((item)=> {
-        keysCollectObj[item.U8ID] = [
-            item.U8ID
-        ];
 
         if (o) {
             o.push(item.U8ID)
-        }
+        }else{
+            keysCollectObj[item.U8ID] = [
+                item.U8ID
+            ];
 
+        }
 
         convertkeysCollect(item.Children, o)
         convertkeysCollect(item.Children, keysCollectObj[item.U8ID])
