@@ -309,6 +309,41 @@ export default class App extends React.Component {
                 </Modal>):null}
 
                 <U8_DoubleTree />
+                <div className="ck-u8Dept">
+                    <div className="ck-u8Dept-step">
+                        <Button shape="circle" type="primary" size="small">1</Button>
+                        <a >导入U8通讯录</a>
+                        <span>|</span>
+                        <span>跳转到U易联进行U8人员的导入. 操作成功后U8的人员将会同步到企业空间.</span>
+                    </div>
+
+                    <div className="ck-u8Dept-stepIcon">
+                        <Icon type="double-right"></Icon>
+                    </div>
+                    <div className="ck-u8Dept-step">
+                        <Button shape="circle" type="primary" size="small">2.1</Button>
+                        <a>导入U8部门</a>
+                        <span>|</span>
+                        <span>将U8部门档案的数据同步更新到超客营销.</span>
+                    </div>
+                    <div className="ck-u8Dept-step">
+                        <Button shape="circle" type="primary" size="small">2.2</Button>
+                        <a>同步部门名称</a>
+                        <span>|</span>
+                        <span>当导入部门后U8名称发生变化时, 可随时同步修改后的部门名称到超客营销</span>
+                    </div>
+
+                    <div  className="ck-u8Dept-stepIcon">
+                        <Icon type="double-right"></Icon>
+                    </div>
+                    <div className="ck-u8Dept-step">
+                        <Button shape="circle" type="primary" size="small">3</Button>
+                        <a>分配部门员工</a>
+                        <span>|</span>
+                        <span>进入后台管理 - 超客营销的权限组织架构, 在部门增加部门员工时添加选择U8人员.</span>
+                    </div>
+                </div>
+
             </div>)
 
     }
