@@ -249,6 +249,12 @@ export default class App extends React.Component {
         })
     }
 
+    handleTreeValue = (value)=>{
+        console.log(`treedatavalue:`)
+        console.log(value)
+
+    }
+
     render() {
 
         return (
@@ -308,7 +314,7 @@ export default class App extends React.Component {
 
                 </Modal>):null}
 
-                <U8_DoubleTree />
+                <U8_DoubleTree  onChange={this.handleTreeValue}/>
                 <div className="ck-u8Dept">
                     <div className="ck-u8Dept-step">
                         <Button shape="circle" type="primary" size="small">1</Button>

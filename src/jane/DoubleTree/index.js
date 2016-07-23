@@ -395,6 +395,12 @@ const U8_DouleTree = React.createClass({
 
         });
         loop1(gData)
+
+        if(this.props.onChange){
+            this.props.onChange(treeData)
+
+        }
+
         return treeData
     },
 
