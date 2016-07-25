@@ -249,6 +249,12 @@ export default class App extends React.Component {
         })
     }
 
+    handleTreeValue = (value)=>{
+        console.log(`treedatavalue:`)
+        console.log(value)
+
+    }
+
     render() {
 
         return (
@@ -342,7 +348,7 @@ export default class App extends React.Component {
                 {this.state.doubleTreeVisible?(<Modal  width={600}
                                                        title="TestDemo" visible={this.state.doubleTreeVisible}
                                                        onOk={this.handleOk} onClose={this.onClose}>
-                    <U8_DoubleTree />
+                    <U8_DoubleTree   onChange={this.handleTreeValue}/>
                 </Modal>):null}
             </div>)
 
