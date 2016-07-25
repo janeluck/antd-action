@@ -302,13 +302,9 @@ export default class App extends React.Component {
                 <EditDialog_Demo/>
 
               <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
-                {this.state.doubleTreeVisible?(<Modal  width={600}
-                                                       title="TestDemo" visible={this.state.doubleTreeVisible}
-                                                       onOk={this.handleOk} onClose={this.onClose}>
 
-                </Modal>):null}
 
-                <U8_DoubleTree />
+
                 <div className="ck-u8Dept">
                     <div className="ck-u8Dept-step">
                         <Button shape="circle" type="primary" size="small">1</Button>
@@ -322,7 +318,7 @@ export default class App extends React.Component {
                     </div>
                     <div className="ck-u8Dept-step">
                         <Button shape="circle" type="primary" size="small">2.1</Button>
-                        <a>导入U8部门</a>
+                        <a onClick={this.openDoubleTree} href="javascript:;">导入U8部门</a>
                         <span>|</span>
                         <span>将U8部门档案的数据同步更新到超客营销.</span>
                     </div>
@@ -343,7 +339,11 @@ export default class App extends React.Component {
                         <span>进入后台管理 - 超客营销的权限组织架构, 在部门增加部门员工时添加选择U8人员.</span>
                     </div>
                 </div>
-
+                {this.state.doubleTreeVisible?(<Modal  width={600}
+                                                       title="TestDemo" visible={this.state.doubleTreeVisible}
+                                                       onOk={this.handleOk} onClose={this.onClose}>
+                    <U8_DoubleTree />
+                </Modal>):null}
             </div>)
 
     }
