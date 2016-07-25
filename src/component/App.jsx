@@ -1,5 +1,5 @@
 import React from 'react';
-import {Timeline, Input, Select, InputNumber, Popover, Button, Icon, Modal} from 'antd';
+import {Timeline, Input, Select, InputNumber, Popover, Button, Icon, Modal, Spin} from 'antd';
 
 import '../jane/EditDialog/css/basic_new_v2.css';
 import '../jane/EditDialog/css/pagev2.3.css';
@@ -55,7 +55,8 @@ class EditDialog_Demo extends Component {
 
         return (
             <div style={{margin: '100px auto'}}>
-                {this.state.visible ? <Button  disabled>新建任务</Button>:<Button onClick={this.onclick} type="primary">新建任务</Button>}
+                {this.state.visible ? <Button disabled>新建任务</Button> :
+                    <Button onClick={this.onclick} type="primary">新建任务</Button>}
 
                 <EditDialog
                     visible={this.state.visible}
@@ -238,18 +239,18 @@ export default class App extends React.Component {
             value: e.target.value
         })
     }
-    openDoubleTree = ()=>{
+    openDoubleTree = ()=> {
         this.setState({
             doubleTreeVisible: true
         })
     }
-    onClose = ()=>{
+    onClose = ()=> {
         this.setState({
             doubleTreeVisible: false
         })
     }
 
-    handleTreeValue = (value)=>{
+    handleTreeValue = (value)=> {
         console.log(`treedatavalue:`)
         console.log(value)
 
@@ -296,7 +297,7 @@ export default class App extends React.Component {
                 </Select>
                 <div>
                     <Icon type="user" style={{fontSize: 14}}></Icon>
-                    <Icon type="plus" style={{fontSize: 8}} ></Icon>
+                    <Icon type="plus" style={{fontSize: 8}}></Icon>
                 </div>
 
                 <div children={[(<div>your name</div>), (<div>my name</div>)]}></div>
@@ -307,8 +308,7 @@ export default class App extends React.Component {
                 <JaneButton/>
                 <EditDialog_Demo/>
 
-              <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
-
+                <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
 
 
                 <div className="ck-u8Dept">
@@ -335,7 +335,7 @@ export default class App extends React.Component {
                         <span>当导入部门后U8名称发生变化时, 可随时同步修改后的部门名称到超客营销</span>
                     </div>
 
-                    <div  className="ck-u8Dept-stepIcon">
+                    <div className="ck-u8Dept-stepIcon">
                         <Icon type="double-right"></Icon>
                     </div>
                     <div className="ck-u8Dept-step">
@@ -345,11 +345,29 @@ export default class App extends React.Component {
                         <span>进入后台管理 - 超客营销的权限组织架构, 在部门增加部门员工时添加选择U8人员.</span>
                     </div>
                 </div>
-                {this.state.doubleTreeVisible?(<Modal  width={600}
-                                                       title="TestDemo" visible={this.state.doubleTreeVisible}
-                                                       onOk={this.handleOk} onClose={this.onClose}>
-                    <U8_DoubleTree   onChange={this.handleTreeValue}/>
-                </Modal>):null}
+
+
+
+                <div className="ck-u8Dept-spinWrap">
+
+                    <Spin size="large"/>
+                    <p>加载中...</p>
+                </div>
+                {this.state.doubleTreeVisible ? (
+
+                        <Modal width={600}
+                               title="TestDemo" visible={this.state.doubleTreeVisible}
+                               onOk={this.handleOk} onClose={this.onClose}>
+
+                            <U8_DoubleTree onChange={this.handleTreeValue} />
+
+
+                            <Spin />
+
+                        </Modal>
+
+
+                ) : null}
             </div>)
 
     }
