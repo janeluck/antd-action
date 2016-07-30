@@ -21,6 +21,7 @@
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-lifecycle": "^1.0.0",
+    "react-router": "^2.6.1",
     "reqwest": "^2.0.5",
     "src": "^1.1.2"
   },
