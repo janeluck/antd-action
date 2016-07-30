@@ -11,19 +11,17 @@ import './index.less'
 export default class EditDialog extends React.Component {
 
     constructor(props) {
+
         super(props)
         this.state = {
             visible: false
         }
-
     }
-
     componentDidMount() {
         /*  this.componentDidUpdate({}, {
          visible: this.state.visible,
          });*/
     }
-
     componentWillReceiveProps(nextProps) {
         if ('visible' in nextProps) {
             this.setState({
