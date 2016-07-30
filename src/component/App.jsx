@@ -358,18 +358,11 @@ export default class App extends React.Component {
                         <Modal width={600}
                                title="TestDemo" visible={this.state.doubleTreeVisible}
                                onOk={this.handleOk} onClose={this.onClose}>
-
                             <U8_DoubleTree onChange={this.handleTreeValue} />
-
-
                             <Spin />
-
                         </Modal>
-
-
                 ) : null}
             </div>)
-
     }
 };
 
