@@ -1,6 +1,6 @@
 const Mock = require('mockjs')
 module.exports = {
-    'GET /api/users': {data: [1, 2]},
+    'GET /api/users': {data: [1, 2], msg: 'success'},
     'GET /api/admin': Mock.mock({
         success: true,
         data: [{name: '@Name'}],

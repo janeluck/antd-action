@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "antd": "1.6.3",
-    "atool-build": "0.7.x",
+    "atool-build": "^0.7.17",
     "babel-plugin-antd": "0.4.x",
     "draft-js": "^0.7.0",
     "draft-js-hashtag-plugin": "^1.1.0",
