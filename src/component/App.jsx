@@ -11,7 +11,7 @@ import EditDialog from '../jane/EditDialog'
 import U8_DoubleTree from '../jane/DoubleTree'
 import JaneButton from '../jane/Button'
 import InputUser from '../jane/InputUser'
-
+import '../jane/modules/test'
 import  { Component } from 'react';
 const Option = Select.Option;
 
