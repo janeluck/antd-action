@@ -1,8 +1,7 @@
 import React from 'react';
 import {Timeline, Input, Select, InputNumber, Popover, Button, Icon, Modal, Spin} from 'antd';
 
-import './App.less';
-import '../jane/styles/style/index.less';
+
 import reqwest from 'reqwest'
 import JanePopup from '../jane/JanePopup'
 import EditDialog from '../jane/EditDialog'
@@ -27,7 +26,7 @@ const style = {
 }
 
 function handleChange(value) {
-    console.log(`selected ${value}`);
+   // console.log(`selected ${value}`);
 }
 
 

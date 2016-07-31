@@ -7,16 +7,64 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 
 import InputUserDemo from '../demo'
 
+
+import { Menu, Icon, Switch } from 'antd';
+import '../component/App.less';
+import '../jane/styles/style/index.less';
+
+
+import '../jane/Class'
+const SubMenu = Menu.SubMenu;
+
+const Sider = React.createClass({
+
+    handleClick(e) {
+        console.log('click ', e);
+        this.setState({
+            current: e.key,
+        });
+    },
+    render() {
+        return (
+            <div>
+                <br />
+                <br />
+                <Menu
+                      onClick={this.handleClick}
+                      style={{ width: 240 }}
+                      defaultOpenKeys={['sub1']}
+                      mode="inline"
+                >
+                    <SubMenu key="sub1" title={<span><Icon type="mail" /><span>导航一</span></span>}>
+                        <Menu.Item key="1"><Link to='/app'>App</Link></Menu.Item>
+                        <Menu.Item key="2"><Link to='/input'>Input</Link></Menu.Item>
+                        <Menu.Item key="3">选项3</Menu.Item>
+                        <Menu.Item key="4">选项4</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>导航二</span></span>}>
+                        <Menu.Item key="5">选项5</Menu.Item>
+                        <Menu.Item key="6">选项6</Menu.Item>
+                        <SubMenu key="sub3" title="三级导航">
+                            <Menu.Item key="7">选项7</Menu.Item>
+                            <Menu.Item key="8">选项8</Menu.Item>
+                        </SubMenu>
+                    </SubMenu>
+                </Menu>
+            </div>
+        );
+    },
+});
+
+
+
+
+
+
 const Page = React.createClass({render() {
     return (
         <div>
-            <ul>
-                <Link to='/app'>App</Link>
-                <br/>
-                <Link to='/input'>Input</Link>
-            </ul>
+            <Sider />
             <div>
-
                 {this.props.children}
             </div>
         </div>

@@ -14,22 +14,8 @@ class Stack extends Array {
         console.log(`my name is stack`)
     }
 }
-let a = new Stack()
-a.push(1)
-a.push(2)
-a.push(3)
-console.log(a.top())
-a.transferName()
 
 
-class Nobel {
-    transferName(){
-        console.log(`my name is nobel`)
-    }
-}
-let b = new Nobel()
-
-
-
-
+console.log('class: index')
+import '../Alert'
 

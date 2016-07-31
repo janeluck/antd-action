@@ -6,10 +6,10 @@ import InputUser from '../jane/InputUser'
 export default class InputUserDemo extends React.Component {
 
     render() {
-
         return (
-            <div style={{margin: 30}}>
+            <div style={{margin: 300}}>
                 <InputUser />
+                <div>12</div>
             </div>)
     }
 };
