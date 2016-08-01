@@ -9,6 +9,11 @@ module.exports = function (webpackConfig) {
     test: /\.jsx?$/,
     loader: 'es3ify-loader',
   });
+/*  webpackConfig.devServer =  {
+    historyApiFallback: true,
+        contentBase: './',
 
+        hot: true
+  }*/
   return webpackConfig;
 };

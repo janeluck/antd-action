@@ -28,6 +28,7 @@
   "devDependencies": {
     "atool-doc": "^0.3.0",
     "babel-eslint": "^6.0.0",
+    "babel-preset-es2015": "^6.9.0",
     "dora": "0.3.x",
     "dora-plugin-hmr": "0.5.x",
     "dora-plugin-livereload": "0.3.x",
@@ -38,7 +39,8 @@
     "eslint-plugin-react": "4.x",
     "mock": "^0.1.1",
     "mockjs": "^1.0.1-beta2",
-    "pre-commit": "1.x"
+    "pre-commit": "1.x",
+    "react-router": "^2.6.1"
   },
   "pre-commit": [
     "lint"
