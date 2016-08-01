@@ -15,9 +15,16 @@ export default class UploadDemo extends React.Component {
         const uploadProps = {
             action: '/api/upload',
             multiple: true,
-            fileList: [],
+
+            onProgress(e, file){
+              console.log(file)
+            },
+            onSuccess(ret, file){
+                console.log(ret)
+                console.log(file)
+            },
             onChange(files, fileList){
-                console.log(files)
+                //console.log(files)
                 /*
                 if (info.file.status === 'done') {
 
