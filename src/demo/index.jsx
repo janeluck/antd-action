@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import InputUser from '../jane/InputUser'
+import '../jane/modules/test'
 export default class InputUserDemo extends React.Component {
 
     render() {

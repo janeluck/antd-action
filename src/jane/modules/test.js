@@ -10,4 +10,6 @@ let c = 51000;
 let d = new Set([2,2])
 
 //console.log(`name: ${lib2.Name}`)
+import {foo} from './a'; './a'
 
+foo()

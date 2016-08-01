@@ -6,9 +6,10 @@ import React from 'react';
 import { Router, Route, Link, browserHistory } from 'react-router'
 
 import InputUserDemo from '../demo'
+import UploadDemo from '../jane/UploadDemo'
 
 
-import { Menu, Icon, Switch } from 'antd';
+import { Menu, Icon, Switch, Row, Col } from 'antd';
 import '../component/App.less';
 import '../jane/styles/style/index.less';
 
@@ -30,16 +31,15 @@ const Sider = React.createClass({
                 <br />
                 <br />
                 <Menu
-                      onClick={this.handleClick}
-                      style={{ width: 240 }}
-                      defaultOpenKeys={['sub1']}
-                      mode="inline"
+                    onClick={this.handleClick}
+                    style={{ width: 240 }}
+                    defaultOpenKeys={['sub1']}
+                    mode="inline"
                 >
                     <SubMenu key="sub1" title={<span><Icon type="mail" /><span>导航一</span></span>}>
                         <Menu.Item key="1"><Link to='/app'>App</Link></Menu.Item>
                         <Menu.Item key="2"><Link to='/input'>Input</Link></Menu.Item>
-                        <Menu.Item key="3">选项3</Menu.Item>
-                        <Menu.Item key="4">选项4</Menu.Item>
+                        <Menu.Item key="3"><Link to='/upload'>Upload</Link></Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>导航二</span></span>}>
                         <Menu.Item key="5">选项5</Menu.Item>
@@ -56,23 +56,35 @@ const Sider = React.createClass({
 });
 
 
+const Page = React.createClass({
+    render() {
+        return (
 
 
 
-
-const Page = React.createClass({render() {
-    return (
-        <div>
-            <Sider />
             <div>
-                {this.props.children}
+                <Row>
+                    <Col span={6} >
+
+                        <Sider />
+                    </Col>
+                    <Col span={18} >
+                        {this.props.children}
+
+                    </Col>
+                </Row>
             </div>
-        </div>
-    )
-} })
-const NoMatch = React.createClass({render() {
-    return (<div>no match</div>)
-}})
+
+
+
+        )
+    }
+})
+const NoMatch = React.createClass({
+    render() {
+        return (<div>no match</div>)
+    }
+})
 
 
 // Declarative route configuration (could also load this config lazily
@@ -83,6 +95,7 @@ ReactDOM.render(<Router history={browserHistory}>
     <Route path="/" component={Page}>
         <Route path="app" component={App}/>
         <Route path="input" component={InputUserDemo}/>
+        <Route path="upload" component={UploadDemo}/>
         <Route path="*" component={NoMatch}/>
     </Route>
 </Router>, document.getElementById('react-content'));
