@@ -4,6 +4,26 @@
 import React from 'react';
 import reqwest from 'reqwest'
 import {Row, Col, Input, Upload, Button, Icon, Modal, Spin, message} from 'antd';
+const handleUpload = function () {
+    alert(222)
+    const file = document.getElementById('upload').files[0]
+    let formData = new FormData()
+    formData.append('filename', file)
+    // todo $.ajax可以实现
+    reqwest({
+        url: '/api/upload',
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'POST',
+        success: function(data){
+            console.log(data);
+        }
+
+    })
+
+}
 
 export default class UploadDemo extends React.Component {
     componentDidMount() {
@@ -42,6 +62,8 @@ export default class UploadDemo extends React.Component {
         }
         return (
             <div >
+                <input type="file" id="upload"/>上传
+                <Button onClick={handleUpload}>提交</Button>
                 <Row>
                     <Col span={4}>附件</Col>
                     <Col span={20}>
