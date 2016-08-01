@@ -10,6 +10,7 @@ const handleUpload = function () {
     let formData = new FormData()
     formData.append('filename', file)
     // todo $.ajax可以实现
+    // http://stackoverflow.com/questions/5392344/sending-multipart-formdata-with-jquery-ajax
     reqwest({
         url: '/api/upload',
         data: formData,
