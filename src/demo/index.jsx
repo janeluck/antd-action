@@ -9,7 +9,7 @@ export default class InputUserDemo extends React.Component {
         return (
             <div style={{margin: 300}}>
                 <InputUser />
-                <div>1788</div>
+                <div>178899</div>
             </div>)
     }
 };

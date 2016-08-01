@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 
 import {groupBy, without} from 'lodash'
 import {Tree, Transfer, Button, Checkbox, Icon } from 'antd';
-import './index.less';
+import './doubleTree.less';
 const TreeNode = Tree.TreeNode;
 function getChildrenlength(children) {
     let len = 1;
