@@ -8,16 +8,16 @@ const handleUpload = function () {
     alert(222)
     const file = document.getElementById('upload').files[0]
     let formData = new FormData()
-    formData.append('filename', file)
-    // todo $.ajax可以实现
+    formData.append('filedata', file)
+
     // http://stackoverflow.com/questions/5392344/sending-multipart-formdata-with-jquery-ajax
     reqwest({
         url: '/api/upload',
         data: formData,
         cache: false,
-        contentType: false,
+        contentType: 'text/html;charset=utf-8',
         processData: false,
-        type: 'POST',
+        method: 'post',
         success: function(data){
             console.log(data);
         }
@@ -78,3 +78,4 @@ export default class UploadDemo extends React.Component {
             </div>)
     }
 };
+
