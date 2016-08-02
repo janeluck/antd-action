@@ -3,15 +3,15 @@
  */
 import React from 'react';
 import reqwest from 'reqwest'
+import when from 'when'
 import {Row, Col, Input, Upload, Button, Icon, Modal, Spin, message} from 'antd';
-const handleUpload = function () {
-    alert(222)
-    const file = document.getElementById('upload').files[0]
+
+
+
+function  uploadFile(file){
     let formData = new FormData()
     formData.append('filedata', file)
-
-    // http://stackoverflow.com/questions/5392344/sending-multipart-formdata-with-jquery-ajax
-    reqwest({
+    return reqwest({
         url: '/api/upload',
         data: formData,
         cache: false,
@@ -19,11 +19,20 @@ const handleUpload = function () {
         processData: false,
         method: 'post',
         success: function(data){
-            console.log(data);
+            //console.log(data);
         }
-
+    })
+}
+const handleUpload = function () {
+    let uploadRequests = []
+    const postFiles = Array.prototype.slice.call(document.getElementById('upload').files)
+    postFiles.forEach((file)=>{
+        uploadRequests.push(uploadFile(file))
     })
 
+    when.all(uploadRequests).done((rs)=>{
+        console.log(rs)
+    })
 }
 
 export default class UploadDemo extends React.Component {
@@ -63,7 +72,7 @@ export default class UploadDemo extends React.Component {
         }
         return (
             <div >
-                <input type="file" id="upload"/>上传
+                <input type="file" id="upload" multiple/>上传
                 <Button onClick={handleUpload}>提交</Button>
                 <Row>
                     <Col span={4}>附件</Col>

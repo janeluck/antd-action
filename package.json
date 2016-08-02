@@ -24,7 +24,8 @@
     "react-lifecycle": "^1.0.0",
     "react-router": "^2.6.1",
     "reqwest": "^2.0.5",
-    "src": "^1.1.2"
+    "src": "^1.1.2",
+    "when": "^3.7.7"
   },
   "devDependencies": {
     "atool-doc": "^0.3.0",
