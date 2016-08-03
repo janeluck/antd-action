@@ -88,3 +88,26 @@ export default class UploadDemo extends React.Component {
     }
 };
 
+/*
+ var a = document.createElement('input')
+a.id = 'uploadFile'
+a.type = 'file'
+document.body.appendChild(a)
+
+
+ var formData = new FormData();
+
+ formData.append('filedata', document.getElementById('uploadFile').files[0]);
+ $.ajax({
+ url: SCRM.url('/scrmweb/file/uploadFile'),
+ data: formData,
+ cache: false,
+ contentType: false,
+ processData: false,
+ type: 'POST',
+ success: function(data){
+ console.log(data);
+ }
+
+ })
+ */
