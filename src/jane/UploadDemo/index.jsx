@@ -35,10 +35,33 @@ const handleUpload = function () {
     })
 }
 
-export default class UploadDemo extends React.Component {
+const UploadDemo = React.createClass({
     componentDidMount() {
 
-    }
+    },
+    onFileDrop(e){
+        if (e.type === 'dragover') {
+
+            e.preventDefault();
+            return;
+        }
+        this.uploadFiles(e.dataTransfer.files)
+        e.preventDefault()
+    },
+    onChange(e){
+        this.uploadFiles(e.target.files)
+    },
+    uploadFiles(files){
+        let uploadRequests = []
+        const postFiles = Array.prototype.slice.call(files)
+        postFiles.forEach((file)=>{
+            uploadRequests.push(uploadFile(file))
+        })
+
+        when.all(uploadRequests).done((rs)=>{
+            console.log(rs)
+        })
+    },
 
 
     render() {
@@ -72,7 +95,10 @@ export default class UploadDemo extends React.Component {
         }
         return (
             <div >
-                <input type="file" id="upload" multiple/>上传
+                <div style={{height: 300, border:'1px solid cyan'}} onDrop={this.onFileDrop}  onDragOver={this.onFileDrop}>
+                    <input type="file" id="upload" multiple onChange={this.onChange}/>上传
+                </div>
+
                 <Button onClick={handleUpload}>提交</Button>
                 <Row>
                     <Col span={4}>附件</Col>
@@ -86,7 +112,7 @@ export default class UploadDemo extends React.Component {
                 </Row>
             </div>)
     }
-};
+})
 
 /*
  var a = document.createElement('input')
@@ -111,3 +137,5 @@ document.body.appendChild(a)
 
  })
  */
+
+export default  UploadDemo
