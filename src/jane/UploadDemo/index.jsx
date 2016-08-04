@@ -41,7 +41,7 @@ const UploadDemo = React.createClass({
     },
     onFileDrop(e){
         if (e.type === 'dragover') {
-
+            console.log(e.dataTransfer)
             e.preventDefault();
             return;
         }
@@ -98,6 +98,7 @@ const UploadDemo = React.createClass({
                 <div style={{height: 300, border:'1px solid cyan'}} onDrop={this.onFileDrop}  onDragOver={this.onFileDrop}>
                     <input type="file" id="upload" multiple onChange={this.onChange}/>上传
                 </div>
+
 
                 <Button onClick={handleUpload}>提交</Button>
                 <Row>
