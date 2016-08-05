@@ -5,7 +5,8 @@ import React from 'react';
 import reqwest from 'reqwest'
 import when from 'when'
 import {Row, Col, Input, Upload, Button, Icon, Modal, Spin, message} from 'antd';
-
+import {Promise} from 'es6-promise'
+import CKUpload from '../CKUpload'
 
 
 function  uploadFile(file){
@@ -17,10 +18,7 @@ function  uploadFile(file){
         cache: false,
         contentType: 'text/html;charset=utf-8',
         processData: false,
-        method: 'post',
-        success: function(data){
-            //console.log(data);
-        }
+        method: 'post'
     })
 }
 const handleUpload = function () {
@@ -30,9 +28,9 @@ const handleUpload = function () {
         uploadRequests.push(uploadFile(file))
     })
 
-    when.all(uploadRequests).done((rs)=>{
-        console.log(rs)
-    })
+    Promise.all(uploadRequests).then(rsArray=>{
+        console.log(rsArray)
+    }, reason=>{console.log(reason)})
 }
 
 const UploadDemo = React.createClass({

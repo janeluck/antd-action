@@ -15,6 +15,7 @@
     "draft-js-linkify-plugin": "^1.0.1",
     "draft-js-plugins-editor": "^1.1.0",
     "es3ify-loader": "^0.2.0",
+    "es6-promise": "^3.2.1",
     "lodash": "^4.13.1",
     "rc-align": "^2.3.1",
     "rc-animate": "^2.0.4",
