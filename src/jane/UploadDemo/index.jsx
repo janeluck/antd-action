@@ -9,7 +9,7 @@ import {Promise} from 'es6-promise'
 import CKUpload from '../CKUpload'
 
 
-function  uploadFile(file){
+function uploadFile(file) {
     let formData = new FormData()
     formData.append('filedata', file)
     return reqwest({
@@ -24,13 +24,15 @@ function  uploadFile(file){
 const handleUpload = function () {
     let uploadRequests = []
     const postFiles = Array.prototype.slice.call(document.getElementById('upload').files)
-    postFiles.forEach((file)=>{
+    postFiles.forEach((file)=> {
         uploadRequests.push(uploadFile(file))
     })
 
-    Promise.all(uploadRequests).then(rsArray=>{
+    Promise.all(uploadRequests).then(rsArray=> {
         console.log(rsArray)
-    }, reason=>{console.log(reason)})
+    }, reason=> {
+        console.log(reason)
+    })
 }
 
 const UploadDemo = React.createClass({
@@ -49,15 +51,31 @@ const UploadDemo = React.createClass({
     onChange(e){
         this.uploadFiles(e.target.files)
     },
+
+    uploadFile(file){
+        let formData = new FormData()
+        formData.append('filedata', file)
+        return reqwest({
+            url: '/api/upload',
+            data: formData,
+            cache: false,
+            contentType: 'text/html;charset=utf-8',
+            processData: false,
+            method: 'post'
+        })
+    },
     uploadFiles(files){
         let uploadRequests = []
         const postFiles = Array.prototype.slice.call(files)
-        postFiles.forEach((file)=>{
-            uploadRequests.push(uploadFile(file))
+        postFiles.forEach((file)=> {
+            uploadRequests.push(this.uploadFile(file))
         })
 
-        when.all(uploadRequests).done((rs)=>{
-            console.log(rs)
+        Promise.all(uploadRequests).then(rsArray=> {
+
+            console.log(rsArray)
+        }, reason=> {
+            console.log(reason)
         })
     },
 
@@ -68,7 +86,7 @@ const UploadDemo = React.createClass({
             multiple: true,
 
             onProgress(e, file){
-              console.log(file)
+                console.log(file)
             },
             onSuccess(ret, file){
                 console.log(ret)
@@ -77,23 +95,24 @@ const UploadDemo = React.createClass({
             onChange(files, fileList){
                 //console.log(files)
                 /*
-                if (info.file.status === 'done') {
+                 if (info.file.status === 'done') {
 
-                    message.success(`${info.file.name} 上传成功。`)
+                 message.success(`${info.file.name} 上传成功。`)
 
                  if (info.file.status !== 'uploading') {
-                    console.log(info.file, info.fileList);
-                }
-                if (info.file.status === 'done') {
-                    message.success(`${info.file.name} 上传成功。`);
-                } else if (info.file.status === 'error') {
-                    message.error(`${info.file.name} 上传失败。`);
-                }*/
+                 console.log(info.file, info.fileList);
+                 }
+                 if (info.file.status === 'done') {
+                 message.success(`${info.file.name} 上传成功。`);
+                 } else if (info.file.status === 'error') {
+                 message.error(`${info.file.name} 上传失败。`);
+                 }*/
             }
         }
         return (
             <div >
-                <div style={{height: 300, border:'1px solid cyan'}} onDrop={this.onFileDrop}  onDragOver={this.onFileDrop}>
+                <div style={{height: 300, border:'1px solid cyan'}} onDrop={this.onFileDrop}
+                     onDragOver={this.onFileDrop}>
                     <input type="file" id="upload" multiple onChange={this.onChange}/>上传
                 </div>
 
@@ -115,9 +134,9 @@ const UploadDemo = React.createClass({
 
 /*
  var a = document.createElement('input')
-a.id = 'uploadFile'
-a.type = 'file'
-document.body.appendChild(a)
+ a.id = 'uploadFile'
+ a.type = 'file'
+ document.body.appendChild(a)
 
 
  var formData = new FormData();

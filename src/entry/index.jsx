@@ -8,6 +8,8 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import InputUserDemo from '../demo'
 import UploadDemo from '../jane/UploadDemo'
 
+import reqwest from 'reqwest'
+
 
 import { Menu, Icon, Switch, Row, Col } from 'antd';
 import '../component/App.less';
@@ -64,11 +66,11 @@ const Page = React.createClass({
 
             <div>
                 <Row>
-                    <Col span={6} >
+                    <Col span={6}>
 
                         <Sider />
                     </Col>
-                    <Col span={18} >
+                    <Col span={18}>
                         {this.props.children}
 
                     </Col>
@@ -99,4 +101,11 @@ ReactDOM.render(<Router history={browserHistory}>
         <Route path="*" component={NoMatch}/>
     </Route>
 </Router>, document.getElementById('react-content'));
+
+var promise = (url, data)=> {
+    return reqwest({
+        url: url,
+        data
+    })
+}
 

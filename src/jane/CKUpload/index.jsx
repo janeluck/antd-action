@@ -6,6 +6,8 @@ import Animate from 'rc-animate'
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {Button, Icon} from 'antd';
+import reqwest from 'reqwest';
+import {Promise} from 'es6-promise';
 
 export default class CKUpload extends React.Component {
 
@@ -38,7 +40,32 @@ export default class CKUpload extends React.Component {
 
         }
     }
+    uploadFile = (file) =>{
+        let formData = new FormData()
+        formData.append('filedata', file)
+        return reqwest({
+            url: '/api/upload',
+            data: formData,
+            cache: false,
+            contentType: 'text/html;charset=utf-8',
+            processData: false,
+            method: 'post'
+        })
+    }
+    uploadFiles = (files) => {
+        let uploadRequests = []
+        const postFiles = Array.prototype.slice.call(files)
+        postFiles.forEach((file)=> {
+            uploadRequests.push(this.uploadFile(file))
+        })
 
+        Promise.all(uploadRequests).then(rsArray=> {
+
+            console.log(rsArray)
+        }, reason=> {
+            console.log(reason)
+        })
+    }
 
     render() {
 

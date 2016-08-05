@@ -4,7 +4,15 @@ module.exports = {
     'POST /api/upload': {rs: true},
     'GET /api/admin': Mock.mock({
         success: true,
-        data: [{name: '@Name'}],
+        data: {name: '@Name'},
+    }),
+    'GET /api/partner': Mock.mock({
+        success: true,
+        data: {partner: '@Name'},
+    }),
+    'GET /api/gender': Mock.mock({
+        success: true,
+        data: {gender: 'female'},
     }),
     'GET /api/western': Mock.mock({
         success: true,
