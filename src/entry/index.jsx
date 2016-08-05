@@ -102,10 +102,21 @@ ReactDOM.render(<Router history={browserHistory}>
     </Route>
 </Router>, document.getElementById('react-content'));
 
-var promise = (url, data)=> {
-    return reqwest({
-        url: url,
-        data
-    })
-}
 
+
+var p = new Promise(function(resolve, reject){
+    reqwest({
+        url: '/api/admin',
+    }).then(rs=>{
+        resolve(rs)
+    }, reason=>{
+        reject(reason)
+    })
+})
+p.then(data=>{
+    return `this is ${data}`
+}).then(data=>{
+    return `this is ${data}`
+}).then(data=>{
+    console.log(`this is ${data}`)
+})
