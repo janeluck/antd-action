@@ -7,6 +7,7 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 
 import InputUserDemo from '../demo'
 import UploadDemo from '../jane/UploadDemo'
+import JanePromise from '../jane/Promises/JanePromise'
 
 import reqwest from 'reqwest'
 
@@ -93,6 +94,8 @@ const NoMatch = React.createClass({
 // instead, all you really need is a single root route, you don't need to
 // colocate the entire config).
 
+
+
 ReactDOM.render(<Router history={browserHistory}>
     <Route path="/" component={Page}>
         <Route path="app" component={App}/>
@@ -104,7 +107,7 @@ ReactDOM.render(<Router history={browserHistory}>
 
 
 
-var p = new Promise(function(resolve, reject){
+var p = new JanePromise(function(resolve, reject){
     reqwest({
         url: '/api/admin',
     }).then(rs=>{
@@ -120,3 +123,5 @@ p.then(data=>{
 }).then(data=>{
     console.log(`this is ${data}`)
 })
+
+console.log(p.then())
