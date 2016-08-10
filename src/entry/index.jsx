@@ -18,6 +18,9 @@ import '../jane/styles/style/index.less';
 
 
 import '../jane/Class'
+
+
+import * as a from '../jane/modules/lib1'
 const SubMenu = Menu.SubMenu;
 
 const Sider = React.createClass({
@@ -125,3 +128,6 @@ p.then(data=>{
 })
 
 console.log(p.then())
+
+console.log('---------------------------')
+console.log(a)

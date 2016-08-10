@@ -68,6 +68,8 @@ const UploadDemo = React.createClass({
         let uploadRequests = []
         const postFiles = Array.prototype.slice.call(files)
         postFiles.forEach((file)=> {
+            // file type is Blob
+            console.log(file)
             uploadRequests.push(this.uploadFile(file))
         })
 
