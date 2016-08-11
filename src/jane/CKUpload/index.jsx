@@ -19,7 +19,8 @@ export default class CKUpload extends React.Component {
 
         super(props)
         this.state = {
-            disabled: false
+            disabled: false,
+            filesList: this.props.filesList || []
         }
     }
 
@@ -40,9 +41,6 @@ export default class CKUpload extends React.Component {
 
     }
 
-    getStyle() {
-        return {}
-    }
 
     onChange = (e) => {
         if (this.state.disabled) {
@@ -103,10 +101,11 @@ export default class CKUpload extends React.Component {
         })
 
         Promise.all(uploadRequests).then(rsArray=> {
-            console.log(rsArray)
+
             this.setState({
                 disabled: false
             })
+
             if (props.onSuccess) {
                 props.onSuccess(rsArray, files)
             }
@@ -126,7 +125,7 @@ export default class CKUpload extends React.Component {
     render() {
         const props = this.props;
         return (
-            <span>
+
             <span
                 role="button"
                 tabIndex="0"
@@ -144,10 +143,7 @@ export default class CKUpload extends React.Component {
                    />
                 {props.children}
             </span>
-                <div>
 
-                </div>
-            </span>
 
 
         )

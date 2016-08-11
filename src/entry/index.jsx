@@ -11,7 +11,7 @@ import JanePromise from '../jane/Promises/JanePromise'
 
 import reqwest from 'reqwest'
 
-import CKUpload from '../jane/CKUpload'
+import DemoCKUpload from '../jane/CKUpload/demo'
 import Immutable from 'Immutable'
 
 import { Menu, Icon, Switch, Row, Col, Button } from 'antd';
@@ -102,9 +102,9 @@ const NoMatch = React.createClass({
 
 
 ReactDOM.render(<div>
-    <CKUpload>
+    <DemoCKUpload >
         <Button>上传</Button>
-    </CKUpload>
+    </DemoCKUpload>
 </div>, document.getElementById('react-content'));
 
 
