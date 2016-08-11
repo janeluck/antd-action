@@ -42,7 +42,8 @@ export default class DemoCKUpload extends React.Component {
 
         rsArray.forEach((rs, i)=>{
             if (rs.rs) {
-                console.log(files[i].uid)
+                // uid
+                console.log(files[i].uid = rs.data)
                 // rsArray of values maintains the order of the original iterable object, not the order that the promises were resolved in
                 successFiles.push(files[i])
             }

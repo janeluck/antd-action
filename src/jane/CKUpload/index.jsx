@@ -93,6 +93,7 @@ export default class CKUpload extends React.Component {
         })
     }
     uploadFiles = (files) => {
+        console.log(files)
         const props = this.props
         let uploadRequests = []
         const postFiles = Array.prototype.slice.call(files)
