@@ -11,8 +11,10 @@ import JanePromise from '../jane/Promises/JanePromise'
 
 import reqwest from 'reqwest'
 
+import CKUpload from '../jane/CKUpload'
+import Immutable from 'Immutable'
 
-import { Menu, Icon, Switch, Row, Col } from 'antd';
+import { Menu, Icon, Switch, Row, Col, Button } from 'antd';
 import '../component/App.less';
 import '../jane/styles/style/index.less';
 
@@ -99,14 +101,11 @@ const NoMatch = React.createClass({
 
 
 
-ReactDOM.render(<Router history={browserHistory}>
-    <Route path="/" component={Page}>
-        <Route path="app" component={App}/>
-        <Route path="input" component={InputUserDemo}/>
-        <Route path="upload" component={UploadDemo}/>
-        <Route path="*" component={NoMatch}/>
-    </Route>
-</Router>, document.getElementById('react-content'));
+ReactDOM.render(<div>
+    <CKUpload>
+        <Button>上传</Button>
+    </CKUpload>
+</div>, document.getElementById('react-content'));
 
 
 
@@ -131,3 +130,4 @@ console.log(p.then())
 
 console.log('---------------------------')
 console.log(a)
+

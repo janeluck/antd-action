@@ -9,18 +9,24 @@ import {Button, Icon} from 'antd';
 import reqwest from 'reqwest';
 import {Promise} from 'es6-promise';
 
+const noop = function () {
+
+}
+
 export default class CKUpload extends React.Component {
 
     constructor(props) {
 
         super(props)
         this.state = {
-
+            disabled: false
         }
     }
+
     componentDidMount() {
 
     }
+
     componentWillReceiveProps(nextProps) {
 
     }
@@ -32,19 +38,55 @@ export default class CKUpload extends React.Component {
     componentWillUnmount() {
 
 
-
     }
 
     getStyle() {
-        return {
+        return {}
+    }
 
+    onChange = (e) => {
+        if (this.state.disabled) {
+            return;
+        }
+        this.setState({
+            disabled: true,
+        });
+        const files = e.target.files;
+        this.uploadFiles(files);
+    }
+    onClick = (e) => {
+        const el = this.refs.file;
+        if (!el) {
+            return;
+        }
+        el.click();
+    }
+    onKeyDown = (e) => {
+
+        if (e.key === 'Enter') {
+            this.onClick();
         }
     }
-    uploadFile = (file) =>{
+    onFileDrop = (e) => {
+
+        if (this.state.disabled) {
+            return;
+        }
+        if (e.type === 'dragover') {
+            e.preventDefault();
+            return;
+        }
+        this.setState({
+            disabled: true
+        });
+        this.uploadFiles(e.dataTransfer.files)
+        e.preventDefault()
+    }
+    uploadFile = (file) => {
         let formData = new FormData()
         formData.append('filedata', file)
         return reqwest({
-            url: '/api/upload',
+            url: this.props.url,
             data: formData,
             cache: false,
             contentType: 'text/html;charset=utf-8',
@@ -53,6 +95,7 @@ export default class CKUpload extends React.Component {
         })
     }
     uploadFiles = (files) => {
+        const props = this.props
         let uploadRequests = []
         const postFiles = Array.prototype.slice.call(files)
         postFiles.forEach((file)=> {
@@ -60,19 +103,53 @@ export default class CKUpload extends React.Component {
         })
 
         Promise.all(uploadRequests).then(rsArray=> {
-
             console.log(rsArray)
+            this.setState({
+                disabled: false
+            })
+            if (props.onSuccess) {
+                props.onSuccess(rsArray, files)
+            }
+
         }, reason=> {
             console.log(reason)
+            this.setState({
+                disabled: false
+            })
+            if (props.onError) {
+                props.onError(reason, files)
+            }
+
         })
     }
 
     render() {
-
+        const props = this.props;
         return (
             <span>
-                <input type="file" multiple/>
+            <span
+                role="button"
+                tabIndex="0"
+                onKeyDown={this.onKeyDown}
+                onClick={this.onClick}>
+
+                   <input
+                       type="file"
+                       ref="file"
+                       disabled={this.state.disabled}
+                       style={{ display: 'none' }}
+                       accept={props.accept}
+                       multiple={props.multiple}
+                       onChange={this.onChange}
+                   />
+                {props.children}
             </span>
+                <div>
+
+                </div>
+            </span>
+
+
         )
     }
 }
@@ -80,8 +157,13 @@ export default class CKUpload extends React.Component {
 
 CKUpload.propTypes = {
     multiple: PropTypes.bool,
+    beforeUpload: PropTypes.func,
+    onSuccess: PropTypes.func,
+    onError: PropTypes.func,
+    url: PropTypes.string,
 };
 
 CKUpload.defaultProps = {
-    multiple: true
+    multiple: true,
+    url: '/api/upload'
 };

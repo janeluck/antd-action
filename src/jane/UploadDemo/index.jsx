@@ -123,13 +123,17 @@ const UploadDemo = React.createClass({
                 <Row>
                     <Col span={4}>附件</Col>
                     <Col span={20}>
-                        <Upload {...uploadProps}>
+                        <Upload {...uploadProps} >
                             <Button type="ghost">
                                 <Icon type="upload"/> 点击上传
                             </Button>
                         </Upload>
                     </Col>
                 </Row>
+
+                <CKUpload>
+                    <Button>上传</Button>
+                </CKUpload>
             </div>)
     }
 })
