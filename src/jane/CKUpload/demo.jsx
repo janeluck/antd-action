@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import {Button, Icon} from 'antd';
-import reqwest from 'reqwest';
+
 import CKUpload from './index.jsx'
 import CKUploadList from './list.jsx'
 

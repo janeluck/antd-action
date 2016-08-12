@@ -24,23 +24,6 @@ export default class CKUpload extends React.Component {
         }
     }
 
-    componentDidMount() {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-
-    }
-
-    componentWillUnmount() {
-
-
-    }
-
 
     onChange = (e) => {
         if (this.state.disabled) {
