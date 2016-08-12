@@ -3,7 +3,11 @@ module.exports = {
     'GET /api/users': {data: [1, 2], msg: 'success'},
     'POST /api/upload': Mock.mock({
         rs: true,
-        "data|1-10000": 100
+        data: {
+            "id|1-10000": 100,
+            url: 'http://www.baidu.com'
+        }
+
 
     }),
 
