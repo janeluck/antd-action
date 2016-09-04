@@ -2,7 +2,7 @@ import '../common/lib';
 import App from '../component/App';
 import ReactDOM from 'react-dom';
 import React from 'react';
-
+import classNames from 'classnames';
 import { Router, Route, Link, browserHistory} from 'react-router'
 
 import InputUserDemo from '../demo'
@@ -14,7 +14,7 @@ import reqwest from 'reqwest'
 import DemoCKUpload from '../jane/CKUpload/demo'
 import Immutable from 'Immutable'
 
-import { Menu, Icon, Switch, Row, Col, Buttonn, Input,DatePicker, Button, Tree  } from 'antd';
+import { Menu, Icon, Switch, Row, Col, Buttonn, Input,DatePicker, Button, Tree, Modal  } from 'antd';
 import '../component/App.less';
 import '../jane/styles/style/index.less';
 
@@ -94,7 +94,7 @@ const NoMatch = React.createClass({
     }
 })
 
-
+const Dialog = Modal
 // Declarative route configuration (could also load this config lazily
 // instead, all you really need is a single root route, you don't need to
 // colocate the entire config).
@@ -334,11 +334,134 @@ const Demo = React.createClass({
 });
 
 
+Modal.common = function(config){
+    const props = Object.assign({
+        content: (<div></div>),
+        okText: 'ok',
+        cancelText: 'cancel'
+    }, config);
+    let div = document.createElement('div');
+    document.body.appendChild(div);
+
+    let d;
+    props.iconType = props.iconType || 'question-circle';
+
+    let width = props.width || 416;
+    let style = props.style || {};
+
+    // 默认为 true，保持向下兼容
+    if (!('okCancel' in props)) {
+        props.okCancel = true;
+    }
+
+
+    function close() {
+        d.setState({
+            visible: false,
+        });
+        ReactDOM.unmountComponentAtNode(div);
+        div.parentNode.removeChild(div);
+    }
+
+    function onCancel() {
+        let cancelFn = props.onCancel;
+        if (cancelFn) {
+            let ret;
+            if (cancelFn.length) {
+                ret = cancelFn(close);
+            } else {
+                ret = cancelFn();
+                if (!ret) {
+                    close();
+                }
+            }
+            if (ret && ret.then) {
+                ret.then(close);
+            }
+        } else {
+            close();
+        }
+    }
+
+    function onOk() {
+        let okFn = props.onOk;
+        if (okFn) {
+            let ret;
+            if (okFn.length) {
+                ret = okFn(close);
+            } else {
+                ret = okFn();
+                if (!ret) {
+                    close();
+                }
+            }
+            if (ret && ret.then) {
+                ret.then(close);
+            }
+        } else {
+            close();
+        }
+    }
+
+    let body = props.content;
+
+    let footer = null;
+    if (props.okCancel) {
+        footer = (
+            <div className="ant-confirm-btns">
+                <Button type="ghost" size="large" onClick={onCancel}>
+                    {props.cancelText}
+                </Button>
+                <Button type="primary" size="large" onClick={onOk}>
+                    {props.okText}
+                </Button>
+            </div>
+        );
+    } else {
+        footer = (
+            <div className="ant-confirm-btns">
+                <Button type="primary" size="large" onClick={onOk}>
+                    {props.okText}
+                </Button>
+            </div>
+        );
+    }
+
+    const classString = classNames({
+        'ant-confirm': true,
+        [`ant-confirm-${props.type}`]: true,
+        [props.className]: !!props.className,
+    });
+
+    ReactDOM.render(
+        <Dialog
+            className={classString}
+            visible
+            closable={false}
+            title=""
+            transitionName="zoom"
+            footer=""
+            maskTransitionName="fade"
+            style={style}
+            width={width}
+        >
+            <div style={{ zoom: 1, overflow: 'hidden' }}>{body} {footer}</div>
+        </Dialog>
+        , div, function () {
+            d = this;
+        });
+
+    return {
+        destroy: close,
+    };
+}
+
 ReactDOM.render(<div>
     <div>
         <Input/>
     </div>
     <div>
+        {Modal.common({})}
         <DatePicker
             disabledDate={(...arg)=>{
                 console.log(arg)
@@ -346,6 +469,8 @@ ReactDOM.render(<div>
 
         />
     </div>
+
+
     <div>
         <Demo />
     </div>
