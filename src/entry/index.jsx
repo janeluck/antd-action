@@ -23,6 +23,9 @@ import '../jane/Class'
 
 
 import * as a from '../jane/modules/lib1'
+
+import DeptDemo from '../jane/Dept'
+
 const SubMenu = Menu.SubMenu;
 
 const Sider = React.createClass({
@@ -651,7 +654,7 @@ ReactDOM.render(<div>
         </div>
 
         <div>
-            <Demo />
+            <DeptDemo />
         </div>
 
     </div>,
@@ -676,8 +679,8 @@ p.then(data=> {
     console.log(`this is ${data}`)
 })
 
-console.log(p.then())
+//console.log(p.then())
 
-console.log('---------------------------')
-console.log(a)
+//console.log('---------------------------')
+//console.log(a)
 
