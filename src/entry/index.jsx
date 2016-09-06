@@ -14,7 +14,7 @@ import reqwest from 'reqwest'
 import DemoCKUpload from '../jane/CKUpload/demo'
 import Immutable from 'Immutable'
 
-import { Menu, Icon, Switch, Row, Col, Buttonn, Input,DatePicker, Button, Tree, Modal  } from 'antd';
+import { Menu, Icon, Switch, Row, Col, Buttonn, Input,DatePicker, Button, Tree, Modal,TimePicker  } from 'antd';
 import '../component/App.less';
 import '../jane/styles/style/index.less';
 
@@ -139,16 +139,13 @@ console.log(gData)
 const style = {
     icon: {
         color: '#2790e3',
-        fontWeight:'bold'
+        fontWeight: 'bold'
     },
-    treeTitle:{
-
-    }
+    treeTitle: {}
 }
 
 
-
-const loopAction = function(data, key, callback){
+const loopAction = function (data, key, callback) {
     data.forEach((item, index, arr) => {
 
         if (item.key === key) {
@@ -162,12 +159,12 @@ const loopAction = function(data, key, callback){
 
 
 let noChildKeys = []
-const getNoChildKeys = function(data){
+const getNoChildKeys = function (data) {
     data.forEach((item, index, arr) => {
 
-        if (item.children){
+        if (item.children) {
             getNoChildKeys(item.children)
-        }else {
+        } else {
             noChildKeys.push(item.key)
         }
     })
@@ -255,7 +252,7 @@ const Demo = React.createClass({
 
         const that = this
         setTimeout(()=> {
-            loopAction(data, that.selKey, (item, index, arr)=>{
+            loopAction(data, that.selKey, (item, index, arr)=> {
 
                 if (!item.children) item.children = []
                 item.children.push({
@@ -279,7 +276,7 @@ const Demo = React.createClass({
         const that = this
         setTimeout(()=> {
             console.log(that.selKey)
-            loopAction(data, this.selKey, (item, index, arr)=>{
+            loopAction(data, this.selKey, (item, index, arr)=> {
                 item.title = 'i am new'
             })
             that.setState({
@@ -294,7 +291,7 @@ const Demo = React.createClass({
         const that = this
         setTimeout(()=> {
             console.log(that.selKey)
-            loopAction(data, this.selKey, (item, index, arr)=>{
+            loopAction(data, this.selKey, (item, index, arr)=> {
                 arr.splice(index, 1)
             })
             that.setState({
@@ -334,7 +331,7 @@ const Demo = React.createClass({
 });
 
 
-Modal.common = function(config){
+Modal.common = function (config) {
     const props = Object.assign({
         content: (<div></div>),
         okText: 'ok',
@@ -456,28 +453,210 @@ Modal.common = function(config){
     };
 }
 
+
+function newArray(start, end) {
+    const result = [];
+    for (let i = start; i < end; i++) {
+        result.push(i);
+    }
+    return result;
+}
+
+function disabledHours() {
+    const hours = newArray(0, new Date().getHours());
+    return hours;
+}
+
+function disabledMinutes(h) {
+    if (h === new Date().getHours()) {
+        return newArray(0, new Date().getMinutes());
+    }
+    return [];
+}
+
+
+const RangePicker = DatePicker.RangePicker;
+
+function onChange(value, dateString) {
+    console.log('From: ', value[0], ', to: ', value[1]);
+    console.log('From: ', dateString[0], ', to: ', dateString[1]);
+}
+
+
+const disabledStartDate = (startValue) => {
+        if (!startValue || !this.state.endValue) {
+            return false;
+        }
+        return startValue.getTime() >= this.state.endValue.getTime();
+    },
+    disabledEndDate = (endValue)=> {
+        if (!endValue || !this.state.startValue) {
+            return false;
+        }
+        return endValue.getTime() <= this.state.startValue.getTime();
+    },
+    onStartChange = function () {
+        console.log(arguments)
+    }
+
+    ,
+    onEndChange = function () {
+        console.log(arguments)
+    }
+
+
+class TaskDatePicker extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+
+            startDateTime: new Date,
+            endDateTime: new Date
+        }
+
+    }
+
+    disabledStartDate = (current)=> {
+
+        return current && current.getTime() < Date.now() - 24 * 60 * 60 * 1000;
+    }
+    disabledEndDate = (endTime)=> {
+
+        const timeDate = new Date(Date.parse(this.state.startDateTime.replace(/-/g, "/")));
+        return endTime.getTime() <= timeDate.getTime();
+    }
+
+    newArray(start, end) {
+        const result = [];
+        for (let i = start; i < end; i++) {
+            result.push(i);
+        }
+        return result;
+    }
+    isToday(){
+        const startDate = new Date(this.state.startDateTime), now = new Date()
+        return ['getFullYear', 'getMonth', 'getDate'].every(method =>{
+            return now[method]() == startDate[method]()
+        })
+
+    }
+
+    disabledHours = ()=> {
+
+        if (this.isToday()) {
+            return this.newArray(0, new Date().getHours())
+        }
+        return []
+    }
+    disabledMinutes = (h)=> {
+        if (this.isToday() && h === new Date().getHours()){
+            return this.newArray(0, new Date().getMinutes());
+        }
+
+        return [];
+    }
+
+    onStartChange = (date, dateString) => {
+
+        this.setState({
+            startDateTime: dateString
+        })
+    }
+
+    onEndChange = (date, dateString)=> {
+        this.setState({
+            endDateTime: dateString
+        })
+    }
+
+
+    render() {
+
+
+        return (<div>
+            <DatePicker
+
+                showTime={
+                    {
+                        disabledHours: this.disabledHours,
+                        disabledMinutes: this.disabledMinutes
+                    }
+                }
+                value={this.state.startDateTime}
+                format="yyyy-MM-dd HH:mm:ss"
+                placeholder="开始日期"
+                onChange={this.onStartChange}
+                disabledDate={this.disabledStartDate}
+
+            />
+            <DatePicker
+                showTime
+                value={this.state.endDateTime}
+                format="yyyy-MM-dd HH:mm:ss"
+                disabledDate={this.disabledEndDate}
+                placeholder="结束日期"
+                onChange={this.onEndChange}
+
+            />
+        </div>);
+    }
+}
+
 ReactDOM.render(<div>
-    <div>
-        <Input/>
-    </div>
-    <div>
-        {Modal.common({})}
-        <DatePicker
-            disabledDate={(...arg)=>{
-                console.log(arg)
-            }}
+        <div>
+            <Input/>
+        </div>
 
-        />
-    </div>
+        {/*{
+         disabledHours: ()=> {
+
+         return newArray(0, new Date().getHours())
+         },
+         disabledMinutes: (h)=> {
+         // console.log(h)
+         if (h === new Date().getHours()) {
+         return newArray(0, new Date().getMinutes());
+         }
+         return [];
+         }
+         }
+
+         <DatePicker
+
+         showTime
+         format="yyyy-MM-dd HH:mm:ss"
+         placeholder="开始日期"
+         onChange={this.onStartChange}
 
 
-    <div>
-        <Demo />
-    </div>
-    <DemoCKUpload >
-        <Button>上传</Button>
-    </DemoCKUpload>
-</div>, document.getElementById('react-content'));
+         />
+         <DatePicker
+
+         showTime
+         format="yyyy-MM-dd HH:mm:ss"
+
+         placeholder="结束日期"
+         onChange={this.onEndChange}
+
+         />
+
+
+         */}
+
+        <TaskDatePicker />
+
+
+        <div>
+            <TimePicker disabledHours={disabledHours} disabledMinutes={disabledMinutes}/>
+        </div>
+
+        <div>
+            <Demo />
+        </div>
+
+    </div>,
+    document.getElementById('react-content')
+);
 
 
 var p = new JanePromise(function (resolve, reject) {
