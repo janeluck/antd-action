@@ -25,6 +25,7 @@ import '../jane/Class'
 import * as a from '../jane/modules/lib1'
 
 import DeptDemo from '../jane/Dept'
+import SelectItem from '../jane/SelectItem'
 
 const SubMenu = Menu.SubMenu;
 
@@ -609,7 +610,7 @@ ReactDOM.render(<div>
         <div>
             <Input/>
         </div>
-
+        <SelectItem />
         {/*{
          disabledHours: ()=> {
 
