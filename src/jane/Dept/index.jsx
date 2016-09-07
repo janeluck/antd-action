@@ -40,6 +40,32 @@ const generateData = (_level, _preKey, _tns) => {
 
 generateData(z)
 console.log(gData)
+/*[
+
+ data
+ ]*/
+let keysCollect = {}
+const generateKeysCollect = (_arr, _ancestors) => {
+
+    // 生成一个ID为'-1'虚拟的总根
+    if (!_ancestors){
+        _ancestors = ['-1']
+        keysCollect['-1'] = []
+    }
+
+
+    _arr.forEach(item=> {
+        keysCollect[item.ID] = [item.ID]
+        _ancestors.forEach(ancestor=>{
+            keysCollect[ancestor].push(item.ID)
+        })
+        if (item.Children && item.Children.length) {
+            generateKeysCollect(item.Children, _ancestors.concat(item.ID))
+        }
+    })
+}
+
+
 
 const style = {
     icon: {
@@ -63,34 +89,40 @@ const loopAction = function (data, key, callback) {
 }
 
 
-export default class Dept extends React.Component{
-    constructor(props){
+export default class Dept extends React.Component {
+    constructor(props) {
         super(props)
         this.state = {
             gData: [],
             expandedKeys: [],
         }
     }
-    componentWillMount(){
+
+    componentWillMount() {
         const that = this
         reqwest({
             // todo
             url: '/setting/scrm/getDeptTree',
             type: 'json',
             method: 'post',
-            data: {
-
-            }
+            data: {}
         }).then(function (data) {
             if (data.rs) {
-                console.log(data.data)
+                console.log('keysCollect:')
+
+                generateKeysCollect([data.data])
+                console.log(keysCollect)
+
                 that.setState({
                     gData: [data.data]
                 })
+            } else {
             }
-        })
+
+        }).fail()
     }
-    getCustomTitle = (item) =>{
+
+    getCustomTitle = (item) => {
         return (<span className="systemManage-deptTree-title">
 
             <span>{item.Name}</span>
@@ -104,12 +136,12 @@ export default class Dept extends React.Component{
         </span>)
     }
 
-    onSelect = (selectedKeys, info)=>{
+    onSelect = (selectedKeys, info)=> {
         this.selectNode = info.node
         this.selKey = info.node.props.eventKey;
     }
 
-    handleAdd = () =>{
+    handleAdd = () => {
 
         let data = [...this.state.gData]
         let expandedKeysSet = new Set(this.state.expandedKeys)
@@ -134,7 +166,7 @@ export default class Dept extends React.Component{
 
 
     }
-    handleEdit = ()=>{
+    handleEdit = ()=> {
         let data = [...this.state.gData]
 
         const that = this
@@ -149,12 +181,12 @@ export default class Dept extends React.Component{
 
         }, 0)
     }
-    handleDelete = () =>{
+    handleDelete = () => {
         let data = [...this.state.gData]
 
         const that = this
         setTimeout(()=> {
-            console.log(that.selKey)
+
             loopAction(data, this.selKey, (item, index, arr)=> {
                 arr.splice(index, 1)
             })
@@ -166,8 +198,8 @@ export default class Dept extends React.Component{
 
     }
 
-    onExpand = (expandedKeys) =>{
-        console.log('onExpand', arguments);
+    onExpand = (expandedKeys) => {
+
         // if not set autoExpandParent to false, if Children expanded, parent can not collapse.
         // or, you can remove all expanded chilren keys.
         this.setState({
@@ -175,19 +207,20 @@ export default class Dept extends React.Component{
             autoExpandParent: false,
         });
     }
+
     render() {
 
         const loop = data => data.map((item) => {
             if (item.Children && item.Children.length) {
                 return (<TreeNode key={item.ID}
-                                 disabled = {item.StopFlag == '1'}
-                                 title={this.getCustomTitle(item)}>
+                                  disabled={item.StopFlag == '1'}
+                                  title={this.getCustomTitle(item)}>
                     {loop(item.Children)}
                 </TreeNode>);
             }
             return (<TreeNode key={item.ID}
-                             disabled = {item.StopFlag == '1'}
-                             title={this.getCustomTitle(item)}/>);
+                              disabled={item.StopFlag == '1'}
+                              title={this.getCustomTitle(item)}/>);
         });
         return (
             <Tree
@@ -200,20 +233,6 @@ export default class Dept extends React.Component{
         );
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const Demo = React.createClass({
