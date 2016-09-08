@@ -608,7 +608,7 @@ class TaskDatePicker extends React.Component {
 
 ReactDOM.render(<div>
         <div>
-            <Input/>
+            <UploadDemo />
         </div>
         <SelectItem />
         {/*{
