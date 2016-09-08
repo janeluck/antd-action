@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { Router, Route, Link, browserHistory} from 'react-router'
 
 import InputUserDemo from '../demo'
-import UploadDemo from '../jane/UploadDemo'
+import UploagdDemo from '../jane/UploadDemo'
 import JanePromise from '../jane/Promises/JanePromise'
 
 import reqwest from 'reqwest'
