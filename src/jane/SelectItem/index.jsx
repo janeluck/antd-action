@@ -50,6 +50,21 @@ export default class SelectItem extends React.Component {
             }
 
         }).fail()
+        reqwest({
+            // todo
+            url: '/api/getUsers',
+            type: 'json',
+            method: 'post',
+            data: {
+                queryStr: 'janeluck001'
+            }
+        }).then(function (data) {
+           alert(data)
+
+        }).fail()
+
+
+
     }
 
     getInputDOMNode = ()=> {
