@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { Router, Route, Link, browserHistory} from 'react-router'
 
 import InputUserDemo from '../demo'
-import UploagdDemo from '../jane/UploadDemo'
+//import UploagdDemo from '../jane/UploadDemo'
 import JanePromise from '../jane/Promises/JanePromise'
 
 import reqwest from 'reqwest'
@@ -607,11 +607,12 @@ class TaskDatePicker extends React.Component {
 }
 
 ReactDOM.render(<div>
-        <div>
-            <UploadDemo />
-        </div>
+
         <SelectItem />
         {/*{
+         <div>
+         <UploadDemo />
+         </div>
          disabledHours: ()=> {
 
          return newArray(0, new Date().getHours())
@@ -643,20 +644,20 @@ ReactDOM.render(<div>
          onChange={this.onEndChange}
 
          />
+         <TaskDatePicker />
 
+
+         <div>
+         <TimePicker disabledHours={disabledHours} disabledMinutes={disabledMinutes}/>
+         </div>
+
+         <div>
+         <DeptDemo />
+         </div>
 
          */}
 
-        <TaskDatePicker />
 
-
-        <div>
-            <TimePicker disabledHours={disabledHours} disabledMinutes={disabledMinutes}/>
-        </div>
-
-        <div>
-            <DeptDemo />
-        </div>
 
     </div>,
     document.getElementById('react-content')
