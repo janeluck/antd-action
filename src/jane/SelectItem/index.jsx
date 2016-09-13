@@ -59,7 +59,7 @@ export default class SelectItem extends React.Component {
                 queryStr: 'janeluck001'
             }
         }).then(function (data) {
-           alert(data)
+           //alert(data)
 
         }).fail()
 
