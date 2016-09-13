@@ -114,6 +114,7 @@ class CheckTreeDemo extends React.Component {
 
 
         const associatedKeys = this.getAssociatedKeys(obj.node)
+        this.selKey = obj.node.props.eventKey
      /*   if (obj.checked) {
             // checkedKeys = this.getChildrenKeys(obj.checkedNodes)
             associatedKeys.forEach((item)=> {
@@ -130,14 +131,16 @@ class CheckTreeDemo extends React.Component {
             })
         }
 */
-
+        if (!obj.checked){
+            this.selKey = ''
+        }
         this.setState({
             checkedKeys: obj.checked ? associatedKeys : []
         });
     }
 
     getAssociatedKeys = (node)=> {
-        return this.currentKeysCollect = keysCollect[node.props.eventKey]
+        return keysCollect[node.props.eventKey]
     }
 
     componentWillMount() {
@@ -165,18 +168,12 @@ class CheckTreeDemo extends React.Component {
     }
 
 
-
-    onSelect = (selectedKeys, info)=> {
-        this.selectNode = info.node
-        this.selKey = info.node.props.eventKey;
-    }
-
-
     render() {
-        const currentKeysCollect = this.currentKeysCollect || []
+        const currentKeysCollect = keysCollect[this.selKey] || []
 
         return (
             <Tree
+
                 checkable
                 checkStrictly
                 onCheck={this.onCheck}
