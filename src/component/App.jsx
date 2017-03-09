@@ -12,7 +12,7 @@ import '../jane/modules/test'
 import  { Component } from 'react';
 const Option = Select.Option;
 
-
+import Greeting from '../LifeCycle'
 const style = {
     padding: '.3em .8em',
     border: '1px solid rgba(0, 0, 0, .1)',
@@ -256,7 +256,15 @@ export default class App extends React.Component {
     render() {
 
         return (
-            <div style={{margin: 30}}>
+
+          <div>
+
+              < Greeting />
+              < Greeting />
+              < Greeting />
+
+
+               <div style={{margin: 30, display: 'none'}}>
 
                 <div className="jane-input-number">
                     <div className="jane-input-number-handle-wrap">
@@ -359,7 +367,11 @@ export default class App extends React.Component {
                             <Spin />
                         </Modal>
                 ) : null}
-            </div>)
+            </div>
+
+          </div>
+
+           )
     }
 };
 

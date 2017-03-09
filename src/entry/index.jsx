@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import classNames from 'classnames';
 import { Router, Route, Link, browserHistory} from 'react-router'
-
+import Greeting from '../LifeCycle'
 import InputUserDemo from '../demo'
 //import UploagdDemo from '../jane/UploadDemo'
 import JanePromise from '../jane/Promises/JanePromise'
@@ -607,10 +607,26 @@ class TaskDatePicker extends React.Component {
     }
 }
 
+
+ReactDOM.render(
+
+    <div>
+        <Greeting/>
+        <Greeting/>
+        <Greeting/>
+
+    </div>,
+
+    document.getElementById('react-content')
+
+)
+
+/*
+
 ReactDOM.render(<div>
 
         <SelectItem />
-        {/*{
+        {/!*{
          <div>
          <UploadDemo />
          </div>
@@ -656,15 +672,18 @@ ReactDOM.render(<div>
          <DeptDemo />
          </div>
 
-         */}
+         *!/}
 
 
         <div>
             <CheckTreeDemo />
+
+
         </div>
     </div>,
     document.getElementById('react-content')
 );
+*/
 
 
 var p = new JanePromise(function (resolve, reject) {
