@@ -929,6 +929,7 @@ class DoubleTree extends React.Component {
             return checkedKeys.indexOf(item.ID) > -1
         })
 
+        //todo: newDept的根节点根据业务需要进行调整
         let newDept
 
         if (checkedKeys.length){
