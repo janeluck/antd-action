@@ -910,16 +910,7 @@ class DoubleTree extends React.Component {
         });
 
     }
-    getCheckedTree = () => {
-        const {checkedKeys} = this.state
 
-
-        this.setState({
-            newDept: getfilterTree(Immutable.fromJS([deptTree]).toJS())
-        })
-
-
-    }
 
     render() {
         this.ChildrenKeysCollect = getChildrenKeysCollect([deptTree])
