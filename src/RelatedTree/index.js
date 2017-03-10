@@ -2,7 +2,7 @@
  * Created by jane on 10/03/2017.
  */
 import React from 'react'
-import {Tree, Modal} from 'antd'
+import {Tree, Modal, Button} from 'antd'
 import Immutable from 'immutable'
 
 const TreeNode = Tree.TreeNode
@@ -886,7 +886,8 @@ class DoubleTree extends React.Component {
     constructor(props, context) {
         super(props, context)
         this.state = {
-            checkedKeys: []
+            checkedKeys: [],
+            newDept: []
         }
     }
 
@@ -909,13 +910,46 @@ class DoubleTree extends React.Component {
         });
 
     }
+    getCheckedTree = () => {
+        const {checkedKeys} = this.state
+
+
+        this.setState({
+            newDept: getfilterTree(Immutable.fromJS([deptTree]).toJS())
+        })
+
+
+    }
 
     render() {
         this.ChildrenKeysCollect = getChildrenKeysCollect([deptTree])
+        const {checkedKeys} = this.state
+
+
+        const getfilterTree = data => data.filter(item => {
+
+            if (checkedKeys.indexOf(item.ID) < 0) return false
+
+
+            item.checked = true
+            if (item.Children && item.Children.length) {
+                item.Children = getfilterTree(item.Children)
+            }
+            return checkedKeys.indexOf(item.ID) > -1
+        })
+
+        let newDept
+
+        if (checkedKeys.length){
+            newDept = getfilterTree(Immutable.fromJS([deptTree]).toJS())
+        }
+
+        console.log(newDept)
         return (
             <div>
                 <Tree
-                    checkedKeys={this.state.checkedKeys}
+                    defaultExpandAll
+                    checkedKeys={checkedKeys}
                     checkable
                     checkStrictly
                     onCheck={this.onCheck}
@@ -923,6 +957,17 @@ class DoubleTree extends React.Component {
                     {loopEsnTree([deptTree])}
 
                 </Tree>
+
+
+
+
+                {/*todo: 可以做优化*/}
+                {checkedKeys.length ? (<Tree expandedKeys={checkedKeys}>
+                        {loopEsnTree(newDept)}
+
+                    </Tree>) : null}
+
+
             </div>
         );
     }
