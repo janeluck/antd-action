@@ -841,14 +841,42 @@ const deptTree = {
 }
 
 
-const loopEsnTree = data => data.map(item => {
+const loopEsnTree = (data, path) => data.map(item => {
+
+    let currentPath = path && path.concat(item.ID) || [item.ID]
+
     if (item.Children && item.Children.length) {
-        return (<TreeNode key={item.ID} title={item.Name}>
-            {loopEsnTree(item.Children)}
+
+        return (<TreeNode key={item.ID} title={item.Name} data-path={currentPath}>
+            {loopEsnTree(item.Children, currentPath)}
         </TreeNode>)
     }
-    return <TreeNode key={item.ID} title={item.Name}/>
+    return <TreeNode key={item.ID} title={item.Name} data-path={currentPath}/>
 })
+
+
+const getChildrenKeysCollect = (data) => {
+    let keysCollect = {}
+    const generateKeysCollect = (_arr, _ancestors) => {
+        _ancestors = _ancestors || []
+        _arr.forEach(item => {
+            keysCollect[item.ID] = [item.ID]
+            _ancestors.forEach(ancestor => {
+                keysCollect[ancestor].push(item.ID)
+            })
+            if (item.Children && item.Children.length) {
+                generateKeysCollect(item.Children, _ancestors.concat(item.ID))
+            }
+        })
+    }
+    generateKeysCollect(data)
+    return keysCollect
+}
+
+
+// 勾选时：
+//   1. 自动关联上级
+//   2. 取消check的同时取消所有子级
 
 class DoubleTree extends React.Component {
 
@@ -860,13 +888,34 @@ class DoubleTree extends React.Component {
 
     }
 
-   onCheck = (checkedKeys) => {
-    this.setState({
-      checkedKeys
-    });
-  }
+    onCheck = (checkedKeys, e) => {
+
+
+        const {checked, node} = e
+        const $$checkedKeys = Immutable.Set(this.state.checkedKeys)
+        let newCheckedKeys
+        if (checked) {
+            //选中所有的父节点
+            const $$parentIDs = Immutable.Set(node.props['data-path'])
+            newCheckedKeys = $$checkedKeys.union($$parentIDs).toJS()
+
+        } else {
+            //取消所有的子节点
+            const $$childIDs = Immutable.Set(this['ChildrenKeysCollect'][node.props.eventKey])
+            newCheckedKeys = $$checkedKeys.subtract($$childIDs).toJS()
+        }
+
+
+        this.setState({
+            checkedKeys: newCheckedKeys
+        });
+
+
+    }
 
     render() {
+        this.ChildrenKeysCollect = getChildrenKeysCollect([deptTree])
+
         // const {esnDept} = this.props
         return (
             <div>
