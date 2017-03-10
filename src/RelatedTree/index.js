@@ -13,6 +13,57 @@ const deptTree = {
     "StopFlag": "0",
     "Code": "001",
     "Children": [{
+        "ID": "352",
+        "Name": "后台开发部",
+        "ParentID": "112",
+        "StopFlag": "0",
+        "Code": "",
+        "Children": [{
+            "ID": "324",
+            "Name": "开发部门A",
+            "ParentID": "352",
+            "StopFlag": "0",
+            "Code": "",
+            "Children": [{
+                "ID": "351",
+                "Name": "开发部门A-01",
+                "ParentID": "324",
+                "StopFlag": "0",
+                "Code": "",
+                "Children": [{
+                    "ID": "356",
+                    "Name": "3413123",
+                    "ParentID": "351",
+                    "StopFlag": "0",
+                    "Code": ""
+                }, {"ID": "647", "Name": "测试河南", "ParentID": "351", "StopFlag": "0", "Code": ""}, {
+                    "ID": "282",
+                    "Name": "BUMEN",
+                    "ParentID": "351",
+                    "StopFlag": "0",
+                    "Code": "gf"
+                }]
+            }, {"ID": "358", "Name": "3413123", "ParentID": "324", "StopFlag": "0", "Code": ""}, {
+                "ID": "361",
+                "Name": "2131313",
+                "ParentID": "324",
+                "StopFlag": "0",
+                "Code": ""
+            }, {"ID": "648", "Name": "测试江西", "ParentID": "324", "StopFlag": "0", "Code": ""}, {
+                "ID": "394",
+                "Name": "测试部",
+                "ParentID": "324",
+                "StopFlag": "0",
+                "Code": "0001"
+            }, {"ID": "343", "Name": "测试部", "ParentID": "324", "StopFlag": "0", "Code": "011"}, {
+                "ID": "382",
+                "Name": "22222",
+                "ParentID": "324",
+                "StopFlag": "1",
+                "Code": ""
+            }, {"ID": "380", "Name": "dfsffs", "ParentID": "324", "StopFlag": "1", "Code": "1"}]
+        }]
+    }, {
         "ID": "3847",
         "Name": "考勤测试部门",
         "ParentID": "112",
@@ -187,57 +238,6 @@ const deptTree = {
         "StopFlag": "0",
         "Code": "",
         "Children": [{"ID": "3936", "Name": "U8项目组一组", "ParentID": "3935", "StopFlag": "0", "Code": ""}]
-    }, {
-        "ID": "352",
-        "Name": "后台开发部",
-        "ParentID": "112",
-        "StopFlag": "0",
-        "Code": "",
-        "Children": [{
-            "ID": "324",
-            "Name": "开发部门A",
-            "ParentID": "352",
-            "StopFlag": "0",
-            "Code": "",
-            "Children": [{
-                "ID": "351",
-                "Name": "开发部门A-01",
-                "ParentID": "324",
-                "StopFlag": "0",
-                "Code": "",
-                "Children": [{
-                    "ID": "356",
-                    "Name": "3413123",
-                    "ParentID": "351",
-                    "StopFlag": "0",
-                    "Code": ""
-                }, {"ID": "647", "Name": "测试河南", "ParentID": "351", "StopFlag": "0", "Code": ""}, {
-                    "ID": "282",
-                    "Name": "BUMEN",
-                    "ParentID": "351",
-                    "StopFlag": "0",
-                    "Code": "gf"
-                }]
-            }, {"ID": "358", "Name": "3413123", "ParentID": "324", "StopFlag": "0", "Code": ""}, {
-                "ID": "361",
-                "Name": "2131313",
-                "ParentID": "324",
-                "StopFlag": "0",
-                "Code": ""
-            }, {"ID": "648", "Name": "测试江西", "ParentID": "324", "StopFlag": "0", "Code": ""}, {
-                "ID": "394",
-                "Name": "测试部",
-                "ParentID": "324",
-                "StopFlag": "0",
-                "Code": "0001"
-            }, {"ID": "343", "Name": "测试部", "ParentID": "324", "StopFlag": "0", "Code": "011"}, {
-                "ID": "382",
-                "Name": "22222",
-                "ParentID": "324",
-                "StopFlag": "1",
-                "Code": ""
-            }, {"ID": "380", "Name": "dfsffs", "ParentID": "324", "StopFlag": "1", "Code": "1"}]
-        }]
     }, {
         "ID": "3937",
         "Name": "研发测试U8项目组",
@@ -874,9 +874,12 @@ const getChildrenKeysCollect = (data) => {
 }
 
 
-// 勾选时：
-//   1. 自动关联上级
-//   2. 取消check的同时取消所有子级
+/**
+ * 组织结构导入逻辑：
+ *     1. check时自动关联上级
+ *     2. 取消check时取消所有子级
+ *
+ */
 
 class DoubleTree extends React.Component {
 
@@ -885,12 +888,9 @@ class DoubleTree extends React.Component {
         this.state = {
             checkedKeys: []
         }
-
     }
 
     onCheck = (checkedKeys, e) => {
-
-
         const {checked, node} = e
         const $$checkedKeys = Immutable.Set(this.state.checkedKeys)
         let newCheckedKeys
@@ -904,19 +904,14 @@ class DoubleTree extends React.Component {
             const $$childIDs = Immutable.Set(this['ChildrenKeysCollect'][node.props.eventKey])
             newCheckedKeys = $$checkedKeys.subtract($$childIDs).toJS()
         }
-
-
         this.setState({
             checkedKeys: newCheckedKeys
         });
-
 
     }
 
     render() {
         this.ChildrenKeysCollect = getChildrenKeysCollect([deptTree])
-
-        // const {esnDept} = this.props
         return (
             <div>
                 <Tree
