@@ -917,14 +917,14 @@ class DoubleTree extends React.Component {
         const {checkedKeys} = this.state
 
 
-        const getfilterTree = data => data.filter(item => {
+        const getFilterTree = data => data.filter(item => {
 
             if (checkedKeys.indexOf(item.ID) < 0) return false
 
 
             item.checked = true
             if (item.Children && item.Children.length) {
-                item.Children = getfilterTree(item.Children)
+                item.Children = getFilterTree(item.Children)
             }
             return checkedKeys.indexOf(item.ID) > -1
         })
@@ -933,7 +933,7 @@ class DoubleTree extends React.Component {
         let newDept
 
         if (checkedKeys.length){
-            newDept = getfilterTree(Immutable.fromJS([deptTree]).toJS())
+            newDept = getFilterTree(Immutable.fromJS([deptTree]).toJS())
         }
 
         console.log(newDept)
