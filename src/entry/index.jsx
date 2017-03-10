@@ -20,7 +20,7 @@ import '../jane/styles/style/index.less';
 
 
 import '../jane/Class'
-
+import DoubleTree from '../RelatedTree'
 
 import * as a from '../jane/modules/lib1'
 
@@ -611,9 +611,7 @@ class TaskDatePicker extends React.Component {
 ReactDOM.render(
 
     <div>
-        <Greeting/>
-        <Greeting/>
-        <Greeting/>
+        <DoubleTree />
 
     </div>,
 
