@@ -3,7 +3,7 @@ import App from '../component/App';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import classNames from 'classnames';
-import { Router, Route, Link, browserHistory} from 'react-router'
+import {Router, Route, Link, browserHistory} from 'react-router'
 import Greeting from '../LifeCycle'
 import InputUserDemo from '../demo'
 //import UploagdDemo from '../jane/UploadDemo'
@@ -14,13 +14,14 @@ import reqwest from 'reqwest'
 import DemoCKUpload from '../jane/CKUpload/demo'
 import Immutable from 'Immutable'
 
-import { Menu, Icon, Switch, Row, Col, Buttonn, Input,DatePicker, Button, Tree, Modal,TimePicker  } from 'antd';
+import {Menu, Icon, Switch, Row, Col, Buttonn, Input, DatePicker, Button, Tree, Modal, TimePicker} from 'antd';
 import '../component/App.less';
 import '../jane/styles/style/index.less';
 
 
 import '../jane/Class'
 import DoubleTree from '../RelatedTree'
+import ISetState from '../ParseReact/iSetState'
 
 import * as a from '../jane/modules/lib1'
 
@@ -45,16 +46,16 @@ const Sider = React.createClass({
                 <br />
                 <Menu
                     onClick={this.handleClick}
-                    style={{ width: 240 }}
+                    style={{width: 240}}
                     defaultOpenKeys={['sub1']}
                     mode="inline"
                 >
-                    <SubMenu key="sub1" title={<span><Icon type="mail" /><span>导航一</span></span>}>
+                    <SubMenu key="sub1" title={<span><Icon type="mail"/><span>导航一</span></span>}>
                         <Menu.Item key="1"><Link to='/app'>App</Link></Menu.Item>
                         <Menu.Item key="2"><Link to='/input'>Input</Link></Menu.Item>
                         <Menu.Item key="3"><Link to='/upload'>Upload</Link></Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>导航二</span></span>}>
+                    <SubMenu key="sub2" title={<span><Icon type="appstore"/><span>导航二</span></span>}>
                         <Menu.Item key="5">选项5</Menu.Item>
                         <Menu.Item key="6">选项6</Menu.Item>
                         <SubMenu key="sub3" title="三级导航">
@@ -256,8 +257,8 @@ const Demo = React.createClass({
         let expandedKeysSet = new Set(this.state.expandedKeys)
 
         const that = this
-        setTimeout(()=> {
-            loopAction(data, that.selKey, (item, index, arr)=> {
+        setTimeout(() => {
+            loopAction(data, that.selKey, (item, index, arr) => {
 
                 if (!item.children) item.children = []
                 item.children.push({
@@ -279,9 +280,9 @@ const Demo = React.createClass({
         let data = [...this.state.gData]
 
         const that = this
-        setTimeout(()=> {
+        setTimeout(() => {
             console.log(that.selKey)
-            loopAction(data, this.selKey, (item, index, arr)=> {
+            loopAction(data, this.selKey, (item, index, arr) => {
                 item.title = 'i am new'
             })
             that.setState({
@@ -294,9 +295,9 @@ const Demo = React.createClass({
         let data = [...this.state.gData]
 
         const that = this
-        setTimeout(()=> {
+        setTimeout(() => {
             console.log(that.selKey)
-            loopAction(data, this.selKey, (item, index, arr)=> {
+            loopAction(data, this.selKey, (item, index, arr) => {
                 arr.splice(index, 1)
             })
             that.setState({
@@ -447,7 +448,7 @@ Modal.common = function (config) {
             style={style}
             width={width}
         >
-            <div style={{ zoom: 1, overflow: 'hidden' }}>{body} {footer}</div>
+            <div style={{zoom: 1, overflow: 'hidden'}}>{body} {footer}</div>
         </Dialog>
         , div, function () {
             d = this;
@@ -494,7 +495,7 @@ const disabledStartDate = (startValue) => {
         }
         return startValue.getTime() >= this.state.endValue.getTime();
     },
-    disabledEndDate = (endValue)=> {
+    disabledEndDate = (endValue) => {
         if (!endValue || !this.state.startValue) {
             return false;
         }
@@ -521,11 +522,11 @@ class TaskDatePicker extends React.Component {
 
     }
 
-    disabledStartDate = (current)=> {
+    disabledStartDate = (current) => {
 
         return current && current.getTime() < Date.now() - 24 * 60 * 60 * 1000;
     }
-    disabledEndDate = (endTime)=> {
+    disabledEndDate = (endTime) => {
 
         const timeDate = new Date(Date.parse(this.state.startDateTime.replace(/-/g, "/")));
         return endTime.getTime() <= timeDate.getTime();
@@ -538,23 +539,24 @@ class TaskDatePicker extends React.Component {
         }
         return result;
     }
-    isToday(){
+
+    isToday() {
         const startDate = new Date(this.state.startDateTime), now = new Date()
-        return ['getFullYear', 'getMonth', 'getDate'].every(method =>{
+        return ['getFullYear', 'getMonth', 'getDate'].every(method => {
             return now[method]() == startDate[method]()
         })
 
     }
 
-    disabledHours = ()=> {
+    disabledHours = () => {
 
         if (this.isToday()) {
             return this.newArray(0, new Date().getHours())
         }
         return []
     }
-    disabledMinutes = (h)=> {
-        if (this.isToday() && h === new Date().getHours()){
+    disabledMinutes = (h) => {
+        if (this.isToday() && h === new Date().getHours()) {
             return this.newArray(0, new Date().getMinutes());
         }
 
@@ -568,7 +570,7 @@ class TaskDatePicker extends React.Component {
         })
     }
 
-    onEndChange = (date, dateString)=> {
+    onEndChange = (date, dateString) => {
         this.setState({
             endDateTime: dateString
         })
@@ -609,95 +611,93 @@ class TaskDatePicker extends React.Component {
 
 
 ReactDOM.render(
-
     <div>
-        <DoubleTree />
-
+        {/* <DoubleTree />*/}
+        <ISetState />
     </div>,
 
     document.getElementById('react-content')
-
 )
 
 /*
 
-ReactDOM.render(<div>
+ ReactDOM.render(<div>
 
-        <SelectItem />
-        {/!*{
-         <div>
-         <UploadDemo />
-         </div>
-         disabledHours: ()=> {
+ <SelectItem />
+ {/!*{
+ <div>
+ <UploadDemo />
+ </div>
+ disabledHours: ()=> {
 
-         return newArray(0, new Date().getHours())
-         },
-         disabledMinutes: (h)=> {
-         // console.log(h)
-         if (h === new Date().getHours()) {
-         return newArray(0, new Date().getMinutes());
-         }
-         return [];
-         }
-         }
+ return newArray(0, new Date().getHours())
+ },
+ disabledMinutes: (h)=> {
+ // console.log(h)
+ if (h === new Date().getHours()) {
+ return newArray(0, new Date().getMinutes());
+ }
+ return [];
+ }
+ }
 
-         <DatePicker
+ <DatePicker
 
-         showTime
-         format="yyyy-MM-dd HH:mm:ss"
-         placeholder="开始日期"
-         onChange={this.onStartChange}
-
-
-         />
-         <DatePicker
-
-         showTime
-         format="yyyy-MM-dd HH:mm:ss"
-
-         placeholder="结束日期"
-         onChange={this.onEndChange}
-
-         />
-         <TaskDatePicker />
+ showTime
+ format="yyyy-MM-dd HH:mm:ss"
+ placeholder="开始日期"
+ onChange={this.onStartChange}
 
 
-         <div>
-         <TimePicker disabledHours={disabledHours} disabledMinutes={disabledMinutes}/>
-         </div>
+ />
+ <DatePicker
 
-         <div>
-         <DeptDemo />
-         </div>
+ showTime
+ format="yyyy-MM-dd HH:mm:ss"
 
-         *!/}
+ placeholder="结束日期"
+ onChange={this.onEndChange}
 
-
-        <div>
-            <CheckTreeDemo />
+ />
+ <TaskDatePicker />
 
 
-        </div>
-    </div>,
-    document.getElementById('react-content')
-);
-*/
+ <div>
+ <TimePicker disabledHours={disabledHours} disabledMinutes={disabledMinutes}/>
+ </div>
+
+ <div>
+ <DeptDemo />
+ </div>
+
+ *!/}
+
+
+ <div>
+ <CheckTreeDemo />
+
+
+ </div>
+ </div>,
+ document.getElementById('react-content')
+ );
+ */
 
 
 var p = new JanePromise(function (resolve, reject) {
     reqwest({
         url: '/api/admin',
-    }).then(rs=> {
+    }).then(rs => {
         resolve(rs)
-    }, reason=> {
+    }, reason => {
         reject(reason)
     })
 })
-p.then(data=> {
+p.then(data => {
     return `this is ${data}`
-}).then(data=> {
+}).then(data => {
     return `this is ${data}`
-}).then(data=> {
+}).then(data => {
     console.log(`this is ${data}`)
 })
 
