@@ -917,23 +917,34 @@ class DoubleTree extends React.Component {
         const {checkedKeys} = this.state
 
 
-        const getFilterTree = data => data.filter(item => {
+        const getFilterTree = data => {
 
-            if (checkedKeys.indexOf(item.ID) < 0) return false
+            let data_copy = Immutable.fromJS(data).toJS()
+
+            const filterTree =  data => data.filter(item => {
+
+                if (checkedKeys.indexOf(item.ID) < 0) return false
 
 
-            item.checked = true
-            if (item.Children && item.Children.length) {
-                item.Children = getFilterTree(item.Children)
-            }
-            return checkedKeys.indexOf(item.ID) > -1
-        })
+                item.checked = true
+                if (item.Children && item.Children.length) {
+                    item.Children = filterTree(item.Children)
+                }
+                return checkedKeys.indexOf(item.ID) > -1
+            })
+
+
+            return filterTree(data_copy)
+
+
+
+        }
 
         //todo: newDept的根节点根据业务需要进行调整
         let newDept
 
-        if (checkedKeys.length){
-            newDept = getFilterTree(Immutable.fromJS([deptTree]).toJS())
+        if (checkedKeys.length) {
+            newDept = getFilterTree([deptTree])
         }
 
         console.log(newDept)
@@ -949,8 +960,6 @@ class DoubleTree extends React.Component {
                     {loopEsnTree([deptTree])}
 
                 </Tree>
-
-
 
 
                 {/*todo: 可以做优化*/}
