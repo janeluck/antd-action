@@ -21,6 +21,7 @@ import '../jane/styles/style/index.less';
 
 import '../jane/Class'
 import DoubleTree from '../RelatedTree'
+import LoadTree from '../RelatedTree/loadTree'
 import ISetState from '../ParseReact/iSetState'
 
 import * as a from '../jane/modules/lib1'
@@ -614,6 +615,7 @@ ReactDOM.render(
     <div>
         <DoubleTree />
         <ISetState />
+        <LoadTree />
     </div>,
 
     document.getElementById('react-content')
