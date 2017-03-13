@@ -1,6 +1,8 @@
 /**
  * Created by jane on 13/03/2017.
  */
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { Tree } from 'antd';
 const TreeNode = Tree.TreeNode;
 
@@ -59,6 +61,10 @@ export default class Demo extends React.Component {
           { name: 'pNode 01', key: '0-0' },
           { name: 'pNode 02', key: '0-1' },
           { name: 'pNode 03', key: '0-2', isLeaf: true },
+          { name: 'pNode 04', key: '0-2-123', isLeaf: true },
+          { name: 'pNode 05', key: '0-2-125', isLeaf: true },
+          { name: 'pNode 06', key: '0-2-123-222', isLeaf: true },
+          { name: 'pNode 07', key: '0-2-123-9999', isLeaf: true },
         ],
       });
     }, 100);
