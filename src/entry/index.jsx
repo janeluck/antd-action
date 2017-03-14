@@ -8,6 +8,7 @@ import Greeting from '../LifeCycle'
 import InputUserDemo from '../demo'
 //import UploagdDemo from '../jane/UploadDemo'
 import JanePromise from '../jane/Promises/JanePromise'
+import '../jane/Promises'
 
 import reqwest from 'reqwest'
 

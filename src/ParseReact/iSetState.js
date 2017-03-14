@@ -12,21 +12,21 @@ export default class Example extends React.Component {
     }
 
     componentDidMount() {
-        console.trace()
+        //console.trace()
         this.setState({val: this.state.val + 1});
        // console.trace()
         console.log(this.state.val);    // 第 1 次 log
-        console.trace()
+        //console.trace()
         this.setState({val: this.state.val + 1});
         //console.trace()
         console.log(this.state.val);    // 第 2 次 log
 
         setTimeout(() => {
-            console.trace()
+        //    console.trace()
             this.setState({val: this.state.val + 1});
           //  console.trace()
             console.log(this.state.val);  // 第 3 次 log
-            console.trace()
+          //  console.trace()
             this.setState({val: this.state.val + 1});
             //console.trace()
             console.log(this.state.val);  // 第 4 次 log
