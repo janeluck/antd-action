@@ -9,7 +9,7 @@ import U8_DoubleTree from '../jane/DoubleTree'
 import JaneButton from '../jane/Button'
 import InputUser from '../jane/InputUser'
 import '../jane/modules/test'
-import  { Component } from 'react';
+import  {Component} from 'react';
 const Option = Select.Option;
 
 import Greeting from '../LifeCycle'
@@ -26,9 +26,13 @@ const style = {
 }
 
 function handleChange(value) {
-   // console.log(`selected ${value}`);
+    // console.log(`selected ${value}`);
 }
 
+
+class InnerInput extends Component {
+    static isInnerInput = true
+}
 
 class EditDialog_Demo extends Component {
 
@@ -41,7 +45,7 @@ class EditDialog_Demo extends Component {
 
     }
 
-    onclick = (e)=> {
+    onclick = (e) => {
 
         this.setState({
             visible: true
@@ -58,7 +62,7 @@ class EditDialog_Demo extends Component {
                 <EditDialog
                     visible={this.state.visible}
                     title="新建任务"
-                    onClose={()=>{
+                    onClose={() => {
                         this.setState({
                             visible: false
                         })
@@ -206,26 +210,26 @@ export default class App extends React.Component {
         }
     }
 
-    componentDidMount() {
-        const _this = this
-        reqwest({
-            url: 'api/western',
-            type: 'json',
-            method: 'get',
+    /*  componentDidMount() {
+     const _this = this
+     reqwest({
+     url: 'api/western',
+     type: 'json',
+     method: 'get',
 
 
-            success: function (response) {
+     success: function (response) {
 
-                if (response.success) {
-                    _this.setState({
-                        historyItems: response.data.history
-                    })
-                }
-            }
+     if (response.success) {
+     _this.setState({
+     historyItems: response.data.history
+     })
+     }
+     }
 
-        })
-    }
-
+     })
+     }
+     */
     togglePop = () => {
         this.setState({
             hasPop: !this.state.hasPop
@@ -236,18 +240,18 @@ export default class App extends React.Component {
             value: e.target.value
         })
     }
-    openDoubleTree = ()=> {
+    openDoubleTree = () => {
         this.setState({
             doubleTreeVisible: true
         })
     }
-    onClose = ()=> {
+    onClose = () => {
         this.setState({
             doubleTreeVisible: false
         })
     }
 
-    handleTreeValue = (value)=> {
+    handleTreeValue = (value) => {
         console.log(`treedatavalue:`)
         console.log(value)
 
@@ -255,123 +259,127 @@ export default class App extends React.Component {
 
     render() {
 
-        return (
+        return <p>11</p>
 
-          <div>
+        /*
+         return (
 
-              < Greeting />
-              < Greeting />
-              < Greeting />
+         <div>
 
-
-               <div style={{margin: 30, display: 'none'}}>
-
-                <div className="jane-input-number">
-                    <div className="jane-input-number-handle-wrap">
-                        <a href="javascript:;" className="jane-input-number-handler jane-input-number-handler-up">
-                            <span className="jane-input-number-handler-up-inner"></span>
-                        </a>
-                        <a href="javascript:;" className="jane-input-number-handler jane-input-number-handler-down">
-                            <span className="jane-input-number-handler-down-inner"></span>
-                        </a>
-
-                    </div>
-                    <div className="jane-input-number-input-wrap">
-                        <input type="text" className="jane-input-number-input"/>
-                    </div>
-
-                </div>
+         < Greeting />
+         < Greeting />
+         < Greeting />
 
 
-                <button onClick={this.togglePop}>toggle popup</button>
+         <div style={{margin: 30, display: 'none'}}>
 
-                {this.state.hasPop ? (<JanePopup
-                    content={[<div>popTitle</div>, <input type="text" value={this.state.value}  onChange = {this.handleInputChange}/>, <div>popContent</div>]}>
-                    <button name="popTrigger">click me</button>
-                </JanePopup>) : null}
+         <div className="jane-input-number">
+         <div className="jane-input-number-handle-wrap">
+         <a href="javascript:;" className="jane-input-number-handler jane-input-number-handler-up">
+         <span className="jane-input-number-handler-up-inner"></span>
+         </a>
+         <a href="javascript:;" className="jane-input-number-handler jane-input-number-handler-down">
+         <span className="jane-input-number-handler-down-inner"></span>
+         </a>
 
+         </div>
+         <div className="jane-input-number-input-wrap">
+         <input type="text" className="jane-input-number-input"/>
+         </div>
 
-                <Popover content={(<div><input type="text"/></div>)} trigger="click">
-                    <button >1111</button>
-
-                </Popover>
-
-                <InputUser />
-                <Select multiple>
-
-                </Select>
-                <div>
-                    <Icon type="user" style={{fontSize: 14}}></Icon>
-                    <Icon type="plus" style={{fontSize: 8}}></Icon>
-                </div>
-
-                <div children={[(<div>your name</div>), (<div>my name</div>)]}></div>
-
-                <div style={style}>
-                    my custom div
-                </div>
-                <JaneButton/>
-                <EditDialog_Demo/>
-
-                <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
+         </div>
 
 
-                <div className="ck-u8Dept">
-                    <div className="ck-u8Dept-step">
-                        <Button shape="circle" type="primary" size="small">1</Button>
-                        <a >导入U8通讯录</a>
-                        <span>|</span>
-                        <span>跳转到U易联进行U8人员的导入. 操作成功后U8的人员将会同步到企业空间.</span>
-                    </div>
+         <button onClick={this.togglePop}>toggle popup</button>
 
-                    <div className="ck-u8Dept-stepIcon">
-                        <Icon type="double-right"></Icon>
-                    </div>
-                    <div className="ck-u8Dept-step">
-                        <Button shape="circle" type="primary" size="small">2.1</Button>
-                        <a onClick={this.openDoubleTree} href="javascript:;">导入U8部门</a>
-                        <span>|</span>
-                        <span>将U8部门档案的数据同步更新到超客营销.</span>
-                    </div>
-                    <div className="ck-u8Dept-step">
-                        <Button shape="circle" type="primary" size="small">2.2</Button>
-                        <a>同步部门名称</a>
-                        <span>|</span>
-                        <span>当导入部门后U8名称发生变化时, 可随时同步修改后的部门名称到超客营销</span>
-                    </div>
-
-                    <div className="ck-u8Dept-stepIcon">
-                        <Icon type="double-right"></Icon>
-                    </div>
-                    <div className="ck-u8Dept-step">
-                        <Button shape="circle" type="primary" size="small">3</Button>
-                        <a>分配部门员工</a>
-                        <span>|</span>
-                        <span>进入后台管理 - 超客营销的权限组织架构, 在部门增加部门员工时添加选择U8人员.</span>
-                    </div>
-                </div>
+         {this.state.hasPop ? (<JanePopup
+         content={[<div>popTitle</div>,
+         <input type="text" value={this.state.value} onChange={this.handleInputChange}/>,
+         <div>popContent</div>]}>
+         <button name="popTrigger">click me</button>
+         </JanePopup>) : null}
 
 
+         <Popover content={(<div><input type="text"/></div>)} trigger="click">
+         <button >1111</button>
 
-                <div className="ck-u8Dept-spinWrap">
+         </Popover>
 
-                    <Spin size="large"/>
-                    <p>加载中...</p>
-                </div>
-                {this.state.doubleTreeVisible ? (
+         <InputUser />
+         <Select multiple>
 
-                        <Modal width={600}
-                               title="TestDemo" visible={this.state.doubleTreeVisible}
-                               onOk={this.handleOk} onClose={this.onClose}>
-                            <U8_DoubleTree onChange={this.handleTreeValue} />
-                            <Spin />
-                        </Modal>
-                ) : null}
-            </div>
+         </Select>
+         <div>
+         <Icon type="user" style={{fontSize: 14}}></Icon>
+         <Icon type="plus" style={{fontSize: 8}}></Icon>
+         </div>
 
-          </div>
+         <div children={[(<div>your name</div>), (<div>my name</div>)]}></div>
 
-           )
+         <div style={style}>
+         my custom div
+         </div>
+         <JaneButton/>
+         <EditDialog_Demo/>
+
+         <Button onClick={this.openDoubleTree}>openDoubleTree</Button>
+
+
+         <div className="ck-u8Dept">
+         <div className="ck-u8Dept-step">
+         <Button shape="circle" type="primary" size="small">1</Button>
+         <a >导入U8通讯录</a>
+         <span>|</span>
+         <span>跳转到U易联进行U8人员的导入. 操作成功后U8的人员将会同步到企业空间.</span>
+         </div>
+
+         <div className="ck-u8Dept-stepIcon">
+         <Icon type="double-right"></Icon>
+         </div>
+         <div className="ck-u8Dept-step">
+         <Button shape="circle" type="primary" size="small">2.1</Button>
+         <a onClick={this.openDoubleTree} href="javascript:;">导入U8部门</a>
+         <span>|</span>
+         <span>将U8部门档案的数据同步更新到超客营销.</span>
+         </div>
+         <div className="ck-u8Dept-step">
+         <Button shape="circle" type="primary" size="small">2.2</Button>
+         <a>同步部门名称</a>
+         <span>|</span>
+         <span>当导入部门后U8名称发生变化时, 可随时同步修改后的部门名称到超客营销</span>
+         </div>
+
+         <div className="ck-u8Dept-stepIcon">
+         <Icon type="double-right"></Icon>
+         </div>
+         <div className="ck-u8Dept-step">
+         <Button shape="circle" type="primary" size="small">3</Button>
+         <a>分配部门员工</a>
+         <span>|</span>
+         <span>进入后台管理 - 超客营销的权限组织架构, 在部门增加部门员工时添加选择U8人员.</span>
+         </div>
+         </div>
+
+
+         <div className="ck-u8Dept-spinWrap">
+
+         <Spin size="large"/>
+         <p>加载中...</p>
+         </div>
+         {this.state.doubleTreeVisible ? (
+
+         <Modal width={600}
+         title="TestDemo" visible={this.state.doubleTreeVisible}
+         onOk={this.handleOk} onClose={this.onClose}>
+         <U8_DoubleTree onChange={this.handleTreeValue}/>
+         <Spin />
+         </Modal>
+         ) : null}
+         </div>
+
+         </div>
+
+         )*/
     }
 };
 

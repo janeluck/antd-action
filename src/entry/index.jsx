@@ -1,7 +1,7 @@
 import '../common/lib';
 import App from '../component/App';
 import ReactDOM from 'react-dom';
-import React from 'react';
+import React, {Component} from 'react';
 import classNames from 'classnames';
 import {Router, Route, Link, browserHistory} from 'react-router'
 import Greeting from '../LifeCycle'
@@ -14,8 +14,8 @@ import reqwest from 'reqwest'
 
 import DemoCKUpload from '../jane/CKUpload/demo'
 import Immutable from 'Immutable'
-
-import {Menu, Icon, Switch, Row, Col, Buttonn, Input, DatePicker, Button, Tree, Modal, TimePicker} from 'antd';
+import _ from 'lodash'
+import {Menu, Icon, Switch, Row, Col, Button, Input, DatePicker, Tree, Modal, TimePicker} from 'antd';
 import '../component/App.less';
 import '../jane/styles/style/index.less';
 
@@ -612,11 +612,61 @@ class TaskDatePicker extends React.Component {
 }
 
 
+class InputButtonPanel extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    renderChildren = (children) => {
+
+        const getNewChildren = function (children) {
+            return React.Children.map(children, child => {
+                if (!child.type) return child
+                if (child.type.isInputButtonPanelInput) {
+                    return <input {...child.props}/>
+                }
+                return React.cloneElement(
+                    child,
+                    {},
+                    getNewChildren(child.props.children)
+                )
+
+            })
+        }
+
+
+        return getNewChildren(children)
+
+
+    }
+
+    render() {
+        return <div>
+            {this.renderChildren(this.props.children)}
+            <Button>you</Button>
+
+        </div>
+    }
+}
+
+class InnerInput extends Component {
+    static isInputButtonPanelInput = true
+}
+
+
 ReactDOM.render(
     <div>
-        <DoubleTree />
-        <ISetState />
-        <LoadTree />
+        <InputButtonPanel>
+            <span>front</span><span>back</span>
+            <div>second</div>
+            3333
+            <div>
+                <div>
+                    <InnerInput/>
+                </div>
+            </div>
+
+        </InputButtonPanel>
     </div>,
 
     document.getElementById('react-content')
@@ -687,22 +737,24 @@ ReactDOM.render(
  */
 
 
-var p = new JanePromise(function (resolve, reject) {
-    reqwest({
-        url: '/api/admin',
-    }).then(rs => {
-        resolve(rs)
-    }, reason => {
-        reject(reason)
-    })
-})
-p.then(data => {
-    return `this is ${data}`
-}).then(data => {
-    return `this is ${data}`
-}).then(data => {
-    console.log(`this is ${data}`)
-})
+/*
+ var p = new JanePromise(function (resolve, reject) {
+ reqwest({
+ url: '/api/admin',
+ }).then(rs => {
+ resolve(rs)
+ }, reason => {
+ reject(reason)
+ })
+ })
+ p.then(data => {
+ return `this is ${data}`
+ }).then(data => {
+ return `this is ${data}`
+ }).then(data => {
+ console.log(`this is ${data}`)
+ })
+ */
 
 //console.log(p.then())
 
